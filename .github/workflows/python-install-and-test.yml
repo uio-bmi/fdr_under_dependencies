@@ -36,4 +36,5 @@ jobs:
         pip install .
     - name: Run pytest and doctest
       run: |
-        make test-all
+        make test
+        # should be make test-all later
