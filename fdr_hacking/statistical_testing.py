@@ -67,7 +67,8 @@ def ranksum_test(methyl_datamat: np.ndarray, group1_indices: list, group2_indice
     return p_values
 
 
-def get_p_values_per_feature(methyl_datamat: np.ndarray, group1_indices: list, group2_indices: list, test_type: str) -> np.array:
+def get_p_values_per_feature(methyl_datamat: np.ndarray, group1_indices: list, group2_indices: list,
+                             test_type: str) -> np.array:
     """
 
     :param methyl_datamat: A ndimensional numpy array of methylation M values with observations in rows,
@@ -113,4 +114,13 @@ def count_significant_pvalues(adjusted_pvalues: np.array, alpha: float) -> int:
     :return: An integer indicating the number of significant findings at the pre-specified significance level
     """
     num_significant = np.sum(adjusted_pvalues < alpha)
+    return num_significant
+
+
+def quantify_fdr(methyl_datamat: np.ndarray, group1_indices: list, group2_indices: list, test_type: str, method: str,
+                 alpha: float):
+    pvals = get_p_values_per_feature(methyl_datamat=methyl_datamat, group1_indices=group1_indices,
+                                     group2_indices=group2_indices, test_type=test_type)
+    adjusted_pvals = adjust_pvalues(p_values=pvals, method=method)
+    num_significant = count_significant_pvalues(adjusted_pvalues=adjusted_pvals, alpha=alpha)
     return num_significant

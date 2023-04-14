@@ -1,6 +1,13 @@
 import numpy as np
 import pandas as pd
-from scipy.stats import norm, multivariate_normal as mvn, beta as beta_dist, rankdata, spearmanr
+import os.path
+from scipy.stats import norm, multivariate_normal as mvn, beta as beta_dist, spearmanr
+
+
+def load_eg_realworld_data():
+    file_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'realworld_methyl_beta.h5')
+    realworld_data = pd.read_hdf(file_path, "beta_values_df")
+    return realworld_data
 
 
 def sample_realworld_methyl_val(n_sites: int, realworld_data: pd.DataFrame) -> np.ndarray:
@@ -12,6 +19,7 @@ def sample_realworld_methyl_val(n_sites: int, realworld_data: pd.DataFrame) -> n
     :param realworld_data: real-world methylation data in a pandas dataframe with features in columns
     :return: a sub-sampled real-world methylation data returned as ndimensional numpy array
     """
+    assert n_sites <= realworld_data.shape[1], "desired n_sites larger than the number of sites in realworld_data"
     sampled_df = realworld_data.sample(n=n_sites, axis=1)
     return sampled_df.to_numpy()
 
@@ -84,7 +92,8 @@ def estimate_realworld_dependence_structure(n_sites: int, realworld_data: pd.Dat
     return intervals
 
 
-def sample_corr_mat_given_dependence_structure(n_sites: int, corr_threshold: float, dependence_structure: list) -> np.ndarray:
+def sample_corr_mat_given_dependence_structure(n_sites: int, corr_threshold: float,
+                                               dependence_structure: list) -> np.ndarray:
     """
 
     :param n_sites: The number of features to be included in the simulated correlation coefficient matrix
@@ -102,13 +111,13 @@ def sample_corr_mat_given_dependence_structure(n_sites: int, corr_threshold: flo
         end_idx = n_sites
         for i in range(start_idx, end_idx - 1):
             num_high_corr_features = int(np.random.uniform(*percentile_range) * n_sites)
-            corr_mat[i, i:end_idx] = np.random.uniform(0, 0.1, size=end_idx - i)
+            corr_mat[i, i:end_idx] = np.round(np.random.uniform(0, 0.1, size=end_idx - i),2)
             corr_mat[i:end_idx, i] = corr_mat[i, i:end_idx]
             if (end_idx - (i + 1)) < num_high_corr_features:
                 num_high_corr_features = min(num_high_corr_features, end_idx - (i + 1))
             num_high_corr_features = max(1, num_high_corr_features)
             high_corr_idx = np.random.choice(range(i + 1, end_idx), size=num_high_corr_features, replace=False)
-            corr_values = np.random.uniform(corr_threshold, 1, size=num_high_corr_features)
+            corr_values = np.round(np.random.uniform(corr_threshold, 1, size=num_high_corr_features),2)
             corr_mat[i, high_corr_idx] = corr_values
             corr_mat[high_corr_idx, i] = corr_mat[i, high_corr_idx]
     corr_mat = np.round(corr_mat, 4)
@@ -118,7 +127,6 @@ def sample_corr_mat_given_dependence_structure(n_sites: int, corr_threshold: flo
 
 def sample_corr_mat_given_distribution(n_sites: int, corr_coef_distribution: list) -> np.ndarray:
     """
-
     :param n_sites: The number of features to be included in the simulated correlation coefficient matrix
     (returns a n_sites x n_sites matrix).
     :param corr_coef_distribution: A list of tuples, where each tuple represents a discrete interval that can be used
@@ -132,8 +140,9 @@ def sample_corr_mat_given_distribution(n_sites: int, corr_coef_distribution: lis
     triu_indices = np.triu_indices(len(corr_matrix), k=1)
     corr_coef_values = np.array([])
     for corr_range in corr_coef_distribution:
-        n_values = int(len(triu_indices[0])/len(corr_coef_distribution))
-        corr_coef_values = np.concatenate((corr_coef_values, np.random.uniform(corr_range[0], corr_range[1], n_values)))
+        n_values = int(len(triu_indices[0]) / len(corr_coef_distribution))
+        corr_coef_values = np.concatenate((corr_coef_values,
+                                           np.round(np.random.uniform(corr_range[0], corr_range[1], n_values),2)))
     np.random.shuffle(corr_coef_values)
     corr_matrix[triu_indices] = corr_coef_values
     corr_matrix = corr_matrix + corr_matrix.T
@@ -158,7 +167,6 @@ def synthesize_methyl_val_with_copula(correlation_matrix: np.ndarray,
                                       beta_dist_alpha_params: np.array,
                                       beta_dist_beta_params: np.array) -> np.ndarray:
     """
-
     :param correlation_matrix: A correlation coefficient matrix, where either the number of rows or columns represent
     the number of features to be included in the simulated methylation dataset
     :param n_observations: The number of observations to be included in the simulated methylation dataset
@@ -169,7 +177,7 @@ def synthesize_methyl_val_with_copula(correlation_matrix: np.ndarray,
     :return: A simulated methylation dataset of beta values (as ndimensional numpy array) with desired
     correlation structure with n_observations (rows) x n_sites (columns).
     """
-    dependency_structure = mvn(mean=np.zeros(correlation_matrix.shape[0]), cov=correlation_matrix)
+    dependency_structure = mvn(mean=np.zeros(correlation_matrix.shape[0]), cov=correlation_matrix, allow_singular=True)
     random_variables = dependency_structure.rvs(size=n_observations)
     uniform_random_variables = [norm.cdf(random_variables[:, i]) for i in range(random_variables.shape[1])]
     synth_beta_values = np.zeros((random_variables.shape[0], random_variables.shape[1]))
@@ -183,7 +191,6 @@ def synthesize_methyl_val_without_dependence(n_sites: int, n_observations: int,
                                              beta_dist_alpha_params: np.array,
                                              beta_dist_beta_params: np.array) -> np.ndarray:
     """
-
     :param n_sites: The number of features to be included in the simulated methylation dataset
     :param n_observations: The number of observations to be included in the simulated methylation dataset
     :param beta_dist_alpha_params: A numpy array containing alpha parameters of beta distribution. Expected size of
@@ -203,7 +210,6 @@ def synthesize_methyl_val_without_dependence(n_sites: int, n_observations: int,
 
 def beta_to_m(methyl_beta_values: np.ndarray) -> np.ndarray:
     """
-
     :param methyl_beta_values: A ndimensional numpy array containing methylation beta values, with features in columns
     :return: A ndimensional numpy array containing methylation M values (because of having desirable properties for
      statistical testing), with features in columns
@@ -215,3 +221,38 @@ def beta_to_m(methyl_beta_values: np.ndarray) -> np.ndarray:
         max_m_value = np.max(np.abs(m_values[~np.isinf(m_values)]))
         m_values[np.isinf(m_values)] = np.sign(m_values[np.isinf(m_values)]) * max_m_value
     return m_values
+
+
+def estimate_realworld_corrcoef_distribution(methyl_beta_values: np.ndarray) -> list:
+    """
+
+    :param methyl_beta_values: A ndimensional numpy array containing methylation beta values, with features in columns
+    :return: A list of tuples, where each tuple represents an interval of correlation coefficient range. The tuples
+    are constructed based on empirical quantiles of correlation coefficients in one of the triangles of correlation
+    coefficient matrix on a sample of real-world data.
+    """
+    corr_mat = determine_correlation_matrix(methyl_beta_values)
+    corr_mat = np.triu(corr_mat, k=1)
+    quantiles = np.percentile(corr_mat, np.arange(0, 101, 5))
+    intervals = [(quantiles[i], quantiles[i + 1]) for i in range(len(quantiles) - 1)]
+    return intervals
+
+
+def simulate_methyl_data(realworld_data: pd.DataFrame, n_sites: int, n_observations: int, dependencies: bool,
+                         corr_coef_distribution: list = None) -> np.ndarray:
+    real_data = sample_realworld_methyl_val(n_sites=n_sites, realworld_data=realworld_data)
+    alpha_params, beta_params = estimate_beta_dist_parameters(methyl_beta_values=real_data)
+    if dependencies:
+        if corr_coef_distribution is None:
+            corr_coef_distribution = estimate_realworld_corrcoef_distribution(real_data)
+        corr_matrix = sample_corr_mat_given_distribution(n_sites=n_sites, corr_coef_distribution=corr_coef_distribution)
+        synth_beta_values = synthesize_methyl_val_with_copula(correlation_matrix=corr_matrix,
+                                                              n_observations=n_observations,
+                                                              beta_dist_alpha_params=alpha_params,
+                                                              beta_dist_beta_params=beta_params)
+    else:
+        synth_beta_values = synthesize_methyl_val_without_dependence(n_sites=n_sites, n_observations=n_observations,
+                                                                     beta_dist_alpha_params=alpha_params,
+                                                                     beta_dist_beta_params=beta_params)
+    methyl_datamat = beta_to_m(methyl_beta_values=synth_beta_values)
+    return methyl_datamat
