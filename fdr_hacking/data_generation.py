@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import os.path
-from scipy.stats import norm, multivariate_normal as mvn, beta as beta_dist, spearmanr
+from scipy.stats import norm, multivariate_normal as mvn, beta as beta_dist, spearmanr, beta
 
 
 def load_eg_realworld_data():
@@ -43,111 +43,35 @@ def estimate_beta_dist_parameters(methyl_beta_values: np.ndarray) -> tuple:
     return alpha_params, beta_params
 
 
-def find_high_corr_sites_distribution(methyl_beta_values: np.ndarray, corr_threshold: float) -> np.array:
-    """
-    Given a methylation dataset of beta values with features in columns of a ndimensional numpy array, this function
-    computes the spearman rank correlation between the features and returns the deciles of the high correlation counts.
-    The high correlation counts are determined based on a threshold parameter for absolute correlation coefficient.
-    Only the upper triangle of the correlation coefficient matrix is used (excluding diagonal) when counting the
-    number of highly correlated features. The returned deciles describe for e.g. the following: 10% of the total
-    features are highly correlated with upto 30% of other features.
-
-    :param methyl_beta_values: A ndimensional numpy array containing methylation beta values, with features in columns
-    :param corr_threshold: A float indicating the absolute correlation coefficient between 0 and 1 (e.g. 0.4)
-    :return: The deciles of counts of highly correlated features
-    """
-    corr_mat = determine_correlation_matrix(methyl_beta_values)
-    corr_mat = np.triu(corr_mat, k=1)
-    high_corr_counts = np.sum(np.abs(corr_mat) >= corr_threshold, axis=1)
-    deciles = np.percentile(high_corr_counts, np.arange(0, 101, 10))
-    return deciles
-
-
-def estimate_realworld_dependence_structure(n_sites: int, realworld_data: pd.DataFrame,
-                                            corr_threshold: float, n_times: int) -> list:
-    """
-    Given a pandas dataframe containing real-world methylation data with features in columns and observations in rows,
-    this function sub-samples a subset of features (specified by n_sites parameter). The sub-sampled data is used as
-    a basis to find the deciles of counts of highly correlated features. The high correlation is defined by
-    corr_threshold parameter. This process is repeated multiple times (specified by n_times parameter) and the average
-    of deciles are computed. These deciles are then converted to discrete bins, which are returned as a list of tuples.
-    These discrete intervals can be used as a basis to sample correlation coefficients when simulating a
-    correlation coefficient matrix, thus reflecting the dependence structure of real-world methylation data.
-
-    :param n_sites: Number of features to sub-sample from the supplied real-world methylation data
-    :param realworld_data: real-world methylation data in a pandas dataframe with features in columns
-    :param corr_threshold: A float indicating the absolute correlation coefficient between 0 and 1 (e.g. 0.4)
-    to find "high" correlation features
-    :param n_times: number of times to repeat for better estimation of dependence structure in real-world methylation data
-    :return: A list of tuples, where each tuple represents a discrete interval that can be used when simulating
-    correlation coefficient matrix
-    """
-    n_times_deciles = []
-    for i in range(n_times):
-        methyl_beta_values = sample_realworld_methyl_val(n_sites, realworld_data)
-        n_times_deciles[i] = find_high_corr_sites_distribution(methyl_beta_values, corr_threshold)
-    deciles_avg = np.mean(n_times_deciles, axis=0)
-    intervals = [(deciles_avg[i] / n_sites, deciles_avg[i + 1] / n_sites) for i in range(len(deciles_avg) - 1)]
-    intervals = list(reversed(intervals))
-    return intervals
-
-
-def sample_corr_mat_given_dependence_structure(n_sites: int, corr_threshold: float,
-                                               dependence_structure: list) -> np.ndarray:
-    """
-
-    :param n_sites: The number of features to be included in the simulated correlation coefficient matrix
-    (returns a n_sites x n_sites matrix).
-    :param corr_threshold: A float indicating the absolute correlation coefficient between 0 and 1 (e.g. 0.4), which
-    has to be used when simulating "high" correlations
-    :param dependence_structure: A list of tuples, where each tuple represents a discrete interval that can be used
-    when simulating correlation coefficient matrix. This has to be in a format as returned by
-    `estimate_realworld_dependence_structure` function.
-    :return: A simulated correlation coefficient matrix of shape n_sites x n_sites
-    """
-    corr_mat = np.zeros((n_sites, n_sites))
-    for decile, percentile_range in enumerate(dependence_structure):
-        start_idx = int(decile * n_sites / 10)
-        end_idx = n_sites
-        for i in range(start_idx, end_idx - 1):
-            num_high_corr_features = int(np.random.uniform(*percentile_range) * n_sites)
-            corr_mat[i, i:end_idx] = np.round(np.random.uniform(0, 0.1, size=end_idx - i),2)
-            corr_mat[i:end_idx, i] = corr_mat[i, i:end_idx]
-            if (end_idx - (i + 1)) < num_high_corr_features:
-                num_high_corr_features = min(num_high_corr_features, end_idx - (i + 1))
-            num_high_corr_features = max(1, num_high_corr_features)
-            high_corr_idx = np.random.choice(range(i + 1, end_idx), size=num_high_corr_features, replace=False)
-            corr_values = np.round(np.random.uniform(corr_threshold, 1, size=num_high_corr_features),2)
-            corr_mat[i, high_corr_idx] = corr_values
-            corr_mat[high_corr_idx, i] = corr_mat[i, high_corr_idx]
-    corr_mat = np.round(corr_mat, 4)
-    np.fill_diagonal(corr_mat, 1)
-    return corr_mat
-
-
-def sample_corr_mat_given_distribution(n_sites: int, corr_coef_distribution: list) -> np.ndarray:
+def sample_legal_cvine_corrmat(n_sites: int, betaparam: float) -> np.ndarray:
     """
     :param n_sites: The number of features to be included in the simulated correlation coefficient matrix
-    (returns a n_sites x n_sites matrix).
-    :param corr_coef_distribution: A list of tuples, where each tuple represents a discrete interval that can be used
-    when simulating correlation coefficient matrix. Unlike in `sample_corr_mat_given_dependence_structure`, each tuple
-    in this list represent a range of correlation coefficients. Correlation coefficients will be drawn equally randomly
-    from each tuple's range and filled in simulated correlation coefficient matrix randomly while respecting the
-    symmetry of upper and lower triangles.
+    (returns a n_sites x n_sites matrix). Note that if n_sites is larger than 1000, this approach becomes very slow and
+    thus in the current implementation, if n_sites is larger than 1000, an error is thrown.
+    :param betaparam: A float representing both alpha and beta parameters of a beta distribution. As this value is larger,
+    the off-diagonal elements of the generated correlation matrix have smaller variance clustered around zero
+    (no correlation) and as this value is larger the off-diagonal elements contain more high correlations and the
+    variance increases. When the value of this parameter is 1, the off-diagonal elements of the correlation matrix
+    elements follow close to a normal distribution.
     :return: A simulated correlation coefficient matrix of shape n_sites x n_sites
     """
-    corr_matrix = np.eye(n_sites)
-    triu_indices = np.triu_indices(len(corr_matrix), k=1)
-    corr_coef_values = np.array([])
-    for corr_range in corr_coef_distribution:
-        n_values = int(len(triu_indices[0]) / len(corr_coef_distribution))
-        corr_coef_values = np.concatenate((corr_coef_values,
-                                           np.round(np.random.uniform(corr_range[0], corr_range[1], n_values),2)))
-    np.random.shuffle(corr_coef_values)
-    corr_matrix[triu_indices] = corr_coef_values
-    corr_matrix = corr_matrix + corr_matrix.T
-    np.fill_diagonal(corr_matrix, 1)
-    return corr_matrix
+    assert n_sites <= 1000, "Warning: This approach can be very slow for n_sites > 1000; consider combining " \
+                            "multiple smaller chunks"
+    P = np.zeros((n_sites, n_sites))
+    S = np.eye(n_sites)
+    for k in range(1, n_sites):
+        for i in range(k + 1, n_sites):
+            P[k, i] = np.random.beta(betaparam, betaparam)
+            P[k, i] = (P[k, i] - 0.5) * 2
+            p = P[k, i]
+            for l in range(k - 1, -1, -1):
+                p = p * np.sqrt((1 - P[l, i] ** 2) * (1 - P[l, k] ** 2)) + P[l, i] * P[l, k]
+            S[k, i] = p
+            S[i, k] = p
+    permutation = np.random.permutation(n_sites)
+    S = S[np.ix_(permutation, permutation)]
+    S += 1e-6 * np.eye(n_sites)
+    return S
 
 
 def determine_correlation_matrix(methyl_beta_values: np.ndarray) -> np.ndarray:
@@ -177,6 +101,10 @@ def synthesize_methyl_val_with_copula(correlation_matrix: np.ndarray,
     :return: A simulated methylation dataset of beta values (as ndimensional numpy array) with desired
     correlation structure with n_observations (rows) x n_sites (columns).
     """
+    assert len(beta_dist_alpha_params) == correlation_matrix.shape[0], "The length of alpha params array should match" \
+                                                                       "correlation matrix shape"
+    assert len(beta_dist_beta_params) == correlation_matrix.shape[0], "The length of beta params array should match" \
+                                                                      "correlation matrix shape"
     dependency_structure = mvn(mean=np.zeros(correlation_matrix.shape[0]), cov=correlation_matrix, allow_singular=True)
     random_variables = dependency_structure.rvs(size=n_observations)
     uniform_random_variables = [norm.cdf(random_variables[:, i]) for i in range(random_variables.shape[1])]
@@ -184,6 +112,59 @@ def synthesize_methyl_val_with_copula(correlation_matrix: np.ndarray,
     for i in range(len(beta_dist_alpha_params)):
         synth_beta_values[:, i] = beta_dist(a=beta_dist_alpha_params[i], b=beta_dist_beta_params[i]).ppf(
             uniform_random_variables[i])
+    return synth_beta_values
+
+
+def generate_correlated_gaussian(x, corr):
+    cov = np.array([[1.0, corr], [corr, 1.0]])
+    L = np.linalg.cholesky(cov)
+    uncorrelated_samples = np.random.normal(0, 1, len(x))
+    correlated_samples = np.dot(L, [x, uncorrelated_samples])
+    correlated_array = correlated_samples[1]
+    return correlated_array
+
+
+def generate_n_correlation_coefficients(corr_coef_distribution, n_sites):
+    num_tuples = len(corr_coef_distribution)
+    sites_per_tuple = n_sites // num_tuples
+    coefficients = []
+    for corr_range in corr_coef_distribution:
+        min_corr, max_corr = corr_range
+        tuple_coefficients = np.random.uniform(min_corr, max_corr, sites_per_tuple)
+        coefficients.extend(tuple_coefficients)
+    remaining_sites = n_sites % num_tuples
+    for i in range(remaining_sites):
+        min_corr, max_corr = corr_coef_distribution[i]
+        coefficient = np.random.uniform(min_corr, max_corr)
+        coefficients.append(coefficient)
+    return coefficients
+
+
+def synthesize_autoregressive_gaussian_variables(corr_coef_distribution: list, n_observations: int, n_sites: int):
+    corr_coefs = generate_n_correlation_coefficients(corr_coef_distribution, n_sites)
+    gaussian_vars_mat = np.zeros((n_observations, n_sites))
+    for i, cor_coeff in enumerate(corr_coefs):
+        if i < 1:
+            gaussian_vars_mat[:, i] = np.random.normal(size=n_observations)
+        else:
+            gaussian_vars_mat[:, i] = generate_correlated_gaussian(gaussian_vars_mat[:, i - 1], cor_coeff)
+    return gaussian_vars_mat
+
+
+def transform_gaussian_to_beta(gaussian_vars_mat, beta_dist_alpha_params: np.array, beta_dist_beta_params: np.array):
+    synth_beta_values = np.zeros((gaussian_vars_mat.shape[0], gaussian_vars_mat.shape[1]))
+    uniform_random_variables = [norm.cdf(gaussian_vars_mat[:, i]) for i in range(gaussian_vars_mat.shape[1])]
+    for i in range(len(beta_dist_alpha_params)):
+        synth_beta_values[:, i] = beta_dist(a=beta_dist_alpha_params[i], b=beta_dist_beta_params[i]).ppf(
+            uniform_random_variables[i])
+    return synth_beta_values
+
+
+def synthesize_methyl_val_with_autocorr(corr_coef_distribution: list, n_observations: int, n_sites: int,
+                                        beta_dist_alpha_params: np.array,
+                                        beta_dist_beta_params: np.array) -> np.ndarray:
+    gaussian_vars_mat = synthesize_autoregressive_gaussian_variables(corr_coef_distribution, n_observations, n_sites)
+    synth_beta_values = transform_gaussian_to_beta(gaussian_vars_mat, beta_dist_alpha_params, beta_dist_beta_params)
     return synth_beta_values
 
 
@@ -223,33 +204,26 @@ def beta_to_m(methyl_beta_values: np.ndarray) -> np.ndarray:
     return m_values
 
 
-def estimate_realworld_corrcoef_distribution(methyl_beta_values: np.ndarray) -> list:
-    """
-
-    :param methyl_beta_values: A ndimensional numpy array containing methylation beta values, with features in columns
-    :return: A list of tuples, where each tuple represents an interval of correlation coefficient range. The tuples
-    are constructed based on empirical quantiles of correlation coefficients in one of the triangles of correlation
-    coefficient matrix on a sample of real-world data.
-    """
-    corr_mat = determine_correlation_matrix(methyl_beta_values)
-    corr_mat = np.triu(corr_mat, k=1)
-    quantiles = np.percentile(corr_mat, np.arange(0, 101, 5))
-    intervals = [(quantiles[i], quantiles[i + 1]) for i in range(len(quantiles) - 1)]
-    return intervals
-
-
-def simulate_methyl_data(realworld_data: pd.DataFrame, n_sites: int, n_observations: int, dependencies: bool,
-                         corr_coef_distribution: list = None) -> np.ndarray:
+def simulate_methyl_data(realworld_data: pd.DataFrame, n_sites: int, n_observations: int,
+                         dependencies: bool) -> np.ndarray:
     real_data = sample_realworld_methyl_val(n_sites=n_sites, realworld_data=realworld_data)
     alpha_params, beta_params = estimate_beta_dist_parameters(methyl_beta_values=real_data)
     if dependencies:
-        if corr_coef_distribution is None:
-            corr_coef_distribution = estimate_realworld_corrcoef_distribution(real_data)
-        corr_matrix = sample_corr_mat_given_distribution(n_sites=n_sites, corr_coef_distribution=corr_coef_distribution)
-        synth_beta_values = synthesize_methyl_val_with_copula(correlation_matrix=corr_matrix,
-                                                              n_observations=n_observations,
-                                                              beta_dist_alpha_params=alpha_params,
-                                                              beta_dist_beta_params=beta_params)
+        assert n_sites % 500 == 0, "n_sites must be divisible by 500"
+        num_chunks = n_sites // 500
+        alpha_chunks = np.array_split(alpha_params, num_chunks)
+        beta_chunks = np.array_split(beta_params, num_chunks)
+        synth_datasets = []
+        for i in range(num_chunks):
+            corr_matrix = sample_legal_cvine_corrmat(n_sites=500, betaparam=0.5)
+            alpha_chunk = alpha_chunks[i]
+            beta_chunk = beta_chunks[i]
+            synth_beta_values = synthesize_methyl_val_with_copula(correlation_matrix=corr_matrix,
+                                                                  n_observations=n_observations,
+                                                                  beta_dist_alpha_params=alpha_chunk,
+                                                                  beta_dist_beta_params=beta_chunk)
+            synth_datasets.append(synth_beta_values)
+        synth_beta_values = np.concatenate(synth_datasets, axis=1)
     else:
         synth_beta_values = synthesize_methyl_val_without_dependence(n_sites=n_sites, n_observations=n_observations,
                                                                      beta_dist_alpha_params=alpha_params,
