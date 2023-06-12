@@ -34,7 +34,7 @@ def estimate_realworld_corrcoef_distribution(methyl_beta_values: np.ndarray) -> 
     corr_mat = determine_correlation_matrix(methyl_beta_values)
     corr_mat = np.triu(corr_mat, k=1)
     quantiles = np.percentile(corr_mat, np.arange(0, 101, 5))
-    intervals = [(quantiles[i], quantiles[i + 1]) for i in range(len(quantiles) - 1)]
+    intervals = [(round(quantiles[i], 2), round(quantiles[i + 1], 2)) for i in range(len(quantiles) - 1)]
     return intervals
 
 

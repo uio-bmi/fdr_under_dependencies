@@ -43,6 +43,18 @@ def estimate_beta_dist_parameters(methyl_beta_values: np.ndarray) -> tuple:
     return alpha_params, beta_params
 
 
+def determine_correlation_matrix(methyl_beta_values: np.ndarray) -> np.ndarray:
+    """
+    Given a methylation dataset of beta values with features in columns of a ndimensional numpy array, this function
+    computes the spearman rank correlation coefficients between each feature and returns a matrix of correlation
+    coefficients as ndimensional numpy array.
+
+    :param methyl_beta_values: A ndimensional numpy array containing methylation beta values, with features in columns
+    :return: A ndimensional numpy array of pairwise correlation coefficients between each feature
+    """
+    return spearmanr(methyl_beta_values).statistic
+
+
 def sample_legal_cvine_corrmat(n_sites: int, betaparam: float) -> np.ndarray:
     """
     :param n_sites: The number of features to be included in the simulated correlation coefficient matrix
@@ -74,22 +86,10 @@ def sample_legal_cvine_corrmat(n_sites: int, betaparam: float) -> np.ndarray:
     return S
 
 
-def determine_correlation_matrix(methyl_beta_values: np.ndarray) -> np.ndarray:
-    """
-    Given a methylation dataset of beta values with features in columns of a ndimensional numpy array, this function
-    computes the spearman rank correlation coefficients between each feature and returns a matrix of correlation
-    coefficients as ndimensional numpy array.
-
-    :param methyl_beta_values: A ndimensional numpy array containing methylation beta values, with features in columns
-    :return: A ndimensional numpy array of pairwise correlation coefficients between each feature
-    """
-    return spearmanr(methyl_beta_values).statistic
-
-
-def synthesize_methyl_val_with_copula(correlation_matrix: np.ndarray,
-                                      n_observations: int,
-                                      beta_dist_alpha_params: np.array,
-                                      beta_dist_beta_params: np.array) -> np.ndarray:
+def synthesize_methyl_val_with_copula_with_supplied_corrmat(correlation_matrix: np.ndarray,
+                                                            n_observations: int,
+                                                            beta_dist_alpha_params: np.array,
+                                                            beta_dist_beta_params: np.array) -> np.ndarray:
     """
     :param correlation_matrix: A correlation coefficient matrix, where either the number of rows or columns represent
     the number of features to be included in the simulated methylation dataset
@@ -115,6 +115,41 @@ def synthesize_methyl_val_with_copula(correlation_matrix: np.ndarray,
     return synth_beta_values
 
 
+def synthesize_methyl_val_with_copula_no_corrmat(beta_dist_alpha_params: np.array, beta_dist_beta_params: np.array,
+                                                 n_observations: int) -> np.ndarray:
+    n_sites = len(beta_dist_alpha_params)
+    assert n_sites % 500 == 0, "The number of sites (supplied beta distribution params) must be divisible by 500"
+    num_chunks = n_sites // 500
+    alpha_chunks = np.array_split(beta_dist_alpha_params, num_chunks)
+    beta_chunks = np.array_split(beta_dist_beta_params, num_chunks)
+    synth_datasets = []
+    for i in range(num_chunks):
+        corr_matrix = sample_legal_cvine_corrmat(n_sites=500, betaparam=0.5)
+        alpha_chunk = alpha_chunks[i]
+        beta_chunk = beta_chunks[i]
+        synth_beta_values = synthesize_methyl_val_with_copula_with_supplied_corrmat(correlation_matrix=corr_matrix,
+                                                                                    n_observations=n_observations,
+                                                                                    beta_dist_alpha_params=alpha_chunk,
+                                                                                    beta_dist_beta_params=beta_chunk)
+        synth_datasets.append(synth_beta_values)
+    synth_beta_values = np.concatenate(synth_datasets, axis=1)
+    return synth_beta_values
+
+
+def synthesize_methyl_val_with_copula(n_observations: int,
+                                      beta_dist_alpha_params: np.array,
+                                      beta_dist_beta_params: np.array,
+                                      correlation_matrix: np.ndarray = None) -> np.ndarray:
+    if correlation_matrix is not None:
+        synth_beta_values = synthesize_methyl_val_with_copula_with_supplied_corrmat(correlation_matrix, n_observations,
+                                                                                    beta_dist_alpha_params,
+                                                                                    beta_dist_beta_params)
+    else:
+        synth_beta_values = synthesize_methyl_val_with_copula_no_corrmat(beta_dist_alpha_params, beta_dist_beta_params,
+                                                                         n_observations)
+    return synth_beta_values
+
+
 def generate_correlated_gaussian(x, corr):
     cov = np.array([[1.0, corr], [corr, 1.0]])
     L = np.linalg.cholesky(cov)
@@ -125,6 +160,7 @@ def generate_correlated_gaussian(x, corr):
 
 
 def generate_n_correlation_coefficients(corr_coef_distribution, n_sites):
+    n_sites -= 1
     num_tuples = len(corr_coef_distribution)
     sites_per_tuple = n_sites // num_tuples
     coefficients = []
@@ -143,11 +179,9 @@ def generate_n_correlation_coefficients(corr_coef_distribution, n_sites):
 def synthesize_autoregressive_gaussian_variables(corr_coef_distribution: list, n_observations: int, n_sites: int):
     corr_coefs = generate_n_correlation_coefficients(corr_coef_distribution, n_sites)
     gaussian_vars_mat = np.zeros((n_observations, n_sites))
-    for i, cor_coeff in enumerate(corr_coefs):
-        if i < 1:
-            gaussian_vars_mat[:, i] = np.random.normal(size=n_observations)
-        else:
-            gaussian_vars_mat[:, i] = generate_correlated_gaussian(gaussian_vars_mat[:, i - 1], cor_coeff)
+    gaussian_vars_mat[:, 0] = np.random.normal(size=n_observations)
+    for i, cor_coeff in enumerate(corr_coefs, start=1):
+        gaussian_vars_mat[:, i] = generate_correlated_gaussian(gaussian_vars_mat[:, i - 1], cor_coeff)
     return gaussian_vars_mat
 
 
@@ -205,25 +239,17 @@ def beta_to_m(methyl_beta_values: np.ndarray) -> np.ndarray:
 
 
 def simulate_methyl_data(realworld_data: pd.DataFrame, n_sites: int, n_observations: int,
-                         dependencies: bool) -> np.ndarray:
+                         dependencies: bool, corr_coef_distribution: list = None,
+                         correlation_matrix: np.ndarray = None) -> np.ndarray:
     real_data = sample_realworld_methyl_val(n_sites=n_sites, realworld_data=realworld_data)
     alpha_params, beta_params = estimate_beta_dist_parameters(methyl_beta_values=real_data)
     if dependencies:
-        assert n_sites % 500 == 0, "n_sites must be divisible by 500"
-        num_chunks = n_sites // 500
-        alpha_chunks = np.array_split(alpha_params, num_chunks)
-        beta_chunks = np.array_split(beta_params, num_chunks)
-        synth_datasets = []
-        for i in range(num_chunks):
-            corr_matrix = sample_legal_cvine_corrmat(n_sites=500, betaparam=0.5)
-            alpha_chunk = alpha_chunks[i]
-            beta_chunk = beta_chunks[i]
-            synth_beta_values = synthesize_methyl_val_with_copula(correlation_matrix=corr_matrix,
-                                                                  n_observations=n_observations,
-                                                                  beta_dist_alpha_params=alpha_chunk,
-                                                                  beta_dist_beta_params=beta_chunk)
-            synth_datasets.append(synth_beta_values)
-        synth_beta_values = np.concatenate(synth_datasets, axis=1)
+        if corr_coef_distribution is not None:
+            synth_beta_values = synthesize_methyl_val_with_autocorr(corr_coef_distribution, n_observations, n_sites,
+                                                                    alpha_params, beta_params)
+        else:
+            synth_beta_values = synthesize_methyl_val_with_copula(n_observations, alpha_params, beta_params,
+                                                                  correlation_matrix)
     else:
         synth_beta_values = synthesize_methyl_val_without_dependence(n_sites=n_sites, n_observations=n_observations,
                                                                      beta_dist_alpha_params=alpha_params,

@@ -2,9 +2,11 @@ import numpy as np
 import pandas as pd
 import pytest
 from scipy.stats import beta
-from fdr_hacking.data_generation import synthesize_methyl_val_without_dependence, synthesize_methyl_val_with_copula, \
+from fdr_hacking.data_generation import synthesize_methyl_val_without_dependence, \
+    synthesize_methyl_val_with_copula_with_supplied_corrmat, \
     beta_to_m, load_eg_realworld_data, simulate_methyl_data, sample_legal_cvine_corrmat, \
-    synthesize_methyl_val_with_autocorr, determine_correlation_matrix
+    synthesize_methyl_val_with_autocorr, determine_correlation_matrix, generate_n_correlation_coefficients, \
+    view_simulation_dag
 
 
 def test_sample_legal_cvine_corrmat():
@@ -27,10 +29,10 @@ def test_synthesize_methyl_val_with_copula():
                             [0.3, 1.0, 0.4, 0.2],
                             [0.2, 0.4, 1.0, 0.3],
                             [0.1, 0.2, 0.3, 1.0]])
-    synth_data = synthesize_methyl_val_with_copula(correlation_matrix=corr_matrix,
-                                                   n_observations=n_observations,
-                                                   beta_dist_alpha_params=alpha_params,
-                                                   beta_dist_beta_params=beta_params)
+    synth_data = synthesize_methyl_val_with_copula_with_supplied_corrmat(correlation_matrix=corr_matrix,
+                                                                         n_observations=n_observations,
+                                                                         beta_dist_alpha_params=alpha_params,
+                                                                         beta_dist_beta_params=beta_params)
     assert synth_data.shape == (n_observations, n_sites)
     expected_means = [beta.mean(a=alpha_params[i], b=beta_params[i]) for i in range(n_sites)]
     column_means = np.mean(synth_data, axis=0)
@@ -41,17 +43,19 @@ def test_synthesize_methyl_val_with_copula():
 
 def test_synthesize_methyl_val_with_autocorr():
     np.random.seed(123)
-    n_sites = 10000
-    n_observations = 20
+    n_sites = 5
+    n_observations = 200
     alpha_params = np.random.uniform(low=0.5, high=2, size=n_sites)
     beta_params = np.random.uniform(low=0.5, high=2, size=n_sites)
-    # corr_coef_distribution = [(-0.99, -0.70), (0.70, 0.85)]
-    corr_coef_distribution = [(0.6, 0.85)]
+    corr_coef_distribution = [(-0.99, -0.70), (0.70, 0.85)]
+    # corr_coef_distribution = [(0.6, 0.85)]
     synth_data = synthesize_methyl_val_with_autocorr(corr_coef_distribution=corr_coef_distribution,
                                                      n_observations=n_observations, n_sites=n_sites,
                                                      beta_dist_alpha_params=alpha_params,
                                                      beta_dist_beta_params=beta_params)
     corr_mat = determine_correlation_matrix(synth_data)
+    print("-----------------------")
+    print(corr_mat)
 
 
 def test_synthesize_methyl_val_without_dependence():
@@ -98,9 +102,16 @@ def test_simulate_methyl_data():
     assert np.all(result >= -34) and np.all(result <= 34)
 
     realworld_data = load_eg_realworld_data()
-    n_sites = 1000
+    n_sites = 500
     dependencies = True
     result = simulate_methyl_data(realworld_data, n_sites, n_observations, dependencies)
     assert isinstance(result, np.ndarray)
     assert result.shape == (n_observations, n_sites)
     assert np.all(result >= -34) and np.all(result <= 34)
+
+
+def test_generate_n_correlation_coefficients():
+    n_sites = 101
+    corr_coef_distribution = [(-0.99, -0.70), (0.70, 0.85)]
+    corr_coefs = generate_n_correlation_coefficients(corr_coef_distribution, n_sites)
+    assert len(corr_coefs) == 100
