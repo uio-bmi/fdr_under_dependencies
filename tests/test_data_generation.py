@@ -6,7 +6,7 @@ from fdr_hacking.data_generation import synthesize_methyl_val_without_dependence
     synthesize_methyl_val_with_copula_with_supplied_corrmat, \
     beta_to_m, load_eg_realworld_data, simulate_methyl_data, sample_legal_cvine_corrmat, \
     synthesize_methyl_val_with_autocorr, determine_correlation_matrix, generate_n_correlation_coefficients, \
-    view_simulation_dag
+    generate_bin_correlation_ranges, synthesize_correlated_gaussian_bins
 
 
 def test_sample_legal_cvine_corrmat():
@@ -115,3 +115,25 @@ def test_generate_n_correlation_coefficients():
     corr_coef_distribution = [(-0.99, -0.70), (0.70, 0.85)]
     corr_coefs = generate_n_correlation_coefficients(corr_coef_distribution, n_sites)
     assert len(corr_coefs) == 100
+
+
+def test_generate_bin_correlation_ranges():
+    corr_coef_distribution = [(-0.99, -0.70), (0.70, 0.85)]
+    corr_coef_ranges = generate_bin_correlation_ranges(corr_coef_distribution, 4)
+    assert corr_coef_ranges == [(-0.99, -0.70), (-0.99, -0.70), (0.70, 0.85), (0.70, 0.85)]
+    corr_coef_ranges = generate_bin_correlation_ranges(corr_coef_distribution, 5)
+    assert corr_coef_ranges == [(-0.99, -0.70), (-0.99, -0.70), (0.70, 0.85), (0.70, 0.85), (-0.99, -0.70)]
+    corr_coef_distribution = [(-0.99, -0.70), (0.70, 0.85), (0.85, 0.99)]
+    corr_coef_ranges = generate_bin_correlation_ranges(corr_coef_distribution, 5)
+    assert corr_coef_ranges == [(-0.99, -0.7), (0.7, 0.85), (0.85, 0.99), (-0.99, -0.7), (0.7, 0.85)]
+
+
+def test_synthesize_correlated_gaussian_bins():
+    n_sites = 10
+    n_observations = 100
+    corr_coef_distribution = [(-0.99, -0.70), (0.70, 0.85)]
+    synth_data = synthesize_correlated_gaussian_bins(corr_coef_distribution, n_observations, n_sites, bin_size=5)
+    assert synth_data.shape == (n_observations, n_sites)
+    corr_mat = determine_correlation_matrix(synth_data)
+    print("-----------------------")
+    print(corr_mat)

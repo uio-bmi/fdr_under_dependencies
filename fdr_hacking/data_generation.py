@@ -62,7 +62,7 @@ def sample_legal_cvine_corrmat(n_sites: int, betaparam: float) -> np.ndarray:
     thus in the current implementation, if n_sites is larger than 1000, an error is thrown.
     :param betaparam: A float representing both alpha and beta parameters of a beta distribution. As this value is larger,
     the off-diagonal elements of the generated correlation matrix have smaller variance clustered around zero
-    (no correlation) and as this value is larger the off-diagonal elements contain more high correlations and the
+    (no correlation) and as this value is smaller the off-diagonal elements contain more high correlations and the
     variance increases. When the value of this parameter is 1, the off-diagonal elements of the correlation matrix
     elements follow close to a normal distribution.
     :return: A simulated correlation coefficient matrix of shape n_sites x n_sites
@@ -118,13 +118,13 @@ def synthesize_methyl_val_with_copula_with_supplied_corrmat(correlation_matrix: 
 def synthesize_methyl_val_with_copula_no_corrmat(beta_dist_alpha_params: np.array, beta_dist_beta_params: np.array,
                                                  n_observations: int) -> np.ndarray:
     n_sites = len(beta_dist_alpha_params)
-    assert n_sites % 500 == 0, "The number of sites (supplied beta distribution params) must be divisible by 500"
-    num_chunks = n_sites // 500
+    assert n_sites % 50 == 0, "The number of sites (supplied beta distribution params) must be divisible by 50"
+    num_chunks = n_sites // 50
     alpha_chunks = np.array_split(beta_dist_alpha_params, num_chunks)
     beta_chunks = np.array_split(beta_dist_beta_params, num_chunks)
     synth_datasets = []
     for i in range(num_chunks):
-        corr_matrix = sample_legal_cvine_corrmat(n_sites=500, betaparam=0.5)
+        corr_matrix = sample_legal_cvine_corrmat(n_sites=50, betaparam=0.1)
         alpha_chunk = alpha_chunks[i]
         beta_chunk = beta_chunks[i]
         synth_beta_values = synthesize_methyl_val_with_copula_with_supplied_corrmat(correlation_matrix=corr_matrix,
@@ -185,6 +185,43 @@ def synthesize_autoregressive_gaussian_variables(corr_coef_distribution: list, n
     return gaussian_vars_mat
 
 
+def generate_bin_correlation_ranges(corr_coef_distribution, n_bins):
+    n_original_ranges = len(corr_coef_distribution)
+    repetitions_per_range = n_bins // n_original_ranges
+    remainder = n_bins % n_original_ranges
+    new_corr_coef_distribution = []
+    for each_range in corr_coef_distribution:
+        new_corr_coef_distribution.extend([each_range] * repetitions_per_range)
+    if remainder > 0:
+        new_corr_coef_distribution.extend(corr_coef_distribution[:remainder])
+    return new_corr_coef_distribution
+
+
+def synthesize_correlated_gaussian_bins(corr_coef_distribution: list, n_observations: int, n_sites: int, bin_size: int):
+    n_bins = n_sites // bin_size
+    remainder = n_sites % bin_size
+    bin_corr_ranges = generate_bin_correlation_ranges(corr_coef_distribution, n_bins)
+    print(bin_corr_ranges)
+    correlated_gaussian_bins = None
+    for i in range(n_bins):
+        correlated_gaussian_bin = np.zeros((n_observations, bin_size))
+        correlated_gaussian_bin[:, 0] = np.random.normal(size=n_observations)
+        for j in range(1, bin_size):
+            min_corr, max_corr = bin_corr_ranges[i]
+            correlated_gaussian_bin[:, j] = generate_correlated_gaussian(correlated_gaussian_bin[:, 0],
+                                                                         np.random.uniform(min_corr, max_corr))
+        if i == 0:
+            correlated_gaussian_bins = correlated_gaussian_bin
+        else:
+            correlated_gaussian_bins = np.concatenate((correlated_gaussian_bins, correlated_gaussian_bin), axis=1)
+    if remainder > 0:
+        correlated_gaussian_bin = np.zeros((n_observations, remainder))
+        for j in range(remainder):
+            correlated_gaussian_bin[:, j] = np.random.normal(size=n_observations)
+        correlated_gaussian_bins = np.concatenate((correlated_gaussian_bins, correlated_gaussian_bin), axis=1)
+    return correlated_gaussian_bins
+
+
 def transform_gaussian_to_beta(gaussian_vars_mat, beta_dist_alpha_params: np.array, beta_dist_beta_params: np.array):
     synth_beta_values = np.zeros((gaussian_vars_mat.shape[0], gaussian_vars_mat.shape[1]))
     uniform_random_variables = [norm.cdf(gaussian_vars_mat[:, i]) for i in range(gaussian_vars_mat.shape[1])]
@@ -198,6 +235,16 @@ def synthesize_methyl_val_with_autocorr(corr_coef_distribution: list, n_observat
                                         beta_dist_alpha_params: np.array,
                                         beta_dist_beta_params: np.array) -> np.ndarray:
     gaussian_vars_mat = synthesize_autoregressive_gaussian_variables(corr_coef_distribution, n_observations, n_sites)
+    synth_beta_values = transform_gaussian_to_beta(gaussian_vars_mat, beta_dist_alpha_params, beta_dist_beta_params)
+    return synth_beta_values
+
+
+def synthesize_methyl_val_with_correlated_bins(corr_coef_distribution: list, n_observations: int, n_sites: int,
+                                               beta_dist_alpha_params: np.array, beta_dist_beta_params: np.array,
+                                               bin_size: int) -> np.ndarray:
+    gaussian_vars_mat = synthesize_correlated_gaussian_bins(corr_coef_distribution=corr_coef_distribution,
+                                                            n_observations=n_observations,
+                                                            n_sites=n_sites, bin_size=bin_size)
     synth_beta_values = transform_gaussian_to_beta(gaussian_vars_mat, beta_dist_alpha_params, beta_dist_beta_params)
     return synth_beta_values
 
@@ -240,13 +287,21 @@ def beta_to_m(methyl_beta_values: np.ndarray) -> np.ndarray:
 
 def simulate_methyl_data(realworld_data: pd.DataFrame, n_sites: int, n_observations: int,
                          dependencies: bool, corr_coef_distribution: list = None,
-                         correlation_matrix: np.ndarray = None) -> np.ndarray:
+                         correlation_matrix: np.ndarray = None, bin_size: int = None) -> np.ndarray:
     real_data = sample_realworld_methyl_val(n_sites=n_sites, realworld_data=realworld_data)
     alpha_params, beta_params = estimate_beta_dist_parameters(methyl_beta_values=real_data)
     if dependencies:
         if corr_coef_distribution is not None:
-            synth_beta_values = synthesize_methyl_val_with_autocorr(corr_coef_distribution, n_observations, n_sites,
-                                                                    alpha_params, beta_params)
+            if bin_size is not None:
+                assert bin_size <= n_sites, "bin_size cannot be larger than n_sites"
+                synth_beta_values = synthesize_methyl_val_with_correlated_bins(
+                    corr_coef_distribution=corr_coef_distribution,
+                    n_observations=n_observations,
+                    n_sites=n_sites, beta_dist_alpha_params=alpha_params, beta_dist_beta_params=beta_params,
+                    bin_size=bin_size)
+            else:
+                synth_beta_values = synthesize_methyl_val_with_autocorr(corr_coef_distribution, n_observations, n_sites,
+                                                                        alpha_params, beta_params)
         else:
             synth_beta_values = synthesize_methyl_val_with_copula(n_observations, alpha_params, beta_params,
                                                                   correlation_matrix)
