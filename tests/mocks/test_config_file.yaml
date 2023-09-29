@@ -3,6 +3,6 @@ n_sites: 10
 dependencies: True
 corr_coef_distribution: [[-0.85, -0.50], [-0.1, 0.1], [0.70, 0.85]] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
 bin_size: 3
-statistical_test: 't-test'
-multipletest_correction_type: "bonferroni"
+statistical_test: ['t-test', 'limma', 'rank-sum']
+multipletest_correction_type: ["bonferroni", "bh"]
 alpha: 0.05

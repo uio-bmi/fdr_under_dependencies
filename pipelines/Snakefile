@@ -1,0 +1,34 @@
+num_datasets = list(range(5))
+rule all:
+    input:
+        expand("/Users/skanduri/Documents/Projects/fdr_hacking/experiments/results_{num_datasets}.tsv", num_datasets=num_datasets)
+rule read_config:
+    input:
+        config = "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/tests/mocks/test_config_file.yaml"
+    output:
+        config_dict = unpack(yaml.safe_load(open(input.config)))
+
+# rule generate_multiple_configs:
+#     input:
+#         "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/tests/mocks/test_config_file.yaml"
+#     output:
+#         "/Users/skanduri/Documents/Projects/fdr_hacking/experiments/config_{num_datasets}.yaml"
+#     shell:
+#         "generate_multiple_configs --config {input} --output {output.config_dict[]}"
+# rule generate_data:
+#     input:
+#         "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/tests/mocks/test_config_file.yaml"
+#     output:
+#         "/Users/skanduri/Documents/Projects/fdr_hacking/experiments/dataset_{num_datasets}.tsv"
+#     shell:
+#         "simulate_data --config {input} --output {output}"
+#
+#
+# rule statistical_analysis:
+#     input:
+#         config = "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/tests/mocks/test_config_file.yaml",
+#         data = "/Users/skanduri/Documents/Projects/fdr_hacking/experiments/dataset_{num_datasets}.tsv"
+#     output:
+#         "/Users/skanduri/Documents/Projects/fdr_hacking/experiments/results_{num_datasets}.tsv"
+#     shell:
+#         "statistical_test --config {input.config} --dataset {input.data} --output {output}"
