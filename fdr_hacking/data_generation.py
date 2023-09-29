@@ -1,7 +1,8 @@
 import numpy as np
 import pandas as pd
 import os.path
-from scipy.stats import norm, multivariate_normal as mvn, beta as beta_dist, spearmanr, beta
+import argparse
+from scipy.stats import norm, beta as beta_dist, spearmanr
 
 
 def load_eg_realworld_data():

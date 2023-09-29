@@ -1,5 +1,8 @@
+import sys
 import matplotlib.pyplot as plt
 import numpy as np
+import yaml
+
 from fdr_hacking.data_generation import determine_correlation_matrix
 
 
@@ -47,3 +50,18 @@ def plot_correlation_histogram(correlation_matrix):
     plt.title('Histogram of Off-Diagonal Correlation Elements')
     plt.grid(True)
     plt.show()
+
+
+def parse_yaml_file(yaml_file_path: str) -> dict:
+    with open(yaml_file_path, "r") as yaml_file:
+        try:
+            yaml_obj = yaml.load(yaml_file, Loader=yaml.FullLoader)
+            assert yaml_obj is not None, "The supplied yaml file," + yaml_file_path + ", is empty"
+        except Exception as e:
+            print(
+                "Error: that looks like an invalid yaml file. Consider validating your yaml file using one of the "
+                "online yaml validators; for instance: https://jsonformatter.org/yaml-validator")
+            print("Exception: %s" % str(e))
+            sys.exit(1)
+    return yaml_obj
+

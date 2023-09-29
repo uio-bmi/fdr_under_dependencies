@@ -31,7 +31,8 @@ setup(
     description=" ",
     entry_points={
         'console_scripts': [
-            'fdr_hacking=fdr_hacking.cli:main',
+            'simulate_data=cli_scripts.simulate_data:execute',
+            'statistical_test=cli_scripts.statistical_test:execute'
         ],
     },
     install_requires=requirements,
@@ -40,7 +41,7 @@ setup(
     include_package_data=True,
     keywords='fdr_hacking',
     name='fdr_hacking',
-    packages=find_packages(include=['fdr_hacking', 'fdr_hacking.*']),
+    packages=find_packages(include=['fdr_hacking', 'fdr_hacking.*', 'cli_scripts']),
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/kanduric/fdr_hacking',
