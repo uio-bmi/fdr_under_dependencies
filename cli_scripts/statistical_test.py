@@ -22,5 +22,5 @@ def execute():
                                             method=config['multiple_test_correction'],
                                             alpha=config['alpha'])
     config['num_significant_findings'] = num_significant_findings
-    pd.DataFrame(config).to_csv(args.output, sep="\t", index=True, header=True)
-    # np.savetxt(args.output, np.array([num_significant_findings], dtype=np.int64), fmt="%d", delimiter="\t")
+    config_df = pd.DataFrame(config, index=[0])
+    config_df.to_csv(args.output, sep="\t", index=False)

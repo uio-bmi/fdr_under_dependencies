@@ -5,7 +5,7 @@ paramspace = Paramspace(pd.read_csv("../tests/mocks/snakemake_params.tsv", sep="
 
 rule all:
     input:
-        expand("results/statistical_testing/{params}.tsv", params=paramspace.instance_patterns)
+        "results/summary.tsv"
 
 rule generate_data:
     params:
@@ -25,19 +25,12 @@ rule statistical_analysis:
     shell:
         'statistical_test --config "{params.simulation}" --dataset {input.data} --output {output}'
 
-
-#  rule aggregate_results:
-#     params:
-#          simulation=paramspace.instance
-#     input:
-#         f"results/statistical_testing/{paramspace.wildcard_pattern}.tsv"
-#     output:
-#         f"results/statistical_testing/{paramspace.wildcard_pattern}.tsv"
-#     shell:
-#         'aggregate_results --input {input} --output {output} --config "{params.simulation}"
-#
-# def aggregate_results(input, output, config):
-#     config["stats_res"] = pd.read_csv(input[0], sep="\t")[0]
-#     config["stats_res"]["config"] = config["simulation"]
-#     df.to_csv(output, sep="\t", index=False)
-
+rule aggregate_results:
+    input:
+        expand("results/statistical_testing/{params}.tsv",params=paramspace.instance_patterns)
+    output:
+        "results/summary.tsv"
+    run:
+        import pandas as pd
+        df = pd.concat([pd.read_csv(f, sep="\t") for f in input])
+        df.to_csv(output[0], sep="\t", index=False)
