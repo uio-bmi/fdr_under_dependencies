@@ -1,20 +1,29 @@
-num_datasets = list(range(5))
+from snakemake.utils import Paramspace
+import pandas as pd
+import json
+
+# declare a dataframe to be a paramspace
+paramspace = Paramspace(pd.read_csv("../tests/mocks/snakemake_params.tsv", sep="\t"))
+
 rule all:
     input:
-        expand("/Users/skanduri/Documents/Projects/fdr_hacking/experiments/results_{num_datasets}.tsv", num_datasets=num_datasets)
-rule read_config:
-    input:
-        config = "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/tests/mocks/test_config_file.yaml"
-    output:
-        config_dict = unpack(yaml.safe_load(open(input.config)))
+        # Aggregate over entire parameter space (or a subset thereof if needed)
+        # of course, something like this can happen anywhere in the workflow (not
+        # only at the end).
+        expand("results/simulations/{params}.tsv", params=paramspace.instance_patterns)
 
-# rule generate_multiple_configs:
-#     input:
-#         "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/tests/mocks/test_config_file.yaml"
-#     output:
-#         "/Users/skanduri/Documents/Projects/fdr_hacking/experiments/config_{num_datasets}.yaml"
-#     shell:
-#         "generate_multiple_configs --config {input} --output {output.config_dict[]}"
+rule generate_data:
+    params:
+        # automatically translate the wildcard values into an instance of the param space
+        # in the form of a dict (here: {"alpha": ..., "beta": ..., "gamma": ...})
+        simulation = paramspace.instance,
+
+    output:
+        f"results/simulations/{paramspace.wildcard_pattern}.tsv"
+    shell:
+        'simulate_data --config "{params.simulation}" --output {output}'
+
+
 # rule generate_data:
 #     input:
 #         "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/tests/mocks/test_config_file.yaml"
@@ -22,7 +31,7 @@ rule read_config:
 #         "/Users/skanduri/Documents/Projects/fdr_hacking/experiments/dataset_{num_datasets}.tsv"
 #     shell:
 #         "simulate_data --config {input} --output {output}"
-#
+
 #
 # rule statistical_analysis:
 #     input:

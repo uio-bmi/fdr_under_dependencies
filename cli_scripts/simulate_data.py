@@ -1,17 +1,17 @@
 import argparse
+import json
 from fdr_hacking.data_generation import *
-from fdr_hacking.util import parse_yaml_file
 import numpy as np
 
 
 def execute():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--config', help='Configuration in YAML format', required=True)
+    parser.add_argument('--config', type=str, help='Configuration in YAML format', required=True)
     parser.add_argument('--output', help='Path to the output file', required=True)
     args = parser.parse_args()
-    config = parse_yaml_file(args.config)
+    config = json.loads(args.config.replace("\'", "\""))
     realworld_data = load_eg_realworld_data()
-    simulated_data = simulate_methyl_data(realworld_data, config['n_sites'], config['n_observations'],
+    simulated_data = simulate_methyl_data(realworld_data, config['n_features'], config['n_observations'],
                                           config['dependencies'],
-                                          config['bin_size'], config['corr_coef_distribution'])
+                                          int(config['bin_size_ratio']*config['n_features']), [(-0.85, -0.50), (-0.1, 0.1), (0.70, 0.85)])
     np.savetxt(args.output, simulated_data, delimiter="\t")
