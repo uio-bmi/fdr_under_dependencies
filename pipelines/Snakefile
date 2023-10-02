@@ -1,43 +1,43 @@
 from snakemake.utils import Paramspace
 import pandas as pd
-import json
 
-# declare a dataframe to be a paramspace
 paramspace = Paramspace(pd.read_csv("../tests/mocks/snakemake_params.tsv", sep="\t"))
 
 rule all:
     input:
-        # Aggregate over entire parameter space (or a subset thereof if needed)
-        # of course, something like this can happen anywhere in the workflow (not
-        # only at the end).
-        expand("results/simulations/{params}.tsv", params=paramspace.instance_patterns)
+        expand("results/statistical_testing/{params}.tsv", params=paramspace.instance_patterns)
 
 rule generate_data:
     params:
-        # automatically translate the wildcard values into an instance of the param space
-        # in the form of a dict (here: {"alpha": ..., "beta": ..., "gamma": ...})
-        simulation = paramspace.instance,
-
+        simulation = paramspace.instance
     output:
         f"results/simulations/{paramspace.wildcard_pattern}.tsv"
     shell:
         'simulate_data --config "{params.simulation}" --output {output}'
 
+rule statistical_analysis:
+    params:
+        simulation=paramspace.instance
+    input:
+        data = f"results/simulations/{paramspace.wildcard_pattern}.tsv"
+    output:
+        f"results/statistical_testing/{paramspace.wildcard_pattern}.tsv"
+    shell:
+        'statistical_test --config "{params.simulation}" --dataset {input.data} --output {output}'
 
-# rule generate_data:
+
+#  rule aggregate_results:
+#     params:
+#          simulation=paramspace.instance
 #     input:
-#         "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/tests/mocks/test_config_file.yaml"
+#         f"results/statistical_testing/{paramspace.wildcard_pattern}.tsv"
 #     output:
-#         "/Users/skanduri/Documents/Projects/fdr_hacking/experiments/dataset_{num_datasets}.tsv"
+#         f"results/statistical_testing/{paramspace.wildcard_pattern}.tsv"
 #     shell:
-#         "simulate_data --config {input} --output {output}"
-
+#         'aggregate_results --input {input} --output {output} --config "{params.simulation}"
 #
-# rule statistical_analysis:
-#     input:
-#         config = "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/tests/mocks/test_config_file.yaml",
-#         data = "/Users/skanduri/Documents/Projects/fdr_hacking/experiments/dataset_{num_datasets}.tsv"
-#     output:
-#         "/Users/skanduri/Documents/Projects/fdr_hacking/experiments/results_{num_datasets}.tsv"
-#     shell:
-#         "statistical_test --config {input.config} --dataset {input.data} --output {output}"
+# def aggregate_results(input, output, config):
+#     config["stats_res"] = pd.read_csv(input[0], sep="\t")[0]
+#     config["stats_res"]["config"] = config["simulation"]
+#     df.to_csv(output, sep="\t", index=False)
+

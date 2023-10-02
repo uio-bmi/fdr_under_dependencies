@@ -1,3 +1,4 @@
-dependencies	n_observations	n_features	statistical_test	multiple_test_correction	bin_size_ratio	alpha	correlation_strength
-1	20	10000	t-test	bh	0.3	5	high
-0	20	10000	t-test	bh	0.3	5	high
+dependencies	n_observations	n_features	statistical_test	multiple_test_correction	bin_size_ratio	alpha	correlation_strength	id
+1	20	10000	t-test	bh	0.3	0.05	high	id1
+1	20	10000	t-test	bh	0.3	0.05	high	id2
+0	20	10000	t-test	bh	0.3	0.05	high	id1
