@@ -1,7 +1,11 @@
 from snakemake.utils import Paramspace
 import pandas as pd
+from scripts.generate_workflow_params import generate_workflow_params
 
-paramspace = Paramspace(pd.read_csv("../tests/mocks/snakemake_params.tsv", sep="\t"))
+workflow_config = config["workflow_config"]
+workflow_params = config.get("workflow_params", "../tests/mocks/snakemake_params.tsv")
+generate_workflow_params(workflow_config, workflow_params)
+paramspace = Paramspace(pd.read_csv(workflow_params, sep="\t"))
 
 rule all:
     input:
@@ -13,7 +17,7 @@ rule generate_data:
     output:
         f"results/simulations/{paramspace.wildcard_pattern}.tsv"
     shell:
-        'simulate_data --config "{params.simulation}" --output {output}'
+        'simulate_data --config "{params.simulation}" --output "{output}"'
 
 rule statistical_analysis:
     params:
@@ -23,7 +27,7 @@ rule statistical_analysis:
     output:
         f"results/statistical_testing/{paramspace.wildcard_pattern}.tsv"
     shell:
-        'statistical_test --config "{params.simulation}" --dataset {input.data} --output {output}'
+        'statistical_test --config "{params.simulation}" --dataset "{input.data}" --output "{output}"'
 
 rule aggregate_results:
     input:

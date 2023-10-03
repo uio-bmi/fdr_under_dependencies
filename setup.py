@@ -31,8 +31,8 @@ setup(
     description=" ",
     entry_points={
         'console_scripts': [
-            'simulate_data=cli_scripts.simulate_data:execute',
-            'statistical_test=cli_scripts.statistical_test:execute'
+            'simulate_data=scripts.cli_scripts.simulate_data:execute',
+            'statistical_test=scripts.cli_scripts.statistical_test:execute'
         ],
     },
     install_requires=requirements,

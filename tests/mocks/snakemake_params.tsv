@@ -1,4 +1,433 @@
-dependencies	n_observations	n_features	statistical_test	multiple_test_correction	bin_size_ratio	alpha	correlation_strength	id
-1	20	10000	t-test	bh	0.3	0.05	high	id1
-1	20	10000	t-test	bh	0.3	0.05	high	id2
-0	20	10000	t-test	bh	0.3	0.05	high	id1
+n_observations	n_sites	dependencies	correlation_strength	bin_size_ratio	statistical_test	multipletest_correction_type	alpha	reporting_histogram_bins	id
+20	10	1	medium	0.3	t-test	bonferroni	0.01	[0, 1, 10]	1
+20	10	1	medium	0.3	t-test	bonferroni	0.05	[0, 1, 10]	1
+20	10	1	medium	0.3	t-test	bonferroni	0.1	[0, 1, 10]	1
+20	10	1	medium	0.3	t-test	bh	0.01	[0, 1, 10]	1
+20	10	1	medium	0.3	t-test	bh	0.05	[0, 1, 10]	1
+20	10	1	medium	0.3	t-test	bh	0.1	[0, 1, 10]	1
+20	10	1	medium	0.3	limma	bonferroni	0.01	[0, 1, 10]	1
+20	10	1	medium	0.3	limma	bonferroni	0.05	[0, 1, 10]	1
+20	10	1	medium	0.3	limma	bonferroni	0.1	[0, 1, 10]	1
+20	10	1	medium	0.3	limma	bh	0.01	[0, 1, 10]	1
+20	10	1	medium	0.3	limma	bh	0.05	[0, 1, 10]	1
+20	10	1	medium	0.3	limma	bh	0.1	[0, 1, 10]	1
+20	10	1	medium	0.3	rank-sum	bonferroni	0.01	[0, 1, 10]	1
+20	10	1	medium	0.3	rank-sum	bonferroni	0.05	[0, 1, 10]	1
+20	10	1	medium	0.3	rank-sum	bonferroni	0.1	[0, 1, 10]	1
+20	10	1	medium	0.3	rank-sum	bh	0.01	[0, 1, 10]	1
+20	10	1	medium	0.3	rank-sum	bh	0.05	[0, 1, 10]	1
+20	10	1	medium	0.3	rank-sum	bh	0.1	[0, 1, 10]	1
+20	10	1	high	0.3	t-test	bonferroni	0.01	[0, 1, 10]	1
+20	10	1	high	0.3	t-test	bonferroni	0.05	[0, 1, 10]	1
+20	10	1	high	0.3	t-test	bonferroni	0.1	[0, 1, 10]	1
+20	10	1	high	0.3	t-test	bh	0.01	[0, 1, 10]	1
+20	10	1	high	0.3	t-test	bh	0.05	[0, 1, 10]	1
+20	10	1	high	0.3	t-test	bh	0.1	[0, 1, 10]	1
+20	10	1	high	0.3	limma	bonferroni	0.01	[0, 1, 10]	1
+20	10	1	high	0.3	limma	bonferroni	0.05	[0, 1, 10]	1
+20	10	1	high	0.3	limma	bonferroni	0.1	[0, 1, 10]	1
+20	10	1	high	0.3	limma	bh	0.01	[0, 1, 10]	1
+20	10	1	high	0.3	limma	bh	0.05	[0, 1, 10]	1
+20	10	1	high	0.3	limma	bh	0.1	[0, 1, 10]	1
+20	10	1	high	0.3	rank-sum	bonferroni	0.01	[0, 1, 10]	1
+20	10	1	high	0.3	rank-sum	bonferroni	0.05	[0, 1, 10]	1
+20	10	1	high	0.3	rank-sum	bonferroni	0.1	[0, 1, 10]	1
+20	10	1	high	0.3	rank-sum	bh	0.01	[0, 1, 10]	1
+20	10	1	high	0.3	rank-sum	bh	0.05	[0, 1, 10]	1
+20	10	1	high	0.3	rank-sum	bh	0.1	[0, 1, 10]	1
+20	10	0	medium	0.3	t-test	bonferroni	0.01	[0, 1, 10]	1
+20	10	0	medium	0.3	t-test	bonferroni	0.05	[0, 1, 10]	1
+20	10	0	medium	0.3	t-test	bonferroni	0.1	[0, 1, 10]	1
+20	10	0	medium	0.3	t-test	bh	0.01	[0, 1, 10]	1
+20	10	0	medium	0.3	t-test	bh	0.05	[0, 1, 10]	1
+20	10	0	medium	0.3	t-test	bh	0.1	[0, 1, 10]	1
+20	10	0	medium	0.3	limma	bonferroni	0.01	[0, 1, 10]	1
+20	10	0	medium	0.3	limma	bonferroni	0.05	[0, 1, 10]	1
+20	10	0	medium	0.3	limma	bonferroni	0.1	[0, 1, 10]	1
+20	10	0	medium	0.3	limma	bh	0.01	[0, 1, 10]	1
+20	10	0	medium	0.3	limma	bh	0.05	[0, 1, 10]	1
+20	10	0	medium	0.3	limma	bh	0.1	[0, 1, 10]	1
+20	10	0	medium	0.3	rank-sum	bonferroni	0.01	[0, 1, 10]	1
+20	10	0	medium	0.3	rank-sum	bonferroni	0.05	[0, 1, 10]	1
+20	10	0	medium	0.3	rank-sum	bonferroni	0.1	[0, 1, 10]	1
+20	10	0	medium	0.3	rank-sum	bh	0.01	[0, 1, 10]	1
+20	10	0	medium	0.3	rank-sum	bh	0.05	[0, 1, 10]	1
+20	10	0	medium	0.3	rank-sum	bh	0.1	[0, 1, 10]	1
+20	10	0	high	0.3	t-test	bonferroni	0.01	[0, 1, 10]	1
+20	10	0	high	0.3	t-test	bonferroni	0.05	[0, 1, 10]	1
+20	10	0	high	0.3	t-test	bonferroni	0.1	[0, 1, 10]	1
+20	10	0	high	0.3	t-test	bh	0.01	[0, 1, 10]	1
+20	10	0	high	0.3	t-test	bh	0.05	[0, 1, 10]	1
+20	10	0	high	0.3	t-test	bh	0.1	[0, 1, 10]	1
+20	10	0	high	0.3	limma	bonferroni	0.01	[0, 1, 10]	1
+20	10	0	high	0.3	limma	bonferroni	0.05	[0, 1, 10]	1
+20	10	0	high	0.3	limma	bonferroni	0.1	[0, 1, 10]	1
+20	10	0	high	0.3	limma	bh	0.01	[0, 1, 10]	1
+20	10	0	high	0.3	limma	bh	0.05	[0, 1, 10]	1
+20	10	0	high	0.3	limma	bh	0.1	[0, 1, 10]	1
+20	10	0	high	0.3	rank-sum	bonferroni	0.01	[0, 1, 10]	1
+20	10	0	high	0.3	rank-sum	bonferroni	0.05	[0, 1, 10]	1
+20	10	0	high	0.3	rank-sum	bonferroni	0.1	[0, 1, 10]	1
+20	10	0	high	0.3	rank-sum	bh	0.01	[0, 1, 10]	1
+20	10	0	high	0.3	rank-sum	bh	0.05	[0, 1, 10]	1
+20	10	0	high	0.3	rank-sum	bh	0.1	[0, 1, 10]	1
+200	10	1	medium	0.3	t-test	bonferroni	0.01	[0, 1, 10]	1
+200	10	1	medium	0.3	t-test	bonferroni	0.05	[0, 1, 10]	1
+200	10	1	medium	0.3	t-test	bonferroni	0.1	[0, 1, 10]	1
+200	10	1	medium	0.3	t-test	bh	0.01	[0, 1, 10]	1
+200	10	1	medium	0.3	t-test	bh	0.05	[0, 1, 10]	1
+200	10	1	medium	0.3	t-test	bh	0.1	[0, 1, 10]	1
+200	10	1	medium	0.3	limma	bonferroni	0.01	[0, 1, 10]	1
+200	10	1	medium	0.3	limma	bonferroni	0.05	[0, 1, 10]	1
+200	10	1	medium	0.3	limma	bonferroni	0.1	[0, 1, 10]	1
+200	10	1	medium	0.3	limma	bh	0.01	[0, 1, 10]	1
+200	10	1	medium	0.3	limma	bh	0.05	[0, 1, 10]	1
+200	10	1	medium	0.3	limma	bh	0.1	[0, 1, 10]	1
+200	10	1	medium	0.3	rank-sum	bonferroni	0.01	[0, 1, 10]	1
+200	10	1	medium	0.3	rank-sum	bonferroni	0.05	[0, 1, 10]	1
+200	10	1	medium	0.3	rank-sum	bonferroni	0.1	[0, 1, 10]	1
+200	10	1	medium	0.3	rank-sum	bh	0.01	[0, 1, 10]	1
+200	10	1	medium	0.3	rank-sum	bh	0.05	[0, 1, 10]	1
+200	10	1	medium	0.3	rank-sum	bh	0.1	[0, 1, 10]	1
+200	10	1	high	0.3	t-test	bonferroni	0.01	[0, 1, 10]	1
+200	10	1	high	0.3	t-test	bonferroni	0.05	[0, 1, 10]	1
+200	10	1	high	0.3	t-test	bonferroni	0.1	[0, 1, 10]	1
+200	10	1	high	0.3	t-test	bh	0.01	[0, 1, 10]	1
+200	10	1	high	0.3	t-test	bh	0.05	[0, 1, 10]	1
+200	10	1	high	0.3	t-test	bh	0.1	[0, 1, 10]	1
+200	10	1	high	0.3	limma	bonferroni	0.01	[0, 1, 10]	1
+200	10	1	high	0.3	limma	bonferroni	0.05	[0, 1, 10]	1
+200	10	1	high	0.3	limma	bonferroni	0.1	[0, 1, 10]	1
+200	10	1	high	0.3	limma	bh	0.01	[0, 1, 10]	1
+200	10	1	high	0.3	limma	bh	0.05	[0, 1, 10]	1
+200	10	1	high	0.3	limma	bh	0.1	[0, 1, 10]	1
+200	10	1	high	0.3	rank-sum	bonferroni	0.01	[0, 1, 10]	1
+200	10	1	high	0.3	rank-sum	bonferroni	0.05	[0, 1, 10]	1
+200	10	1	high	0.3	rank-sum	bonferroni	0.1	[0, 1, 10]	1
+200	10	1	high	0.3	rank-sum	bh	0.01	[0, 1, 10]	1
+200	10	1	high	0.3	rank-sum	bh	0.05	[0, 1, 10]	1
+200	10	1	high	0.3	rank-sum	bh	0.1	[0, 1, 10]	1
+200	10	0	medium	0.3	t-test	bonferroni	0.01	[0, 1, 10]	1
+200	10	0	medium	0.3	t-test	bonferroni	0.05	[0, 1, 10]	1
+200	10	0	medium	0.3	t-test	bonferroni	0.1	[0, 1, 10]	1
+200	10	0	medium	0.3	t-test	bh	0.01	[0, 1, 10]	1
+200	10	0	medium	0.3	t-test	bh	0.05	[0, 1, 10]	1
+200	10	0	medium	0.3	t-test	bh	0.1	[0, 1, 10]	1
+200	10	0	medium	0.3	limma	bonferroni	0.01	[0, 1, 10]	1
+200	10	0	medium	0.3	limma	bonferroni	0.05	[0, 1, 10]	1
+200	10	0	medium	0.3	limma	bonferroni	0.1	[0, 1, 10]	1
+200	10	0	medium	0.3	limma	bh	0.01	[0, 1, 10]	1
+200	10	0	medium	0.3	limma	bh	0.05	[0, 1, 10]	1
+200	10	0	medium	0.3	limma	bh	0.1	[0, 1, 10]	1
+200	10	0	medium	0.3	rank-sum	bonferroni	0.01	[0, 1, 10]	1
+200	10	0	medium	0.3	rank-sum	bonferroni	0.05	[0, 1, 10]	1
+200	10	0	medium	0.3	rank-sum	bonferroni	0.1	[0, 1, 10]	1
+200	10	0	medium	0.3	rank-sum	bh	0.01	[0, 1, 10]	1
+200	10	0	medium	0.3	rank-sum	bh	0.05	[0, 1, 10]	1
+200	10	0	medium	0.3	rank-sum	bh	0.1	[0, 1, 10]	1
+200	10	0	high	0.3	t-test	bonferroni	0.01	[0, 1, 10]	1
+200	10	0	high	0.3	t-test	bonferroni	0.05	[0, 1, 10]	1
+200	10	0	high	0.3	t-test	bonferroni	0.1	[0, 1, 10]	1
+200	10	0	high	0.3	t-test	bh	0.01	[0, 1, 10]	1
+200	10	0	high	0.3	t-test	bh	0.05	[0, 1, 10]	1
+200	10	0	high	0.3	t-test	bh	0.1	[0, 1, 10]	1
+200	10	0	high	0.3	limma	bonferroni	0.01	[0, 1, 10]	1
+200	10	0	high	0.3	limma	bonferroni	0.05	[0, 1, 10]	1
+200	10	0	high	0.3	limma	bonferroni	0.1	[0, 1, 10]	1
+200	10	0	high	0.3	limma	bh	0.01	[0, 1, 10]	1
+200	10	0	high	0.3	limma	bh	0.05	[0, 1, 10]	1
+200	10	0	high	0.3	limma	bh	0.1	[0, 1, 10]	1
+200	10	0	high	0.3	rank-sum	bonferroni	0.01	[0, 1, 10]	1
+200	10	0	high	0.3	rank-sum	bonferroni	0.05	[0, 1, 10]	1
+200	10	0	high	0.3	rank-sum	bonferroni	0.1	[0, 1, 10]	1
+200	10	0	high	0.3	rank-sum	bh	0.01	[0, 1, 10]	1
+200	10	0	high	0.3	rank-sum	bh	0.05	[0, 1, 10]	1
+200	10	0	high	0.3	rank-sum	bh	0.1	[0, 1, 10]	1
+20	10	1	medium	0.3	t-test	bonferroni	0.01	[0, 1, 10]	2
+20	10	1	medium	0.3	t-test	bonferroni	0.05	[0, 1, 10]	2
+20	10	1	medium	0.3	t-test	bonferroni	0.1	[0, 1, 10]	2
+20	10	1	medium	0.3	t-test	bh	0.01	[0, 1, 10]	2
+20	10	1	medium	0.3	t-test	bh	0.05	[0, 1, 10]	2
+20	10	1	medium	0.3	t-test	bh	0.1	[0, 1, 10]	2
+20	10	1	medium	0.3	limma	bonferroni	0.01	[0, 1, 10]	2
+20	10	1	medium	0.3	limma	bonferroni	0.05	[0, 1, 10]	2
+20	10	1	medium	0.3	limma	bonferroni	0.1	[0, 1, 10]	2
+20	10	1	medium	0.3	limma	bh	0.01	[0, 1, 10]	2
+20	10	1	medium	0.3	limma	bh	0.05	[0, 1, 10]	2
+20	10	1	medium	0.3	limma	bh	0.1	[0, 1, 10]	2
+20	10	1	medium	0.3	rank-sum	bonferroni	0.01	[0, 1, 10]	2
+20	10	1	medium	0.3	rank-sum	bonferroni	0.05	[0, 1, 10]	2
+20	10	1	medium	0.3	rank-sum	bonferroni	0.1	[0, 1, 10]	2
+20	10	1	medium	0.3	rank-sum	bh	0.01	[0, 1, 10]	2
+20	10	1	medium	0.3	rank-sum	bh	0.05	[0, 1, 10]	2
+20	10	1	medium	0.3	rank-sum	bh	0.1	[0, 1, 10]	2
+20	10	1	high	0.3	t-test	bonferroni	0.01	[0, 1, 10]	2
+20	10	1	high	0.3	t-test	bonferroni	0.05	[0, 1, 10]	2
+20	10	1	high	0.3	t-test	bonferroni	0.1	[0, 1, 10]	2
+20	10	1	high	0.3	t-test	bh	0.01	[0, 1, 10]	2
+20	10	1	high	0.3	t-test	bh	0.05	[0, 1, 10]	2
+20	10	1	high	0.3	t-test	bh	0.1	[0, 1, 10]	2
+20	10	1	high	0.3	limma	bonferroni	0.01	[0, 1, 10]	2
+20	10	1	high	0.3	limma	bonferroni	0.05	[0, 1, 10]	2
+20	10	1	high	0.3	limma	bonferroni	0.1	[0, 1, 10]	2
+20	10	1	high	0.3	limma	bh	0.01	[0, 1, 10]	2
+20	10	1	high	0.3	limma	bh	0.05	[0, 1, 10]	2
+20	10	1	high	0.3	limma	bh	0.1	[0, 1, 10]	2
+20	10	1	high	0.3	rank-sum	bonferroni	0.01	[0, 1, 10]	2
+20	10	1	high	0.3	rank-sum	bonferroni	0.05	[0, 1, 10]	2
+20	10	1	high	0.3	rank-sum	bonferroni	0.1	[0, 1, 10]	2
+20	10	1	high	0.3	rank-sum	bh	0.01	[0, 1, 10]	2
+20	10	1	high	0.3	rank-sum	bh	0.05	[0, 1, 10]	2
+20	10	1	high	0.3	rank-sum	bh	0.1	[0, 1, 10]	2
+20	10	0	medium	0.3	t-test	bonferroni	0.01	[0, 1, 10]	2
+20	10	0	medium	0.3	t-test	bonferroni	0.05	[0, 1, 10]	2
+20	10	0	medium	0.3	t-test	bonferroni	0.1	[0, 1, 10]	2
+20	10	0	medium	0.3	t-test	bh	0.01	[0, 1, 10]	2
+20	10	0	medium	0.3	t-test	bh	0.05	[0, 1, 10]	2
+20	10	0	medium	0.3	t-test	bh	0.1	[0, 1, 10]	2
+20	10	0	medium	0.3	limma	bonferroni	0.01	[0, 1, 10]	2
+20	10	0	medium	0.3	limma	bonferroni	0.05	[0, 1, 10]	2
+20	10	0	medium	0.3	limma	bonferroni	0.1	[0, 1, 10]	2
+20	10	0	medium	0.3	limma	bh	0.01	[0, 1, 10]	2
+20	10	0	medium	0.3	limma	bh	0.05	[0, 1, 10]	2
+20	10	0	medium	0.3	limma	bh	0.1	[0, 1, 10]	2
+20	10	0	medium	0.3	rank-sum	bonferroni	0.01	[0, 1, 10]	2
+20	10	0	medium	0.3	rank-sum	bonferroni	0.05	[0, 1, 10]	2
+20	10	0	medium	0.3	rank-sum	bonferroni	0.1	[0, 1, 10]	2
+20	10	0	medium	0.3	rank-sum	bh	0.01	[0, 1, 10]	2
+20	10	0	medium	0.3	rank-sum	bh	0.05	[0, 1, 10]	2
+20	10	0	medium	0.3	rank-sum	bh	0.1	[0, 1, 10]	2
+20	10	0	high	0.3	t-test	bonferroni	0.01	[0, 1, 10]	2
+20	10	0	high	0.3	t-test	bonferroni	0.05	[0, 1, 10]	2
+20	10	0	high	0.3	t-test	bonferroni	0.1	[0, 1, 10]	2
+20	10	0	high	0.3	t-test	bh	0.01	[0, 1, 10]	2
+20	10	0	high	0.3	t-test	bh	0.05	[0, 1, 10]	2
+20	10	0	high	0.3	t-test	bh	0.1	[0, 1, 10]	2
+20	10	0	high	0.3	limma	bonferroni	0.01	[0, 1, 10]	2
+20	10	0	high	0.3	limma	bonferroni	0.05	[0, 1, 10]	2
+20	10	0	high	0.3	limma	bonferroni	0.1	[0, 1, 10]	2
+20	10	0	high	0.3	limma	bh	0.01	[0, 1, 10]	2
+20	10	0	high	0.3	limma	bh	0.05	[0, 1, 10]	2
+20	10	0	high	0.3	limma	bh	0.1	[0, 1, 10]	2
+20	10	0	high	0.3	rank-sum	bonferroni	0.01	[0, 1, 10]	2
+20	10	0	high	0.3	rank-sum	bonferroni	0.05	[0, 1, 10]	2
+20	10	0	high	0.3	rank-sum	bonferroni	0.1	[0, 1, 10]	2
+20	10	0	high	0.3	rank-sum	bh	0.01	[0, 1, 10]	2
+20	10	0	high	0.3	rank-sum	bh	0.05	[0, 1, 10]	2
+20	10	0	high	0.3	rank-sum	bh	0.1	[0, 1, 10]	2
+200	10	1	medium	0.3	t-test	bonferroni	0.01	[0, 1, 10]	2
+200	10	1	medium	0.3	t-test	bonferroni	0.05	[0, 1, 10]	2
+200	10	1	medium	0.3	t-test	bonferroni	0.1	[0, 1, 10]	2
+200	10	1	medium	0.3	t-test	bh	0.01	[0, 1, 10]	2
+200	10	1	medium	0.3	t-test	bh	0.05	[0, 1, 10]	2
+200	10	1	medium	0.3	t-test	bh	0.1	[0, 1, 10]	2
+200	10	1	medium	0.3	limma	bonferroni	0.01	[0, 1, 10]	2
+200	10	1	medium	0.3	limma	bonferroni	0.05	[0, 1, 10]	2
+200	10	1	medium	0.3	limma	bonferroni	0.1	[0, 1, 10]	2
+200	10	1	medium	0.3	limma	bh	0.01	[0, 1, 10]	2
+200	10	1	medium	0.3	limma	bh	0.05	[0, 1, 10]	2
+200	10	1	medium	0.3	limma	bh	0.1	[0, 1, 10]	2
+200	10	1	medium	0.3	rank-sum	bonferroni	0.01	[0, 1, 10]	2
+200	10	1	medium	0.3	rank-sum	bonferroni	0.05	[0, 1, 10]	2
+200	10	1	medium	0.3	rank-sum	bonferroni	0.1	[0, 1, 10]	2
+200	10	1	medium	0.3	rank-sum	bh	0.01	[0, 1, 10]	2
+200	10	1	medium	0.3	rank-sum	bh	0.05	[0, 1, 10]	2
+200	10	1	medium	0.3	rank-sum	bh	0.1	[0, 1, 10]	2
+200	10	1	high	0.3	t-test	bonferroni	0.01	[0, 1, 10]	2
+200	10	1	high	0.3	t-test	bonferroni	0.05	[0, 1, 10]	2
+200	10	1	high	0.3	t-test	bonferroni	0.1	[0, 1, 10]	2
+200	10	1	high	0.3	t-test	bh	0.01	[0, 1, 10]	2
+200	10	1	high	0.3	t-test	bh	0.05	[0, 1, 10]	2
+200	10	1	high	0.3	t-test	bh	0.1	[0, 1, 10]	2
+200	10	1	high	0.3	limma	bonferroni	0.01	[0, 1, 10]	2
+200	10	1	high	0.3	limma	bonferroni	0.05	[0, 1, 10]	2
+200	10	1	high	0.3	limma	bonferroni	0.1	[0, 1, 10]	2
+200	10	1	high	0.3	limma	bh	0.01	[0, 1, 10]	2
+200	10	1	high	0.3	limma	bh	0.05	[0, 1, 10]	2
+200	10	1	high	0.3	limma	bh	0.1	[0, 1, 10]	2
+200	10	1	high	0.3	rank-sum	bonferroni	0.01	[0, 1, 10]	2
+200	10	1	high	0.3	rank-sum	bonferroni	0.05	[0, 1, 10]	2
+200	10	1	high	0.3	rank-sum	bonferroni	0.1	[0, 1, 10]	2
+200	10	1	high	0.3	rank-sum	bh	0.01	[0, 1, 10]	2
+200	10	1	high	0.3	rank-sum	bh	0.05	[0, 1, 10]	2
+200	10	1	high	0.3	rank-sum	bh	0.1	[0, 1, 10]	2
+200	10	0	medium	0.3	t-test	bonferroni	0.01	[0, 1, 10]	2
+200	10	0	medium	0.3	t-test	bonferroni	0.05	[0, 1, 10]	2
+200	10	0	medium	0.3	t-test	bonferroni	0.1	[0, 1, 10]	2
+200	10	0	medium	0.3	t-test	bh	0.01	[0, 1, 10]	2
+200	10	0	medium	0.3	t-test	bh	0.05	[0, 1, 10]	2
+200	10	0	medium	0.3	t-test	bh	0.1	[0, 1, 10]	2
+200	10	0	medium	0.3	limma	bonferroni	0.01	[0, 1, 10]	2
+200	10	0	medium	0.3	limma	bonferroni	0.05	[0, 1, 10]	2
+200	10	0	medium	0.3	limma	bonferroni	0.1	[0, 1, 10]	2
+200	10	0	medium	0.3	limma	bh	0.01	[0, 1, 10]	2
+200	10	0	medium	0.3	limma	bh	0.05	[0, 1, 10]	2
+200	10	0	medium	0.3	limma	bh	0.1	[0, 1, 10]	2
+200	10	0	medium	0.3	rank-sum	bonferroni	0.01	[0, 1, 10]	2
+200	10	0	medium	0.3	rank-sum	bonferroni	0.05	[0, 1, 10]	2
+200	10	0	medium	0.3	rank-sum	bonferroni	0.1	[0, 1, 10]	2
+200	10	0	medium	0.3	rank-sum	bh	0.01	[0, 1, 10]	2
+200	10	0	medium	0.3	rank-sum	bh	0.05	[0, 1, 10]	2
+200	10	0	medium	0.3	rank-sum	bh	0.1	[0, 1, 10]	2
+200	10	0	high	0.3	t-test	bonferroni	0.01	[0, 1, 10]	2
+200	10	0	high	0.3	t-test	bonferroni	0.05	[0, 1, 10]	2
+200	10	0	high	0.3	t-test	bonferroni	0.1	[0, 1, 10]	2
+200	10	0	high	0.3	t-test	bh	0.01	[0, 1, 10]	2
+200	10	0	high	0.3	t-test	bh	0.05	[0, 1, 10]	2
+200	10	0	high	0.3	t-test	bh	0.1	[0, 1, 10]	2
+200	10	0	high	0.3	limma	bonferroni	0.01	[0, 1, 10]	2
+200	10	0	high	0.3	limma	bonferroni	0.05	[0, 1, 10]	2
+200	10	0	high	0.3	limma	bonferroni	0.1	[0, 1, 10]	2
+200	10	0	high	0.3	limma	bh	0.01	[0, 1, 10]	2
+200	10	0	high	0.3	limma	bh	0.05	[0, 1, 10]	2
+200	10	0	high	0.3	limma	bh	0.1	[0, 1, 10]	2
+200	10	0	high	0.3	rank-sum	bonferroni	0.01	[0, 1, 10]	2
+200	10	0	high	0.3	rank-sum	bonferroni	0.05	[0, 1, 10]	2
+200	10	0	high	0.3	rank-sum	bonferroni	0.1	[0, 1, 10]	2
+200	10	0	high	0.3	rank-sum	bh	0.01	[0, 1, 10]	2
+200	10	0	high	0.3	rank-sum	bh	0.05	[0, 1, 10]	2
+200	10	0	high	0.3	rank-sum	bh	0.1	[0, 1, 10]	2
+20	10000	1	medium	0.3	t-test	bonferroni	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	medium	0.3	t-test	bonferroni	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	medium	0.3	t-test	bonferroni	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	medium	0.3	t-test	bh	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	medium	0.3	t-test	bh	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	medium	0.3	t-test	bh	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	medium	0.3	limma	bonferroni	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	medium	0.3	limma	bonferroni	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	medium	0.3	limma	bonferroni	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	medium	0.3	limma	bh	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	medium	0.3	limma	bh	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	medium	0.3	limma	bh	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	medium	0.3	rank-sum	bonferroni	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	medium	0.3	rank-sum	bonferroni	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	medium	0.3	rank-sum	bonferroni	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	medium	0.3	rank-sum	bh	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	medium	0.3	rank-sum	bh	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	medium	0.3	rank-sum	bh	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	high	0.3	t-test	bonferroni	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	high	0.3	t-test	bonferroni	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	high	0.3	t-test	bonferroni	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	high	0.3	t-test	bh	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	high	0.3	t-test	bh	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	high	0.3	t-test	bh	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	high	0.3	limma	bonferroni	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	high	0.3	limma	bonferroni	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	high	0.3	limma	bonferroni	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	high	0.3	limma	bh	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	high	0.3	limma	bh	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	high	0.3	limma	bh	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	high	0.3	rank-sum	bonferroni	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	high	0.3	rank-sum	bonferroni	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	high	0.3	rank-sum	bonferroni	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	high	0.3	rank-sum	bh	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	high	0.3	rank-sum	bh	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	1	high	0.3	rank-sum	bh	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	medium	0.3	t-test	bonferroni	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	medium	0.3	t-test	bonferroni	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	medium	0.3	t-test	bonferroni	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	medium	0.3	t-test	bh	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	medium	0.3	t-test	bh	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	medium	0.3	t-test	bh	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	medium	0.3	limma	bonferroni	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	medium	0.3	limma	bonferroni	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	medium	0.3	limma	bonferroni	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	medium	0.3	limma	bh	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	medium	0.3	limma	bh	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	medium	0.3	limma	bh	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	medium	0.3	rank-sum	bonferroni	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	medium	0.3	rank-sum	bonferroni	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	medium	0.3	rank-sum	bonferroni	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	medium	0.3	rank-sum	bh	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	medium	0.3	rank-sum	bh	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	medium	0.3	rank-sum	bh	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	high	0.3	t-test	bonferroni	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	high	0.3	t-test	bonferroni	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	high	0.3	t-test	bonferroni	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	high	0.3	t-test	bh	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	high	0.3	t-test	bh	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	high	0.3	t-test	bh	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	high	0.3	limma	bonferroni	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	high	0.3	limma	bonferroni	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	high	0.3	limma	bonferroni	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	high	0.3	limma	bh	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	high	0.3	limma	bh	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	high	0.3	limma	bh	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	high	0.3	rank-sum	bonferroni	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	high	0.3	rank-sum	bonferroni	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	high	0.3	rank-sum	bonferroni	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	high	0.3	rank-sum	bh	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	high	0.3	rank-sum	bh	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+20	10000	0	high	0.3	rank-sum	bh	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	medium	0.3	t-test	bonferroni	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	medium	0.3	t-test	bonferroni	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	medium	0.3	t-test	bonferroni	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	medium	0.3	t-test	bh	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	medium	0.3	t-test	bh	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	medium	0.3	t-test	bh	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	medium	0.3	limma	bonferroni	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	medium	0.3	limma	bonferroni	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	medium	0.3	limma	bonferroni	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	medium	0.3	limma	bh	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	medium	0.3	limma	bh	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	medium	0.3	limma	bh	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	medium	0.3	rank-sum	bonferroni	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	medium	0.3	rank-sum	bonferroni	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	medium	0.3	rank-sum	bonferroni	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	medium	0.3	rank-sum	bh	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	medium	0.3	rank-sum	bh	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	medium	0.3	rank-sum	bh	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	high	0.3	t-test	bonferroni	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	high	0.3	t-test	bonferroni	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	high	0.3	t-test	bonferroni	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	high	0.3	t-test	bh	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	high	0.3	t-test	bh	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	high	0.3	t-test	bh	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	high	0.3	limma	bonferroni	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	high	0.3	limma	bonferroni	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	high	0.3	limma	bonferroni	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	high	0.3	limma	bh	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	high	0.3	limma	bh	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	high	0.3	limma	bh	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	high	0.3	rank-sum	bonferroni	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	high	0.3	rank-sum	bonferroni	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	high	0.3	rank-sum	bonferroni	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	high	0.3	rank-sum	bh	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	high	0.3	rank-sum	bh	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	1	high	0.3	rank-sum	bh	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	medium	0.3	t-test	bonferroni	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	medium	0.3	t-test	bonferroni	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	medium	0.3	t-test	bonferroni	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	medium	0.3	t-test	bh	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	medium	0.3	t-test	bh	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	medium	0.3	t-test	bh	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	medium	0.3	limma	bonferroni	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	medium	0.3	limma	bonferroni	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	medium	0.3	limma	bonferroni	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	medium	0.3	limma	bh	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	medium	0.3	limma	bh	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	medium	0.3	limma	bh	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	medium	0.3	rank-sum	bonferroni	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	medium	0.3	rank-sum	bonferroni	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	medium	0.3	rank-sum	bonferroni	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	medium	0.3	rank-sum	bh	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	medium	0.3	rank-sum	bh	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	medium	0.3	rank-sum	bh	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	high	0.3	t-test	bonferroni	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	high	0.3	t-test	bonferroni	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	high	0.3	t-test	bonferroni	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	high	0.3	t-test	bh	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	high	0.3	t-test	bh	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	high	0.3	t-test	bh	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	high	0.3	limma	bonferroni	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	high	0.3	limma	bonferroni	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	high	0.3	limma	bonferroni	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	high	0.3	limma	bh	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	high	0.3	limma	bh	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	high	0.3	limma	bh	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	high	0.3	rank-sum	bonferroni	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	high	0.3	rank-sum	bonferroni	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	high	0.3	rank-sum	bonferroni	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	high	0.3	rank-sum	bh	0.01	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	high	0.3	rank-sum	bh	0.05	[0, 1, 10, 20, 50, 100, 10000]	1
+200	10000	0	high	0.3	rank-sum	bh	0.1	[0, 1, 10, 20, 50, 100, 10000]	1
