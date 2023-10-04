@@ -157,7 +157,7 @@ def beta_to_m(methyl_beta_values: np.ndarray) -> np.ndarray:
 
 
 def simulate_methyl_data(realworld_data: pd.DataFrame, n_sites: int, n_observations: int,
-                         dependencies: bool, bin_size: int, corr_coef_distribution: list) -> np.ndarray:
+                         dependencies: bool, bin_size: int = None, corr_coef_distribution: list = None) -> np.ndarray:
     real_data = sample_realworld_methyl_val(n_sites=n_sites, realworld_data=realworld_data)
     alpha_params, beta_params = estimate_beta_dist_parameters(methyl_beta_values=real_data)
     if dependencies:

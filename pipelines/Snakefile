@@ -1,3 +1,5 @@
+import ast
+import numpy as np
 from snakemake.utils import Paramspace
 import pandas as pd
 from scripts.generate_workflow_params import generate_workflow_params
@@ -9,7 +11,7 @@ paramspace = Paramspace(pd.read_csv(workflow_params, sep="\t"))
 
 rule all:
     input:
-        "results/summary.tsv"
+        "results/aggregated_results.tsv"
 
 rule generate_data:
     params:
@@ -29,12 +31,28 @@ rule statistical_analysis:
     shell:
         'statistical_test --config "{params.simulation}" --dataset "{input.data}" --output "{output}"'
 
-rule aggregate_results:
+rule concatenate_results:
     input:
-        expand("results/statistical_testing/{params}.tsv",params=paramspace.instance_patterns)
+        expand('results/statistical_testing/{params}.tsv',params=paramspace.instance_patterns)
     output:
-        "results/summary.tsv"
+        "results/concatenated_results.tsv"
     run:
-        import pandas as pd
         df = pd.concat([pd.read_csv(f, sep="\t") for f in input])
         df.to_csv(output[0], sep="\t", index=False)
+
+
+rule aggregate_results:
+    input:
+        "results/concatenated_results.tsv"
+    output:
+        "results/aggregated_results.tsv"
+    shell:
+        'aggregate_results --concatenated_results "{input}" --aggregated_results "{output}"'
+
+rule plot_results:
+    input:
+        "results/aggregated_results.tsv"
+    output:
+        directory("results/plots/histograms/")
+    shell:
+        'plot_histograms --aggregated_results "{input}" --output_dir "{output}"'
