@@ -49,10 +49,10 @@ rule aggregate_results:
     shell:
         'aggregate_results --concatenated_results "{input}" --aggregated_results "{output}"'
 
-rule plot_results:
-    input:
-        "results/aggregated_results.tsv"
-    output:
-        directory("results/plots/histograms/")
-    shell:
-        'plot_histograms --aggregated_results "{input}" --output_dir "{output}"'
+# rule plot_results:
+#     input:
+#         "results/aggregated_results.tsv"
+#     output:
+#         directory("results/plots/histograms/")
+#     shell:
+#         'plot_histograms --aggregated_results "{input}" --output_dir "{output}"'

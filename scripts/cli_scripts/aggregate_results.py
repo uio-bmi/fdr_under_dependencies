@@ -13,6 +13,8 @@ def execute():
     df = pd.read_csv(args.concatenated_results, sep="\t", header=0, index_col=False)
     config_cols = ["n_observations", "n_sites", "dependencies", "correlation_strength", "bin_size_ratio",
                    "statistical_test", "multipletest_correction_type", "alpha", "reporting_histogram_bins"]
+    df['config_id'] = ['__'.join(f'{k}~{v}' for k, v in i.items()) for i in df[config_cols].to_dict('records')]
+    config_cols.append("config_id")
     df_grouped = df.groupby(config_cols)
     hist_df = pd.DataFrame(columns=config_cols + ["reporting_histogram"])
     for name, group in df_grouped:
