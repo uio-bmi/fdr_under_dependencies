@@ -1,0 +1,50 @@
+n_observations:
+    n_sites: 10000
+    correlation_strength: "high"
+    bin_size_ratio: 0.3
+    statistical_test: "t-test"
+    multipletest_correction_type: "bh"
+    alpha: 0.05
+n_observations:
+    n_sites: 10000
+    correlation_strength: "high"
+    bin_size_ratio: 0.3
+    statistical_test: "limma"
+    multipletest_correction_type: "bh"
+    alpha: 0.05
+n_observations:
+    n_sites: 10000
+    correlation_strength: "high"
+    bin_size_ratio: 0.3
+    statistical_test: "ranksum"
+    multipletest_correction_type: "bh"
+    alpha: 0.05
+n_sites:
+    n_observations: 200
+    correlation_strength: "high"
+    bin_size_ratio: 0.3
+    statistical_test: "t-test"
+    multipletest_correction_type: "bh"
+    alpha: 0.05
+statistical_test:
+    n_observations: 200
+    n_sites: 10000
+    correlation_strength: "high"
+    bin_size_ratio: 0.3
+    multipletest_correction_type: "bh"
+    alpha: 0.05
+multipletest_correction_type_1:
+        n_observations: 200
+        n_sites: 10000
+        correlation_strength: "high"
+        bin_size_ratio: 0.3
+        statistical_test: "t-test"
+        alpha: 0.05
+multipletest_correction_type2:
+        n_observations: 200
+        n_sites: 10000
+        correlation_strength: "high"
+        bin_size_ratio: 0.3
+        statistical_test: "limma"
+        alpha: 0.05
+

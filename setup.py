@@ -34,6 +34,7 @@ setup(
             'simulate_data=scripts.cli_scripts.simulate_data:execute',
             'statistical_test=scripts.cli_scripts.statistical_test:execute',
             'aggregate_results=scripts.cli_scripts.aggregate_results:execute',
+            'plot_histograms=scripts.cli_scripts.plot_histograms:execute'
         ],
     },
     install_requires=requirements,

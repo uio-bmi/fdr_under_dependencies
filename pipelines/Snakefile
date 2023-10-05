@@ -6,12 +6,13 @@ from scripts.generate_workflow_params import generate_workflow_params
 
 workflow_config = config["workflow_config"]
 workflow_params = config.get("workflow_params", "../tests/mocks/snakemake_params.tsv")
+workflow_reporting_config = config["workflow_reporting_config"]
 generate_workflow_params(workflow_config, workflow_params)
 paramspace = Paramspace(pd.read_csv(workflow_params, sep="\t"))
 
 rule all:
     input:
-        "results/aggregated_results.tsv"
+        directory("results/plots/histograms/")
 
 rule generate_data:
     params:
@@ -49,10 +50,15 @@ rule aggregate_results:
     shell:
         'aggregate_results --concatenated_results "{input}" --aggregated_results "{output}"'
 
-# rule plot_results:
-#     input:
-#         "results/aggregated_results.tsv"
-#     output:
-#         directory("results/plots/histograms/")
-#     shell:
-#         'plot_histograms --aggregated_results "{input}" --output_dir "{output}"'
+rule plot_results:
+    input:
+        results_file = "results/aggregated_results.tsv",
+        config_file = workflow_config["reporting_config_file"]
+    output:
+        histogram_dir = directory("results/plots/histograms/"),
+        heatmap_dir = directory("results/plots/heatmaps/"),
+    shell:
+        """
+        plot_histograms --aggregated_results "{input.results_file}" --output_dir "{output.histogram_dir}"
+        plot_heatmaps --aggregated_results "{input.results_file}" --output_dir "{output.heatmap_dir}" --reporting_config_file "{input.config_file}"
+        """

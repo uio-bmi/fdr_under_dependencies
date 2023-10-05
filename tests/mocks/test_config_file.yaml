@@ -7,7 +7,7 @@ instruction_1:
     statistical_test: ['limma']
     multipletest_correction_type: ["bonferroni", "bh"]
     alpha: [0.01, 0.05, 0.1]
-    reporting_histogram_bins: [[0,1,10]]
+    reporting_histogram_bins: [[0,1,10]] # remember that the last item has to be the number of features
     n_datasets: 2
 #instruction_2:
 #    n_observations: [20, 200] # number of examples
