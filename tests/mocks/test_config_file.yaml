@@ -1,22 +1,22 @@
 instruction_1:
-    n_observations: [20, 200] # number of examples
-    n_sites: [10]
+    n_observations: [20, 100, 200] # number of examples
+    n_sites: [10000]
     dependencies: [1, 0]
     correlation_strength: ["medium", "high"] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
-    bin_size_ratio: [0.3]
-    statistical_test: ['limma']
+    bin_size_ratio: [0.3] # remember to have just one value for this and n_sites
+    statistical_test: ['t-test', 'limma', 'rank-sum']
     multipletest_correction_type: ["bonferroni", "bh"]
     alpha: [0.01, 0.05, 0.1]
-    reporting_histogram_bins: [[0,1,10]] # remember that the last item has to be the number of features
-    n_datasets: 2
+    reporting_histogram_bins: [[0, 1, 10, 100, 1000, 10000]]
+    n_datasets: 1000
 #instruction_2:
-#    n_observations: [20, 200] # number of examples
+#    n_observations: [20, 100, 200] # number of examples
 #    n_sites: [10000]
 #    dependencies: [1, 0]
 #    correlation_strength: ["medium", "high"] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
 #    bin_size_ratio: [0.3] # remember to have just one value for this and n_sites
-#    statistical_test: ['limma']
+#    statistical_test: ['t-test', 'limma', 'rank-sum']
 #    multipletest_correction_type: ["bonferroni", "bh"]
 #    alpha: [0.01, 0.05, 0.1]
 #    reporting_histogram_bins: [[0, 1, 10, 20, 50, 100, 10000]]
-#    n_datasets: 1
+#    n_datasets: 1000

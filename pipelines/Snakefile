@@ -8,7 +8,12 @@ workflow_config = config["workflow_config"]
 workflow_params = config.get("workflow_params", "../tests/mocks/snakemake_params.tsv")
 workflow_reporting_config = config["workflow_reporting_config"]
 generate_workflow_params(workflow_config, workflow_params)
-paramspace = Paramspace(pd.read_csv(workflow_params, sep="\t"))
+workflow_params_df = pd.read_csv(workflow_params, sep="\t")
+statistical_testing_paramspace = Paramspace(workflow_params_df)
+simulation_fields = ["n_observations", "n_sites", "dependencies", "correlation_strength", "bin_size_ratio", "id"]
+simulation_params_df = workflow_params_df[simulation_fields].drop_duplicates()
+simulation_paramspace = Paramspace(simulation_params_df)
+
 
 rule all:
     input:
@@ -16,25 +21,26 @@ rule all:
 
 rule generate_data:
     params:
-        simulation = paramspace.instance
+        simulation = simulation_paramspace.instance
     output:
-        f"results/simulations/{paramspace.wildcard_pattern}.tsv"
+        f"results/simulations/{simulation_paramspace.wildcard_pattern}.tsv"
     shell:
         'simulate_data --config "{params.simulation}" --output "{output}"'
 
 rule statistical_analysis:
     params:
-        simulation=paramspace.instance
+        statistical_testing = statistical_testing_paramspace.instance,
+        data_path = "results/simulations/"
     input:
-        data = f"results/simulations/{paramspace.wildcard_pattern}.tsv"
+        f"results/simulations/{simulation_paramspace.wildcard_pattern}.tsv"
     output:
-        f"results/statistical_testing/{paramspace.wildcard_pattern}.tsv"
+        f"results/statistical_testing/{statistical_testing_paramspace.wildcard_pattern}.tsv"
     shell:
-        'statistical_test --config "{params.simulation}" --dataset "{input.data}" --output "{output}"'
+        'statistical_test --config "{params.statistical_testing}" --data_path {params.data_path} --output "{output}"'
 
 rule concatenate_results:
     input:
-        expand('results/statistical_testing/{params}.tsv',params=paramspace.instance_patterns)
+        expand('results/statistical_testing/{params}.tsv',params=statistical_testing_paramspace.instance_patterns)
     output:
         "results/concatenated_results.tsv"
     run:
@@ -44,21 +50,27 @@ rule concatenate_results:
 
 rule aggregate_results:
     input:
-        "results/concatenated_results.tsv"
+        concatenated_results = "results/concatenated_results.tsv",
+        reporting_config_file = workflow_reporting_config
     output:
-        "results/aggregated_results.tsv"
+        aggregated_results = "results/aggregated_results.tsv",
+        boxplots_dir= directory("results/plots/boxplots/")
     shell:
-        'aggregate_results --concatenated_results "{input}" --aggregated_results "{output}"'
+        """
+        calculate_hist_results --concatenated_results "{input.concatenated_results}" --aggregated_results "{output.aggregated_results}"
+        plot_comparative_boxcharts --concatenated_results "{input.concatenated_results}" --reporting_config_file "{input.reporting_config_file}" --output_dir {output.boxplots_dir}
+        """
 
 rule plot_results:
     input:
         results_file = "results/aggregated_results.tsv",
-        config_file = workflow_config["reporting_config_file"]
+        # config_file = workflow_config["reporting_config_file"]
     output:
-        histogram_dir = directory("results/plots/histograms/"),
-        heatmap_dir = directory("results/plots/heatmaps/"),
+        histograms_dir = directory("results/plots/histograms/"),
+        # heatmap_dir = directory("results/plots/heatmaps/"),
     shell:
         """
-        plot_histograms --aggregated_results "{input.results_file}" --output_dir "{output.histogram_dir}"
-        plot_heatmaps --aggregated_results "{input.results_file}" --output_dir "{output.heatmap_dir}" --reporting_config_file "{input.config_file}"
+        plot_histograms --aggregated_results "{input.results_file}" --output_dir "{output.histograms_dir}"
         """
+
+# plot_heatmaps --aggregated_results "{input.results_file}" --output_dir "{output.heatmap_dir}" --reporting_config_file "{input.config_file}"

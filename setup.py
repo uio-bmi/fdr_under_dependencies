@@ -33,8 +33,9 @@ setup(
         'console_scripts': [
             'simulate_data=scripts.cli_scripts.simulate_data:execute',
             'statistical_test=scripts.cli_scripts.statistical_test:execute',
-            'aggregate_results=scripts.cli_scripts.aggregate_results:execute',
-            'plot_histograms=scripts.cli_scripts.plot_histograms:execute'
+            'calculate_hist_results=scripts.cli_scripts.calculate_hist_results:execute',
+            'plot_histograms=scripts.cli_scripts.plot_histograms:execute',
+            'plot_comparative_boxcharts=scripts.cli_scripts.plot_comparative_boxcharts:execute'
         ],
     },
     install_requires=requirements,
@@ -43,7 +44,7 @@ setup(
     include_package_data=True,
     keywords='fdr_hacking',
     name='fdr_hacking',
-    packages=find_packages(include=['fdr_hacking', 'fdr_hacking.*', 'cli_scripts']),
+    packages=find_packages(include=['fdr_hacking', 'fdr_hacking.*', 'cli_scripts', 'scripts.*']),
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/kanduric/fdr_hacking',
