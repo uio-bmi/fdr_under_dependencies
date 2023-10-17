@@ -21,7 +21,6 @@ def execute():
                                                                                             for column, condition in
                                                                                             filtering_criteria.items()),
                                                                             axis=1)]
-        print(filtered_df)
         fig = px.box(filtered_df, x=val['x_axis'], y="num_significant_findings", color="dependencies")
         # fig.update_traces(quartilemethod="exclusive")
         fig.update_xaxes(type='category')

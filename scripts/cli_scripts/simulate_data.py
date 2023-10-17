@@ -2,12 +2,14 @@ import argparse
 import json
 from fdr_hacking.data_generation import *
 import numpy as np
+import yaml
 
 
 def execute():
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', type=str, help='Configuration in YAML format', required=True)
     parser.add_argument('--output', help='Path to the output file', required=True)
+    parser.add_argument('--config_file_path', help='Path to the simulation config file', required=True)
     args = parser.parse_args()
 
     config = json.loads(args.config.replace("\'", "\"")) #TODO: fix this
@@ -27,3 +29,5 @@ def execute():
                                               config['dependencies'],
                                               int(config['bin_size_ratio'] * config['n_sites']), corr_coef_dist)
     np.savetxt(args.output, simulated_data, delimiter="\t")
+    with open(args.config_file_path, "w+") as yaml_file:
+        yaml.dump(config, yaml_file)

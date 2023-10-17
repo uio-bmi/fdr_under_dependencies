@@ -1,5 +1,6 @@
 import ast
 import numpy as np
+import yaml
 from snakemake.utils import Paramspace
 import pandas as pd
 from scripts.generate_workflow_params import generate_workflow_params
@@ -9,7 +10,7 @@ workflow_params = config.get("workflow_params", "../tests/mocks/snakemake_params
 workflow_reporting_config = config["workflow_reporting_config"]
 generate_workflow_params(workflow_config, workflow_params)
 workflow_params_df = pd.read_csv(workflow_params, sep="\t")
-statistical_testing_paramspace = Paramspace(workflow_params_df)
+statistical_testing_paramspace = Paramspace(workflow_params_df.copy())
 simulation_fields = ["n_observations", "n_sites", "dependencies", "correlation_strength", "bin_size_ratio", "id"]
 simulation_params_df = workflow_params_df[simulation_fields].drop_duplicates()
 simulation_paramspace = Paramspace(simulation_params_df)
@@ -17,60 +18,59 @@ simulation_paramspace = Paramspace(simulation_params_df)
 
 rule all:
     input:
-        directory("results/plots/histograms/")
+        # directory("results/plots/histograms/")
+        expand('results/statistical_testing/{params}.tsv',params=simulation_paramspace.instance_patterns)
 
 rule generate_data:
     params:
         simulation = simulation_paramspace.instance
     output:
-        f"results/simulations/{simulation_paramspace.wildcard_pattern}.tsv"
+        data = f"results/simulations/{simulation_paramspace.wildcard_pattern}.tsv",
+        config = f"results/simulations/config_files/{simulation_paramspace.wildcard_pattern}.yaml"
     shell:
-        'simulate_data --config "{params.simulation}" --output "{output}"'
+        'simulate_data --config "{params.simulation}" --output "{output.data}" --config_file_path "{output.config}"'
 
 rule statistical_analysis:
     params:
         statistical_testing = statistical_testing_paramspace.instance,
         data_path = "results/simulations/"
     input:
-        f"results/simulations/{simulation_paramspace.wildcard_pattern}.tsv"
+        data = f"results/simulations/{simulation_paramspace.wildcard_pattern}.tsv",
+        config = f"results/simulations/config_files/{simulation_paramspace.wildcard_pattern}.yaml"
     output:
-        f"results/statistical_testing/{statistical_testing_paramspace.wildcard_pattern}.tsv"
+        f"results/statistical_testing/{simulation_paramspace.wildcard_pattern}.tsv"
     shell:
-        'statistical_test --config "{params.statistical_testing}" --data_path {params.data_path} --output "{output}"'
+        'statistical_test --config "{workflow_config}" --data_path "{input.data}" --sim_config "{input.config}" --output "{output}"'
 
-rule concatenate_results:
-    input:
-        expand('results/statistical_testing/{params}.tsv',params=statistical_testing_paramspace.instance_patterns)
-    output:
-        "results/concatenated_results.tsv"
-    run:
-        df = pd.concat([pd.read_csv(f, sep="\t") for f in input])
-        df.to_csv(output[0], sep="\t", index=False)
-
-
-rule aggregate_results:
-    input:
-        concatenated_results = "results/concatenated_results.tsv",
-        reporting_config_file = workflow_reporting_config
-    output:
-        aggregated_results = "results/aggregated_results.tsv",
-        boxplots_dir= directory("results/plots/boxplots/")
-    shell:
-        """
-        calculate_hist_results --concatenated_results "{input.concatenated_results}" --aggregated_results "{output.aggregated_results}"
-        plot_comparative_boxcharts --concatenated_results "{input.concatenated_results}" --reporting_config_file "{input.reporting_config_file}" --output_dir {output.boxplots_dir}
-        """
-
-rule plot_results:
-    input:
-        results_file = "results/aggregated_results.tsv",
-        # config_file = workflow_config["reporting_config_file"]
-    output:
-        histograms_dir = directory("results/plots/histograms/"),
-        # heatmap_dir = directory("results/plots/heatmaps/"),
-    shell:
-        """
-        plot_histograms --aggregated_results "{input.results_file}" --output_dir "{output.histograms_dir}"
-        """
-
-# plot_heatmaps --aggregated_results "{input.results_file}" --output_dir "{output.heatmap_dir}" --reporting_config_file "{input.config_file}"
+# rule concatenate_results:
+#     input:
+#         expand('results/statistical_testing/{params}.tsv',params=statistical_testing_paramspace.instance_patterns)
+#     output:
+#         "results/concatenated_results.tsv"
+#     run:
+#         df = pd.concat([pd.read_csv(f, sep="\t") for f in input])
+#         df.to_csv(output[0], sep="\t", index=False)
+#
+#
+# rule aggregate_results:
+#     input:
+#         concatenated_results = "results/concatenated_results.tsv",
+#         reporting_config_file = workflow_reporting_config
+#     output:
+#         aggregated_results = "results/aggregated_results.tsv",
+#         boxplots_dir= directory("results/plots/boxplots/")
+#     shell:
+#         """
+#         calculate_hist_results --concatenated_results "{input.concatenated_results}" --aggregated_results "{output.aggregated_results}"
+#         plot_comparative_boxcharts --concatenated_results "{input.concatenated_results}" --reporting_config_file "{input.reporting_config_file}" --output_dir {output.boxplots_dir}
+#         """
+#
+# rule plot_results:
+#     input:
+#         results_file = "results/aggregated_results.tsv",
+#         # config_file = workflow_config["reporting_config_file"]
+#     output:
+#         histograms_dir = directory("results/plots/histograms/"),
+#         # heatmap_dir = directory("results/plots/heatmaps/"),
+#     shell:
+#         'plot_histograms --aggregated_results "{input.results_file}" --output_dir "{output.histograms_dir}"'
