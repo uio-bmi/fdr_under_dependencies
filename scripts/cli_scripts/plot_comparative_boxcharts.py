@@ -6,11 +6,13 @@ from fdr_hacking.util import parse_yaml_file
 
 
 def execute():
+    print("-----------------TEST plot comp box ------------------")
     parser = argparse.ArgumentParser()
     parser.add_argument('--concatenated_results', help='Path to the concatenated results file', required=True)
     parser.add_argument('--reporting_config_file', help='Path to the reporting config file', required=True)
     parser.add_argument('--output_dir', help='Path to the output directory to store the charts', required=True)
     args = parser.parse_args()
+    print("-----------------TEST plot comp box ------------------")
     concatenated_results_df = pd.read_csv(args.concatenated_results, sep="\t", header=0, index_col=False)
     reporting_config = parse_yaml_file(args.reporting_config_file)
     if not os.path.exists(args.output_dir):
