@@ -18,8 +18,8 @@ def append_params(config_dict: dict):
     return df
 
 
-def generate_workflow_params(workflow_yaml_file: str, workflow_params_file: str):
-    workflow_config = parse_yaml_file(workflow_yaml_file)
+def generate_simulation_params(workflow_config: dict, workflow_params_file: str):
+    # workflow_config = parse_yaml_file(workflow_yaml_file)
     list_of_dfs = []
     for val in workflow_config.values():
         list_of_dfs.append(append_params(val))

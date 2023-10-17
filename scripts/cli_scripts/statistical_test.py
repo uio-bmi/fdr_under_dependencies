@@ -1,12 +1,8 @@
 import argparse
-import os
 from itertools import product
-
 from fdr_hacking.statistical_testing import *
 import numpy as np
-import json
 import pandas as pd
-
 from fdr_hacking.util import parse_yaml_file
 
 
@@ -18,14 +14,11 @@ def execute():
     parser.add_argument('--output', help='Path to the output file', required=True)
     args = parser.parse_args()
     config = parse_yaml_file(args.config)
+    config = config['statistical_testing']
     sim_config = parse_yaml_file(args.sim_config)
-    # TO DO: fix it
-    config = config['instruction_2']
-
     data = np.loadtxt(args.data_path, delimiter="\t")
     n_obs = data.shape[0]
     group_size = n_obs // 2
-
     statistical_test_params = product(config['statistical_test'], config['multipletest_correction_type'],
                                       config['alpha'])
     fdr_full_results = []

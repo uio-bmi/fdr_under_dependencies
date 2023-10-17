@@ -1,0 +1,23 @@
+simulating:
+    instruction_1:
+        n_observations: [20] # number of examples
+        n_sites: [100]
+        dependencies: [1, 0]
+        correlation_strength: ["high"] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
+        bin_size_ratio: [0.3] # remember to have just one value for this and n_sites
+        reporting_histogram_bins: [[0, 1, 10, 100, 1000, 10000]]
+        n_datasets: 2
+statistical_testing:
+    statistical_test: [ 't-test', 'limma', 'rank-sum' ]
+    multipletest_correction_type: ['bonferroni', 'bh' ]
+    alpha: [0.01, 0.05, 0.1]
+reporting:
+    compare_sample_size:
+        n_sites: 100
+        correlation_strength: "high"
+        bin_size_ratio: 0.3
+        statistical_test: "t-test"
+        multipletest_correction_type: "bh"
+        alpha: 0.05
+        x_axis: "n_observations"
+
