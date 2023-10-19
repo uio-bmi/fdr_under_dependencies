@@ -1,5 +1,6 @@
 paths:
-    output_dir: "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/pipelines"
+#    output_dir: "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/pipelines"
+    output_dir: "/Users/skanduri/Desktop/my_cool_pipeline"
     realworld_data: "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/data/realworld_methyl_beta.h5"
 simulating:
     with_dependencies:

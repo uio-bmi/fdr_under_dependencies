@@ -44,7 +44,7 @@ setup(
     include_package_data=True,
     keywords='fdr_hacking',
     name='fdr_hacking',
-    packages=find_packages(include=['fdr_hacking', 'fdr_hacking.*', 'cli_scripts', 'scripts.*']),
+    packages=find_packages(include=['fdr_hacking', 'fdr_hacking.*', 'cli_scripts', 'scripts.*', 'pipelines']),
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/kanduric/fdr_hacking',
