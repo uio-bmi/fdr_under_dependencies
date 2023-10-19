@@ -4,7 +4,7 @@ import pytest
 from scipy.stats import beta
 from fdr_hacking.data_generation import synthesize_methyl_val_without_dependence, \
     synthesize_methyl_val_with_copula_with_supplied_corrmat, \
-    beta_to_m, load_eg_realworld_data, simulate_methyl_data, sample_legal_cvine_corrmat, \
+    beta_to_m, load_realworld_data, simulate_methyl_data, sample_legal_cvine_corrmat, \
     synthesize_methyl_val_with_autocorr, determine_correlation_matrix, generate_n_correlation_coefficients, \
     generate_bin_correlation_ranges, synthesize_correlated_gaussian_bins
 
@@ -87,7 +87,7 @@ def test_beta_to_m():
 
 
 def test_load_eg_realworld_data():
-    real_data_df = load_eg_realworld_data()
+    real_data_df = load_realworld_data()
     assert real_data_df.shape == (35, 836691)
 
 
@@ -101,7 +101,7 @@ def test_simulate_methyl_data():
     assert result.shape == (n_observations, n_sites)
     assert np.all(result >= -34) and np.all(result <= 34)
 
-    realworld_data = load_eg_realworld_data()
+    realworld_data = load_realworld_data()
     n_sites = 500
     dependencies = True
     result = simulate_methyl_data(realworld_data, n_sites, n_observations, dependencies)

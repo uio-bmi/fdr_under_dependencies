@@ -1,11 +1,22 @@
+paths:
+    output_dir: "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/pipelines"
+    realworld_data: "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/data/realworld_methyl_beta.h5"
 simulating:
-    instruction_1:
+    with_dependencies:
         n_observations: [20] # number of examples
         n_sites: [100]
-        dependencies: [1, 0]
+        dependencies: [1]
         correlation_strength: ["high"] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
         bin_size_ratio: [0.3] # remember to have just one value for this and n_sites
         reporting_histogram_bins: [[0, 1, 10, 100, 1000, 10000]]
+        n_datasets: 2
+    without_dependencies:
+        n_observations: [ 20 ] # number of examples
+        n_sites: [ 100 ]
+        dependencies: [0]
+        correlation_strength: [ "not_applicable" ] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
+        bin_size_ratio: [ 0.3 ] # remember to have just one value for this and n_sites
+        reporting_histogram_bins: [ [ 0, 1, 10, 100, 1000, 10000 ] ]
         n_datasets: 2
 statistical_testing:
     statistical_test: [ 't-test', 'limma', 'rank-sum' ]
@@ -20,4 +31,12 @@ reporting:
         multipletest_correction_type: "bh"
         alpha: 0.05
         x_axis: "n_observations"
+    compare_correlation_strength:
+        n_observations: 20
+        n_sites: 100
+        bin_size_ratio: 0.3
+        statistical_test: "t-test"
+        multipletest_correction_type: "bh"
+        alpha: 0.05
+        x_axis: "correlation_strength"
 

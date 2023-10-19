@@ -10,10 +10,11 @@ def execute():
     parser.add_argument('--config', type=str, help='Configuration in YAML format', required=True)
     parser.add_argument('--output', help='Path to the output file', required=True)
     parser.add_argument('--config_file_path', help='Path to the simulation config file', required=True)
+    parser.add_argument('--realworld_data_path', help='Path to the real-world dataset in H5 file format',
+                        required=True)
     args = parser.parse_args()
-
     config = json.loads(args.config.replace("\'", "\"")) #TODO: fix this
-    realworld_data = load_eg_realworld_data()
+    realworld_data = load_realworld_data(file_path=args.realworld_data_path)
     if config["dependencies"] == 0:
         simulated_data = simulate_methyl_data(realworld_data, config['n_sites'], config['n_observations'],
                                               config['dependencies'],

@@ -1,6 +1,6 @@
 import itertools
 import numpy as np
-from fdr_hacking.data_generation import sample_realworld_methyl_val, load_eg_realworld_data
+from fdr_hacking.data_generation import sample_realworld_methyl_val, load_realworld_data
 from fdr_hacking.util import find_high_corr_sites_distribution, estimate_realworld_corrcoef_distribution
 
 
@@ -133,7 +133,7 @@ def test_sample_corr_mat_given_distribution():
 
 
 def test_estimate_realworld_corrcoef_distribution():
-    real_data_df = load_eg_realworld_data()
+    real_data_df = load_realworld_data()
     methyl_beta_values = sample_realworld_methyl_val(n_sites=100, realworld_data=real_data_df)
     corrcoef_distr = estimate_realworld_corrcoef_distribution(methyl_beta_values)
     assert len(corrcoef_distr) == 20

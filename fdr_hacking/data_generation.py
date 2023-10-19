@@ -5,9 +5,8 @@ import argparse
 from scipy.stats import norm, beta as beta_dist, spearmanr
 
 
-def load_eg_realworld_data():
-    file_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'realworld_methyl_beta.h5')
-    realworld_data = pd.read_hdf(file_path, "beta_values_df")
+def load_realworld_data(file_path):
+    realworld_data = pd.read_hdf(file_path)
     return realworld_data
 
 

@@ -1,5 +1,6 @@
 from snakemake.utils import Paramspace
 import pandas as pd
+import os
 from fdr_hacking.util import parse_yaml_file
 from scripts.generate_simulation_params import generate_simulation_params
 
@@ -7,47 +8,53 @@ workflow_config_yaml = config["workflow_config"]
 workflow_config = parse_yaml_file(workflow_config_yaml)
 simulation_params = config.get("simulation_params", "../tests/mocks/snakemake_simulation_params.tsv")
 workflow_reporting_config = workflow_config['reporting']
+output_dir = os.path.join(workflow_config['paths']['output_dir'], "output")
+if 'realworld_data' in workflow_config['paths']:
+    realworld_data = workflow_config['paths']['realworld_data']
+else:
+    realworld_data = None
 generate_simulation_params(workflow_config['simulating'], simulation_params)
 simulation_params_df = pd.read_csv(simulation_params, sep="\t")
 simulation_paramspace = Paramspace(simulation_params_df)
 
 rule all:
     input:
-        directory("results/plots/histograms/")
+        directory(f"{output_dir}/plots/histograms/")
 
 rule generate_data:
     params:
         simulation = simulation_paramspace.instance
     output:
-        data = f"results/simulations/{simulation_paramspace.wildcard_pattern}.tsv",
-        config = f"results/config_files/{simulation_paramspace.wildcard_pattern}.yaml"
+        data = f"{output_dir}/simulations/{simulation_paramspace.wildcard_pattern}.tsv",
+        config = f"{output_dir}/config_files/{simulation_paramspace.wildcard_pattern}.yaml"
     shell:
-        'simulate_data --config "{params.simulation}" --output "{output.data}" --config_file_path "{output.config}"'
+        'simulate_data --config "{params.simulation}" --realworld_data_path {realworld_data} --output "{output.data}" --config_file_path "{output.config}"'
 
 rule statistical_analysis:
     input:
-        data = f"results/simulations/{simulation_paramspace.wildcard_pattern}.tsv",
-        config = f"results/config_files/{simulation_paramspace.wildcard_pattern}.yaml"
+        data = f"{output_dir}/simulations/{simulation_paramspace.wildcard_pattern}.tsv",
+        config = f"{output_dir}/config_files/{simulation_paramspace.wildcard_pattern}.yaml"
     output:
-        f"results/statistical_testing/{simulation_paramspace.wildcard_pattern}.tsv"
+        f"{output_dir}/statistical_testing/{simulation_paramspace.wildcard_pattern}.tsv"
     shell:
         'statistical_test --config "{workflow_config_yaml}" --data_path "{input.data}" --sim_config "{input.config}" --output "{output}"'
 
 rule concatenate_results:
     input:
-        expand('results/statistical_testing/{params}.tsv',params=simulation_paramspace.instance_patterns)
+        expand('{output_dir}/statistical_testing/{params}.tsv',params=simulation_paramspace.instance_patterns,
+            output_dir=output_dir)
     output:
-        "results/concatenated_results.tsv"
+        f"{output_dir}/concatenated_results.tsv"
     run:
         df = pd.concat([pd.read_csv(f, sep="\t") for f in input])
         df.to_csv(output[0], sep="\t", index=False)
 
 rule aggregate_results:
     input:
-        concatenated_results = "results/concatenated_results.tsv"
+        concatenated_results = f"{output_dir}/concatenated_results.tsv"
     output:
-        aggregated_results = "results/aggregated_results.tsv",
-        boxplots_dir= directory("results/plots/boxplots/")
+        aggregated_results = f"{output_dir}/aggregated_results.tsv",
+        boxplots_dir= directory(f"{output_dir}/plots/boxplots/")
     shell:
         """
         calculate_hist_results --concatenated_results "{input.concatenated_results}" --aggregated_results "{output.aggregated_results}"
@@ -56,8 +63,8 @@ rule aggregate_results:
 
 rule plot_results:
     input:
-        results_file = "results/aggregated_results.tsv"
+        results_file = f"{output_dir}/aggregated_results.tsv"
     output:
-        histograms_dir = directory("results/plots/histograms/")
+        histograms_dir = directory(f"{output_dir}/plots/histograms/")
     shell:
         'plot_histograms --aggregated_results "{input.results_file}" --output_dir "{output.histograms_dir}" --with_title'
