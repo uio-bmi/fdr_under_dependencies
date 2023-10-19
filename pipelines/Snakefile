@@ -19,7 +19,8 @@ simulation_paramspace = Paramspace(simulation_params_df)
 
 rule all:
     input:
-        directory(f"{output_dir}/plots/histograms/")
+        directory(f"{output_dir}/plots/histograms/"),
+        directory(f"{output_dir}/plots/boxplots/"),
 
 rule generate_data:
     params:
@@ -53,13 +54,19 @@ rule aggregate_results:
     input:
         concatenated_results = f"{output_dir}/concatenated_results.tsv"
     output:
-        aggregated_results = f"{output_dir}/aggregated_results.tsv",
+        aggregated_results = f"{output_dir}/aggregated_results.tsv"
+    shell:
+        'calculate_hist_results --concatenated_results "{input.concatenated_results}" --aggregated_results "{output.aggregated_results}"'
+
+
+rule make_box_plots:
+    input:
+        concatenated_results = f"{output_dir}/concatenated_results.tsv"
+    output:
         boxplots_dir= directory(f"{output_dir}/plots/boxplots/")
     shell:
-        """
-        calculate_hist_results --concatenated_results "{input.concatenated_results}" --aggregated_results "{output.aggregated_results}"
-        plot_comparative_boxcharts --concatenated_results "{input.concatenated_results}" --reporting_config_file "{workflow_config_yaml}" --output_dir {output.boxplots_dir}
-        """
+        'plot_comparative_boxcharts --concatenated_results "{input.concatenated_results}" --reporting_config_file "{workflow_config_yaml}" --output_dir {output.boxplots_dir}'
+
 
 rule plot_results:
     input:

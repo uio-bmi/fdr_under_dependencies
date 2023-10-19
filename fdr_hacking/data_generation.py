@@ -6,7 +6,10 @@ from scipy.stats import norm, beta as beta_dist, spearmanr
 
 
 def load_realworld_data(file_path):
-    realworld_data = pd.read_hdf(file_path)
+    if file_path.endswith('.h5'):
+        realworld_data = pd.read_hdf(file_path)
+    else:
+        raise ValueError("Invalid file path provided for real-world data.")
     return realworld_data
 
 
