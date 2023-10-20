@@ -14,9 +14,12 @@ def execute():
     parser.add_argument('--output', help='Path to the output file', required=True)
     args = parser.parse_args()
     config = parse_yaml_file(args.config)
-    config = config['statistical_testing']
     sim_config = parse_yaml_file(args.sim_config)
     data = np.loadtxt(args.data_path, delimiter="\t")
+    if sim_config['data_distribution'] == 'beta':
+        config = config['statistical_testing']['beta']
+    else:
+        config = config['statistical_testing']['normal']
     n_obs = data.shape[0]
     group_size = n_obs // 2
     statistical_test_params = product(config['statistical_test'], config['multipletest_correction_type'],

@@ -27,7 +27,9 @@ simulation_paramspace = Paramspace(simulation_params_df)
 rule all:
     input:
         directory(f"{output_dir}/plots/histograms/"),
-        directory(f"{output_dir}/plots/boxplots/"),
+        directory(f"{output_dir}/plots/boxplots/")
+        # expand('{output_dir}/statistical_testing/{params}.tsv',params=simulation_paramspace.instance_patterns,
+        #     output_dir=output_dir)
 
 rule generate_data:
     params:

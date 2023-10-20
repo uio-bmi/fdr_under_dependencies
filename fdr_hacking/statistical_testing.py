@@ -1,6 +1,6 @@
 import numpy as np
 import rpy2.robjects as robjects
-from scipy.stats import ttest_ind, ranksums
+from scipy.stats import ttest_ind, ranksums, kstest, norm
 from statsmodels.stats.multitest import multipletests
 
 
@@ -67,6 +67,19 @@ def ranksum_test(methyl_datamat: np.ndarray, group1_indices: list, group2_indice
     return p_values
 
 
+def ks_test(dataset: np.ndarray) -> np.array:
+    """
+
+    :param dataset: A ndimensional numpy array of methylation M values with observations in rows,
+    features in columns
+    :return: A numpy array of p-values with size the same as the number of features in input dataset
+    """
+    p_values = np.zeros(dataset.shape[1])
+    for col in range(dataset.shape[1]):
+        p_values[col] = kstest(dataset[:, col], norm.cdf)[1]
+    return p_values
+
+
 def get_p_values_per_feature(methyl_datamat: np.ndarray, group1_indices: list, group2_indices: list,
                              test_type: str) -> np.array:
     """
@@ -84,6 +97,8 @@ def get_p_values_per_feature(methyl_datamat: np.ndarray, group1_indices: list, g
         p_values = limma_test(methyl_datamat, group1_indices, group2_indices)
     elif test_type == 'rank-sum':
         p_values = ranksum_test(methyl_datamat, group1_indices, group2_indices)
+    elif test_type == 'ks-test':
+        p_values = ks_test(methyl_datamat)
     else:
         raise ValueError("Invalid test type")
     return p_values

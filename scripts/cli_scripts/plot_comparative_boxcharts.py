@@ -18,7 +18,7 @@ def execute():
         os.mkdir(args.output_dir)
     for key, val in reporting_config.items():
         filtering_criteria = without(val, 'x_axis')
-        filtered_df = concatenated_results_df[concatenated_results_df.apply(lambda row: all(row[column] == condition
+        filtered_df = concatenated_results_df[concatenated_results_df.apply(lambda row: all(row[column] in condition
                                                                                             for column, condition in
                                                                                             filtering_criteria.items()),
                                                                             axis=1)]

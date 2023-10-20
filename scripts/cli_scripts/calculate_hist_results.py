@@ -12,9 +12,10 @@ def execute():
     args = parser.parse_args()
     df = pd.read_csv(args.concatenated_results, sep="\t", header=0, index_col=False)
     config_cols = ["n_observations", "n_sites", "dependencies", "correlation_strength", "bin_size_ratio",
-                   "statistical_test", "multipletest_correction_type", "alpha", "reporting_histogram_bins"]
-    df['config_id'] = ['__'.join(f'{k}~{v}' for k, v in i.items()) for i in df[config_cols].to_dict('records')]
-    config_cols.append("config_id")
+                   "statistical_test", "multipletest_correction_type", "alpha", "data_distribution"]
+    config_id_dict = df[config_cols].to_dict('records')
+    df['config_id'] = ['__'.join(f'{k}~{v}' for k, v in i.items()) for i in config_id_dict]
+    config_cols = config_cols + ["config_id", "reporting_histogram_bins"]
     df_grouped = df.groupby(config_cols)
     hist_df = pd.DataFrame(columns=config_cols + ["reporting_histogram"])
     for name, group in df_grouped:
