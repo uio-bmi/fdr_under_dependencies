@@ -1,6 +1,6 @@
 paths:
-    output_dir: "/Users/skanduri/Desktop/my_cool_pipeline"
-    realworld_data: "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/data/realworld_methyl_beta.h5"
+    output_dir: "/doctorai/skanduri/fdr_hacking_pilot/v1_analyses"
+    realworld_data: "/doctorai/skanduri/fdr_hacking_pilot/fdr_hacking/data/realworld_methyl_beta.h5"
 simulating:
     with_dependencies_beta_features_10k:
         n_observations: [20, 100, 200] # number of examples
@@ -9,7 +9,7 @@ simulating:
         correlation_strength: ["high", "medium"] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
         bin_size_ratio: [0.3, 0.2] # remember to have just one value for this and n_sites
         reporting_histogram_bins: [[0, 1, 10, 100, 1000, 10000]]
-        n_datasets: 2
+        n_datasets: 10000
         data_distribution: ["beta"]
     without_dependencies_beta_features_10k:
         n_observations: [20, 100, 200] # number of examples
@@ -18,7 +18,7 @@ simulating:
         correlation_strength: ["not_applicable"] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
         bin_size_ratio: [0.3] # remember to have just one value for this and n_sites
         reporting_histogram_bins: [[0, 1, 10, 100, 1000, 10000]]
-        n_datasets: 2
+        n_datasets: 10000
         data_distribution: ["beta"]
     with_dependencies_beta_features_1k:
         n_observations: [ 20, 100, 200] # number of examples
@@ -27,7 +27,7 @@ simulating:
         correlation_strength: [ "high", "medium" ] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
         bin_size_ratio: [ 0.3, 0.2] # remember to have just one value for this and n_sites
         reporting_histogram_bins: [ [ 0, 1, 10, 100, 1000] ]
-        n_datasets: 2
+        n_datasets: 10000
         data_distribution: [ "beta" ]
     without_dependencies_beta_features_1k:
         n_observations: [ 20, 100, 200] # number of examples
@@ -36,7 +36,7 @@ simulating:
         correlation_strength: [ "not_applicable" ] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
         bin_size_ratio: [ 0.3 ] # remember to have just one value for this and n_sites
         reporting_histogram_bins: [ [ 0, 1, 10, 100, 1000] ]
-        n_datasets: 2
+        n_datasets: 10000
         data_distribution: [ "beta" ]
     with_dependencies_normal_features_10k:
         n_observations: [ 20, 100, 200] # number of examples
@@ -45,7 +45,7 @@ simulating:
         correlation_strength: [ "high", "medium" ] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
         bin_size_ratio: [ 0.3, 0.2] # remember to have just one value for this and n_sites
         reporting_histogram_bins: [ [ 0, 1, 10, 100, 1000, 10000 ] ]
-        n_datasets: 2
+        n_datasets: 10000
         data_distribution: [ "normal" ]
     without_dependencies_normal_features_10k:
         n_observations: [ 20, 100, 200] # number of examples
@@ -54,7 +54,7 @@ simulating:
         correlation_strength: [ "not_applicable" ] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
         bin_size_ratio: [ 0.3 ] # remember to have just one value for this and n_sites
         reporting_histogram_bins: [ [ 0, 1, 10, 100, 1000, 10000 ] ]
-        n_datasets: 2
+        n_datasets: 10000
         data_distribution: [ "normal" ]
     with_dependencies_normal_features_1k:
         n_observations: [ 20, 100, 200] # number of examples
@@ -63,7 +63,7 @@ simulating:
         correlation_strength: [ "high", "medium" ] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
         bin_size_ratio: [ 0.3, 0.2] # remember to have just one value for this and n_sites
         reporting_histogram_bins: [ [ 0, 1, 10, 100, 1000] ]
-        n_datasets: 2
+        n_datasets: 10000
         data_distribution: [ "normal" ]
     without_dependencies_normal_features_1k:
         n_observations: [ 20, 100, 200] # number of examples
@@ -72,7 +72,7 @@ simulating:
         correlation_strength: [ "not_applicable" ] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
         bin_size_ratio: [ 0.3 ] # remember to have just one value for this and n_sites
         reporting_histogram_bins: [ [ 0, 1, 10, 100, 1000] ]
-        n_datasets: 2
+        n_datasets: 10000
         data_distribution: [ "normal" ]
 statistical_testing:
     beta:

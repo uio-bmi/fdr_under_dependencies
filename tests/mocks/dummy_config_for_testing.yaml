@@ -1,0 +1,41 @@
+paths:
+    output_dir: "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/pipelines/results"
+    realworld_data: "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/data/realworld_methyl_beta.h5"
+simulating:
+    with_dependencies_beta_features_10k:
+        n_observations: [20] # number of examples
+        n_sites: [100]
+        dependencies: [1]
+        correlation_strength: ["high"] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
+        bin_size_ratio: [0.3] # remember to have just one value for this and n_sites
+        reporting_histogram_bins: [[0, 1, 10, 100]]
+        n_datasets: 2
+        data_distribution: ["beta"]
+    without_dependencies_beta_features_10k:
+        n_observations: [20] # number of examples
+        n_sites: [100]
+        dependencies: [0]
+        correlation_strength: ["not_applicable"] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
+        bin_size_ratio: [0.3] # remember to have just one value for this and n_sites
+        reporting_histogram_bins: [[0, 1, 10, 100]]
+        n_datasets: 2
+        data_distribution: ["beta"]
+statistical_testing:
+    beta:
+        statistical_test: [ 't-test', 'limma', 'rank-sum' ]
+        multipletest_correction_type: ['bonferroni', 'bh' ]
+        alpha: [0.05]
+    normal:
+        statistical_test: ['ks-test']
+        multipletest_correction_type: [ 'bonferroni', 'bh' ]
+        alpha: [0.05]
+reporting:
+    compare_sample_size_beta:
+        n_sites: [10000]
+        correlation_strength: ["high", "not_applicable"]
+        bin_size_ratio: [0.3]
+        statistical_test: ["t-test"]
+        multipletest_correction_type: ["bh"]
+        alpha: [0.05]
+        data_distribution: ["beta"]
+        x_axis: "n_observations"
