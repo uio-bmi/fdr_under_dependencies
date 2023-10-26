@@ -1,12 +1,15 @@
 import numpy as np
 import pandas as pd
 import os.path
-from scipy.stats import norm, multivariate_normal as mvn, beta as beta_dist, spearmanr, beta
+import argparse
+from scipy.stats import norm, beta as beta_dist, spearmanr
 
 
-def load_eg_realworld_data():
-    file_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'realworld_methyl_beta.h5')
-    realworld_data = pd.read_hdf(file_path, "beta_values_df")
+def load_realworld_data(file_path):
+    if file_path.endswith('.h5'):
+        realworld_data = pd.read_hdf(file_path)
+    else:
+        raise ValueError("Invalid file path provided for real-world data.")
     return realworld_data
 
 
@@ -140,6 +143,19 @@ def synthesize_methyl_val_without_dependence(n_sites: int, n_observations: int,
     return synth_beta_values
 
 
+def synthesize_gaussian_dataset_without_dependence(n_sites: int, n_observations: int) -> np.ndarray:
+    """
+    :param n_sites: The number of features to be included in the simulated methylation dataset
+    :param n_observations: The number of observations to be included in the simulated methylation dataset
+    :return:
+    """
+    synth_gaussian_values = np.zeros((n_observations, n_sites))
+    for i in range(n_sites):
+        site_samples = np.random.normal(size=n_observations)
+        synth_gaussian_values[:, i] = site_samples
+    return synth_gaussian_values
+
+
 def beta_to_m(methyl_beta_values: np.ndarray) -> np.ndarray:
     """
     :param methyl_beta_values: A ndimensional numpy array containing methylation beta values, with features in columns
@@ -156,7 +172,7 @@ def beta_to_m(methyl_beta_values: np.ndarray) -> np.ndarray:
 
 
 def simulate_methyl_data(realworld_data: pd.DataFrame, n_sites: int, n_observations: int,
-                         dependencies: bool, bin_size: int, corr_coef_distribution: list) -> np.ndarray:
+                         dependencies: bool, bin_size: int = None, corr_coef_distribution: list = None) -> np.ndarray:
     real_data = sample_realworld_methyl_val(n_sites=n_sites, realworld_data=realworld_data)
     alpha_params, beta_params = estimate_beta_dist_parameters(methyl_beta_values=real_data)
     if dependencies:
