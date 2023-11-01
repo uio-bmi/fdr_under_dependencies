@@ -1,0 +1,20 @@
+paths:
+    output_dir: "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/pipelines/semi_real_world_results"
+    realworld_data: "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/data/realworld_methyl_beta.h5"
+simulating:
+    features_10k:
+        n_sites: [10000]
+        reporting_histogram_bins: [[0, 1, 10, 100, 1000, 10000]]
+        n_datasets: 2
+        data_distribution: ["beta"]
+statistical_testing:
+    beta:
+        statistical_test: [ 't-test', 'limma', 'rank-sum' ]
+        multipletest_correction_type: ['bonferroni', 'bh' ]
+        alpha: [0.05]
+reporting:
+    compare_statistical_test:
+        n_sites: [10000]
+        multipletest_correction_type: ["bh"]
+        alpha: [0.05]
+        x_axis: "statistical_test"

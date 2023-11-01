@@ -11,8 +11,9 @@ def execute():
     parser.add_argument('--aggregated_results', help='Path to the aggregated results file', required=True)
     args = parser.parse_args()
     df = pd.read_csv(args.concatenated_results, sep="\t", header=0, index_col=False)
-    config_cols = ["n_observations", "n_sites", "dependencies", "correlation_strength", "bin_size_ratio",
+    relevant_cols = ["n_observations", "n_sites", "dependencies", "correlation_strength", "bin_size_ratio",
                    "statistical_test", "multipletest_correction_type", "alpha", "data_distribution"]
+    config_cols = [i for i in relevant_cols if i in df.columns]
     config_id_dict = df[config_cols].to_dict('records')
     df['config_id'] = ['__'.join(f'{k}~{v}' for k, v in i.items()) for i in config_id_dict]
     config_cols = config_cols + ["config_id", "reporting_histogram_bins"]
