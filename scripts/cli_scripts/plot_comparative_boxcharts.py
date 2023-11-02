@@ -22,7 +22,10 @@ def execute():
                                                                                             for column, condition in
                                                                                             filtering_criteria.items()),
                                                                             axis=1)]
-        fig = px.box(filtered_df, x=val['x_axis'], y="num_significant_findings", color="dependencies")
+        if "dependencies" in filtered_df.columns:
+            fig = px.box(filtered_df, x=val['x_axis'], y="num_significant_findings", color="dependencies")
+        else:
+            fig = px.box(filtered_df, x=val['x_axis'], y="num_significant_findings")
         fig.update_xaxes(type='category')
         fig.write_html(os.path.join(args.output_dir, f"{key}.html"))
 

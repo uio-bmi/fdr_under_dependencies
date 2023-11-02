@@ -35,7 +35,8 @@ setup(
             'statistical_test=scripts.cli_scripts.statistical_test:execute',
             'calculate_hist_results=scripts.cli_scripts.calculate_hist_results:execute',
             'plot_histograms=scripts.cli_scripts.plot_histograms:execute',
-            'plot_comparative_boxcharts=scripts.cli_scripts.plot_comparative_boxcharts:execute'
+            'plot_comparative_boxcharts=scripts.cli_scripts.plot_comparative_boxcharts:execute',
+            'simulate_semi_real_world_data=scripts.cli_scripts.simulate_semi_real_world_data:execute',
         ],
     },
     install_requires=requirements,

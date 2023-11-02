@@ -31,8 +31,9 @@ def execute():
                 custom_tick_labels.append(f'{bin_edges[i]}-{bin_edges[i + 1]-1}')
         custom_tick_labels = custom_tick_labels + [f'{bin_edges[i]:.1f}-{bin_edges[i + 1]:.1f}' for i in range(1, num_bins)]
         hist_trace = go.Bar(x=custom_tick_labels, y=row['reporting_histogram'])
-        config_cols = ["n_observations", "n_sites", "dependencies", "correlation_strength", "bin_size_ratio",
+        relevant_cols = ["n_observations", "n_sites", "dependencies", "correlation_strength", "bin_size_ratio",
                        "statistical_test", "multipletest_correction_type", "alpha", "data_distribution"]
+        config_cols = [i for i in relevant_cols if i in df.columns]
         config_dict = df.loc[index, config_cols].to_dict()
         if args.with_title is True:
             formatted_title = '<br>'.join([f'{key}: {value}' for key, value in config_dict.items()])
