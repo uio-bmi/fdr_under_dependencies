@@ -1,6 +1,6 @@
 paths:
-    output_dir: "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/pipelines/semi_real_world_results"
-    realworld_data: "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/data/realworld_methyl_beta.h5"
+    output_dir: "/doctorai/skanduri/fdr_hacking_pilot_semi_real_world/dummy_test"
+    realworld_data: "/doctorai/skanduri/fdr_hacking_pilot_semi_real_world/fdr_hacking/data/realworld_methyl_beta.h5"
 simulating:
     features_10k:
         n_sites: [10000]
@@ -18,3 +18,14 @@ reporting:
         multipletest_correction_type: ["bh"]
         alpha: [0.05]
         x_axis: "statistical_test"
+    compare_correction_type:
+        n_sites: [ 10000 ]
+        statistical_test: [ "t-test" ]
+        alpha: [ 0.05 ]
+        x_axis: "multipletest_correction_type"
+    compare_alpha:
+        n_sites: [ 10000 ]
+        statistical_test: [ "t-test" ]
+        multipletest_correction_type: [ "bh" ]
+        x_axis: "alpha"
+
