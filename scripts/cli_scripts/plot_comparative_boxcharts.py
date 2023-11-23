@@ -1,4 +1,6 @@
 import argparse
+import os
+
 from fdr_hacking.data_generation import *
 import pandas as pd
 import plotly.express as px

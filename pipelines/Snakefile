@@ -28,8 +28,6 @@ rule all:
     input:
         directory(f"{output_dir}/plots/histograms/"),
         directory(f"{output_dir}/plots/boxplots/")
-        # expand('{output_dir}/statistical_testing/{params}.tsv',params=simulation_paramspace.instance_patterns,
-        #     output_dir=output_dir)
 
 rule generate_data:
     params:
@@ -37,13 +35,14 @@ rule generate_data:
     output:
         data = f"{output_dir}/simulations/{simulation_paramspace.wildcard_pattern}.tsv",
         config = f"{analysis_config_dir}/sim_config_files/{simulation_paramspace.wildcard_pattern}.yaml"
+    threads: 60
     shell:
         'simulate_data --config "{params.simulation}" --realworld_data_path {realworld_data} --output "{output.data}" --config_file_path "{output.config}"'
 
 rule statistical_analysis:
     input:
         data = f"{output_dir}/simulations/{simulation_paramspace.wildcard_pattern}.tsv",
-        config = f"{analysis_config_dir}/sim_config_files/{simulation_paramspace.wildcard_pattern}.yaml"
+        config = f"{analysis_config_dir}/sim_config_files/{simulation_paramspace.wildcard_pattern}.yaml",
     output:
         f"{output_dir}/statistical_testing/{simulation_paramspace.wildcard_pattern}.tsv"
     shell:

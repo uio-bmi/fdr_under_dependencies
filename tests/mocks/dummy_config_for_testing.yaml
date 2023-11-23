@@ -1,34 +1,34 @@
 paths:
-    output_dir: "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/pipelines/results"
-    realworld_data: "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/data/realworld_methyl_beta.h5"
+    output_dir: "C:/Users/maria/PycharmProjects/fdr_hacking/data/test"
+    realworld_data: "C:/Users/maria/PycharmProjects/fdr_hacking/data/realworld_methyl_beta.h5"
 simulating:
     with_dependencies_beta_features_10k:
-        n_observations: [20] # number of examples
-        n_sites: [100]
+        n_observations: [200] # number of examples
+        n_sites: [10000]
         dependencies: [1]
         correlation_strength: ["high"] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
         bin_size_ratio: [0.3] # remember to have just one value for this and n_sites
         reporting_histogram_bins: [[0, 1, 10, 100]]
         n_datasets: 2
         data_distribution: ["beta"]
-    without_dependencies_beta_features_10k:
-        n_observations: [20] # number of examples
-        n_sites: [100]
-        dependencies: [0]
-        correlation_strength: ["not_applicable"] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
-        bin_size_ratio: [0.3] # remember to have just one value for this and n_sites
-        reporting_histogram_bins: [[0, 1, 10, 100]]
-        n_datasets: 2
-        data_distribution: ["beta"]
+#    without_dependencies_beta_features_10k:
+#        n_observations: [200] # number of examples
+#        n_sites: [10000]
+#        dependencies: [0]
+#        correlation_strength: ["not_applicable"] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
+#        bin_size_ratio: [0.3] # remember to have just one value for this and n_sites
+#        reporting_histogram_bins: [[0, 1, 10, 100]]
+#        n_datasets: 2
+#        data_distribution: ["beta"]
 statistical_testing:
     beta:
         statistical_test: [ 't-test', 'limma', 'rank-sum' ]
         multipletest_correction_type: ['bonferroni', 'bh' ]
-        alpha: [0.05]
+        alpha: [0.05, 0.1, 0.01]
     normal:
         statistical_test: ['ks-test']
         multipletest_correction_type: [ 'bonferroni', 'bh' ]
-        alpha: [0.05]
+        alpha: [0.05, 0.1, 0.01]
 reporting:
     compare_sample_size_beta:
         n_sites: [10000]

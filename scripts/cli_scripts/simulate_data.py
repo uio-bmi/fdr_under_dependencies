@@ -1,5 +1,7 @@
 import argparse
 import json
+from datetime import datetime
+
 from fdr_hacking.data_generation import *
 import numpy as np
 import yaml

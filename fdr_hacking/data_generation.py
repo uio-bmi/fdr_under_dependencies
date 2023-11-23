@@ -1,9 +1,9 @@
+import concurrent.futures
+from datetime import datetime
+
 import numpy as np
 import pandas as pd
-import os.path
-import argparse
 from scipy.stats import norm, beta as beta_dist, spearmanr
-
 
 def load_realworld_data(file_path):
     if file_path.endswith('.h5'):
@@ -43,6 +43,7 @@ def estimate_beta_dist_parameters(methyl_beta_values: np.ndarray) -> tuple:
         alpha, beta, _, _ = beta_dist.fit(methyl_beta_values[:, i], floc=0, fscale=1)
         alpha_params[i] = alpha
         beta_params[i] = beta
+
     return alpha_params, beta_params
 
 
@@ -102,23 +103,41 @@ def synthesize_correlated_gaussian_bins(corr_coef_distribution: list, n_observat
         correlated_gaussian_bins = np.concatenate((correlated_gaussian_bins, correlated_gaussian_bin), axis=1)
     return correlated_gaussian_bins
 
+def calculate_values(index, synth_beta_values, beta_dist_alpha_params, beta_dist_beta_params, uniform_random_variables):
+    synth_beta_values[:, index] = beta_dist(a=beta_dist_alpha_params[index], b=beta_dist_beta_params[index]).ppf(
+        uniform_random_variables[index])
 
 def transform_gaussian_to_beta(gaussian_vars_mat, beta_dist_alpha_params: np.array, beta_dist_beta_params: np.array):
+    print(datetime.now(), "I'm inside transform_gaussian_to_beta method.")
     synth_beta_values = np.zeros((gaussian_vars_mat.shape[0], gaussian_vars_mat.shape[1]))
+    print(datetime.now(), "I'm inside transform_gaussian_to_beta method. I will transform to uniform.")
     uniform_random_variables = [norm.cdf(gaussian_vars_mat[:, i]) for i in range(gaussian_vars_mat.shape[1])]
-    for i in range(len(beta_dist_alpha_params)):
-        synth_beta_values[:, i] = beta_dist(a=beta_dist_alpha_params[i], b=beta_dist_beta_params[i]).ppf(
-            uniform_random_variables[i])
+    print(datetime.now(), "I'm inside transform_gaussian_to_beta method. I will transform uniform to beta.")
+    num_threads = len(beta_dist_alpha_params)
+    print(synth_beta_values)
+    #print(num_threads)
+    with concurrent.futures.ProcessPoolExecutor(max_workers=60) as executor:
+        futures = [executor.submit(calculate_values, i, synth_beta_values, beta_dist_alpha_params, beta_dist_beta_params, uniform_random_variables) for i in range(num_threads)]
+        concurrent.futures.wait(futures)
+    #print(synth_beta_values)
+    # for i in range(len(beta_dist_alpha_params)):
+    #     synth_beta_values[:, i] = beta_dist(a=beta_dist_alpha_params[i], b=beta_dist_beta_params[i]).ppf(
+    #         uniform_random_variables[i])
+    print(datetime.now(), "I'm inside transform_gaussian_to_beta method. I transformed uniform to beta.")
     return synth_beta_values
 
 
 def synthesize_methyl_val_with_correlated_bins(corr_coef_distribution: list, n_observations: int, n_sites: int,
                                                beta_dist_alpha_params: np.array, beta_dist_beta_params: np.array,
                                                bin_size: int) -> np.ndarray:
+    print(datetime.now(), "I'm inside synthesize method. I will synthesize methyl val with correlated bins.")
     gaussian_vars_mat = synthesize_correlated_gaussian_bins(corr_coef_distribution=corr_coef_distribution,
                                                             n_observations=n_observations,
                                                             n_sites=n_sites, bin_size=bin_size)
+    print(datetime.now(), "I'm inside synthesize method. I will transform gaussian to beta.")
     synth_beta_values = transform_gaussian_to_beta(gaussian_vars_mat, beta_dist_alpha_params, beta_dist_beta_params)
+    print(datetime.now(), "I'm inside synthesize method. I transformed gaussian to beta.")
+
     return synth_beta_values
 
 
@@ -173,8 +192,11 @@ def beta_to_m(methyl_beta_values: np.ndarray) -> np.ndarray:
 
 def simulate_methyl_data(realworld_data: pd.DataFrame, n_sites: int, n_observations: int,
                          dependencies: bool, bin_size: int = None, corr_coef_distribution: list = None) -> np.ndarray:
+    print(datetime.now(), "Sampling real-world data...")
     real_data = sample_realworld_methyl_val(n_sites=n_sites, realworld_data=realworld_data)
+    print(datetime.now(), "Starting to estimate params...")
     alpha_params, beta_params = estimate_beta_dist_parameters(methyl_beta_values=real_data)
+    print(datetime.now(), "Starting to synthesize data...")
     if dependencies:
         assert bin_size <= n_sites, "bin_size cannot be larger than n_sites"
         synth_beta_values = synthesize_methyl_val_with_correlated_bins(
@@ -186,5 +208,7 @@ def simulate_methyl_data(realworld_data: pd.DataFrame, n_sites: int, n_observati
         synth_beta_values = synthesize_methyl_val_without_dependence(n_sites=n_sites, n_observations=n_observations,
                                                                      beta_dist_alpha_params=alpha_params,
                                                                      beta_dist_beta_params=beta_params)
+    print(datetime.now(), "Converting beta to M values...")
     methyl_datamat = beta_to_m(methyl_beta_values=synth_beta_values)
+    print(datetime.now(), "Done!")
     return methyl_datamat

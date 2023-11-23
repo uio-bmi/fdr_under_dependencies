@@ -33,6 +33,7 @@ setup(
         'console_scripts': [
             'simulate_data=scripts.cli_scripts.simulate_data:execute',
             'statistical_test=scripts.cli_scripts.statistical_test:execute',
+            'statistical_test_threads=scripts.cli_scripts.statistical_test_threads:execute',
             'calculate_hist_results=scripts.cli_scripts.calculate_hist_results:execute',
             'plot_histograms=scripts.cli_scripts.plot_histograms:execute',
             'plot_comparative_boxcharts=scripts.cli_scripts.plot_comparative_boxcharts:execute'
