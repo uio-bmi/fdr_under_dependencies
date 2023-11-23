@@ -12,7 +12,9 @@ def execute():
     parser.add_argument('--aggregated_results', help='Path to the aggregated results file', required=True)
     parser.add_argument('--output_dir', help='Path to the output directory where the plots will be written',
                         required=True)
-    parser.add_argument('--with_title', help='Path to the output directory where the plots will be written',
+    parser.add_argument('--with_title', help='Whether to include the config in the title of the plot',
+                        required=False, action='store_true')
+    parser.add_argument('--remove_zero_bin', help='Whether to include the config in the title of the plot',
                         required=False, action='store_true')
     args = parser.parse_args()
     df = pd.read_csv(args.aggregated_results, sep="\t", header=0, index_col=False)
@@ -21,6 +23,9 @@ def execute():
     if not os.path.exists(args.output_dir):
         os.mkdir(args.output_dir)
     for index, row in df.iterrows():
+        if args.remove_zero_bin is True:
+            row['reporting_histogram'] = row['reporting_histogram'][1:]
+            row['reporting_histogram_bins'] = row['reporting_histogram_bins'][1:]
         num_bins = len(row['reporting_histogram'])
         bin_edges = row['reporting_histogram_bins']
         custom_tick_labels = [bin_edges[0]]
