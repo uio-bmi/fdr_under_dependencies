@@ -52,14 +52,14 @@ def execute():
                 title_pad=dict(b=200),
                 margin=dict(t=250),
                 xaxis=dict(title='Number of false findings', tickvals=custom_tick_labels, ticktext=custom_tick_labels, titlefont=dict(size=26), tickfont=dict(size=22)),
-                yaxis=dict(title='Number of datasets', titlefont=dict(size=26), tickfont=dict(size=22))
+                yaxis=dict(title='Number of datasets', titlefont=dict(size=26), tickfont=dict(size=22),  range=[0, 450])
             )
         else:
             layout = go.Layout(
                 xaxis=dict(title='Number of false findings', tickvals=custom_tick_labels, ticktext=custom_tick_labels, titlefont=dict(size=26), tickfont=dict(size=22)),
-                yaxis=dict(title='Number of datasets', titlefont=dict(size=26), tickfont=dict(size=22))
+                yaxis=dict(title='Number of datasets', titlefont=dict(size=26), tickfont=dict(size=22), range=[0, 450])
             )
 
         fig = go.Figure(data=[hist_trace], layout=layout)
-        fig.write_image(f"{args.output_dir}/{row['config_id']}.png", height=900, width=700)
+        fig.write_image(f"{args.output_dir}/{row['config_id']}.png", height=900, width=900)
 

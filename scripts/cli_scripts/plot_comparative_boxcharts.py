@@ -22,12 +22,27 @@ def execute():
                                                                                             for column, condition in
                                                                                             filtering_criteria.items()),
                                                                             axis=1)]
+        filtered_df = filtered_df.sort_values(by=val['x_axis'])
+
+        color_discrete_map = {0: '#4682B4', 1: '#E97451'}
         if "dependencies" in filtered_df.columns:
-            fig = px.box(filtered_df, x=val['x_axis'], y="num_significant_findings", color="dependencies")
+            fig = px.box(filtered_df, x=val['x_axis'], y="num_significant_findings", color="dependencies", color_discrete_map=color_discrete_map)
         else:
             fig = px.box(filtered_df, x=val['x_axis'], y="num_significant_findings")
+
+        y_title = "Number of significant findings"
+        x_title_map = {"alpha": "Alpha", "multipletest_correction_type": "Multiple testing correction", "statistical_test": "Statistical test", "bin_size_ratio": "Bin size ratio", "correlation_strength": "Correlation strength", "n_sites": "Number of sites", "n_observations": "Number of observations" }
         fig.update_xaxes(type='category')
+        fig.update_layout(
+            legend=dict(font=dict(size=18)),
+            xaxis=dict(title=dict(text=x_title_map[val['x_axis']], font=dict(size=22)), tickfont=dict(size=18)),
+            yaxis=dict(title=dict(text=y_title, font=dict(size=22)), tickfont=dict(size=18), range=[0, 2500])
+        )
+
         fig.write_html(os.path.join(args.output_dir, f"{key}.html"))
+
+        png_file_path = os.path.join(args.output_dir, f"{key}.png")
+        fig.write_image(png_file_path,  height=900, width=900)
 
 
 def without(d, key):
