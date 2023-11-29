@@ -22,7 +22,12 @@ def execute():
                                                                                             for column, condition in
                                                                                             filtering_criteria.items()),
                                                                             axis=1)]
-        filtered_df = filtered_df.sort_values(by=val['x_axis'])
+        filtered_df.loc[:, 'dependencies'] = filtered_df['dependencies'].astype(bool)
+
+        if val['x_axis'] != "correlation_strength":
+            filtered_df = filtered_df.sort_values(by=val['x_axis'])
+        else:
+            filtered_df = filtered_df.sort_values(by=val['x_axis'], ascending=False)
 
         color_discrete_map = {0: '#4682B4', 1: '#E97451'}
         if "dependencies" in filtered_df.columns:
