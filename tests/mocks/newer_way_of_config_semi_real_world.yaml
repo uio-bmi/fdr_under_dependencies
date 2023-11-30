@@ -1,208 +1,30 @@
 paths:
-    output_dir: "/doctorai/skanduri/fdr_hacking_pilot/v1_analyses"
-    realworld_data: "/doctorai/skanduri/fdr_hacking_pilot/fdr_hacking/data/realworld_methyl_beta.h5"
+    output_dir: "/doctorai/skanduri/fdr_hacking_pilot_semi_real_world/v1_analyses"
+    realworld_data: "/doctorai/skanduri/fdr_hacking_pilot_semi_real_world/fdr_hacking/data/realworld_methyl_beta.h5"
 simulating:
-    with_dependencies_beta_features_10k:
-        n_observations: [20, 100, 200] # number of examples
+    features_10k:
         n_sites: [10000]
-        dependencies: [1]
-        correlation_strength: ["high", "medium"] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
-        bin_size_ratio: [0.3, 0.2] # remember to have just one value for this and n_sites
         reporting_histogram_bins: [[0, 1, 10, 100, 1000, 10000]]
         n_datasets: 10000
         data_distribution: ["beta"]
-    without_dependencies_beta_features_10k:
-        n_observations: [20, 100, 200] # number of examples
-        n_sites: [10000]
-        dependencies: [0]
-        correlation_strength: ["not_applicable"] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
-        bin_size_ratio: [0.3] # remember to have just one value for this and n_sites
-        reporting_histogram_bins: [[0, 1, 10, 100, 1000, 10000]]
-        n_datasets: 10000
-        data_distribution: ["beta"]
-    with_dependencies_beta_features_1k:
-        n_observations: [ 20, 100, 200] # number of examples
-        n_sites: [ 1000 ]
-        dependencies: [ 1 ]
-        correlation_strength: [ "high", "medium" ] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
-        bin_size_ratio: [ 0.3, 0.2] # remember to have just one value for this and n_sites
-        reporting_histogram_bins: [ [ 0, 1, 10, 100, 1000] ]
-        n_datasets: 10000
-        data_distribution: [ "beta" ]
-    without_dependencies_beta_features_1k:
-        n_observations: [ 20, 100, 200] # number of examples
-        n_sites: [ 1000 ]
-        dependencies: [ 0 ]
-        correlation_strength: [ "not_applicable" ] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
-        bin_size_ratio: [ 0.3 ] # remember to have just one value for this and n_sites
-        reporting_histogram_bins: [ [ 0, 1, 10, 100, 1000] ]
-        n_datasets: 10000
-        data_distribution: [ "beta" ]
-    with_dependencies_normal_features_10k:
-        n_observations: [ 20, 100, 200] # number of examples
-        n_sites: [ 10000 ]
-        dependencies: [ 1 ]
-        correlation_strength: [ "high", "medium" ] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
-        bin_size_ratio: [ 0.3, 0.2] # remember to have just one value for this and n_sites
-        reporting_histogram_bins: [ [ 0, 1, 10, 100, 1000, 10000 ] ]
-        n_datasets: 10000
-        data_distribution: [ "normal" ]
-    without_dependencies_normal_features_10k:
-        n_observations: [ 20, 100, 200] # number of examples
-        n_sites: [ 10000 ]
-        dependencies: [ 0 ]
-        correlation_strength: [ "not_applicable" ] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
-        bin_size_ratio: [ 0.3 ] # remember to have just one value for this and n_sites
-        reporting_histogram_bins: [ [ 0, 1, 10, 100, 1000, 10000 ] ]
-        n_datasets: 10000
-        data_distribution: [ "normal" ]
-    with_dependencies_normal_features_1k:
-        n_observations: [ 20, 100, 200] # number of examples
-        n_sites: [ 1000 ]
-        dependencies: [ 1 ]
-        correlation_strength: [ "high", "medium" ] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
-        bin_size_ratio: [ 0.3, 0.2] # remember to have just one value for this and n_sites
-        reporting_histogram_bins: [ [ 0, 1, 10, 100, 1000] ]
-        n_datasets: 10000
-        data_distribution: [ "normal" ]
-    without_dependencies_normal_features_1k:
-        n_observations: [ 20, 100, 200] # number of examples
-        n_sites: [ 1000 ]
-        dependencies: [ 0 ]
-        correlation_strength: [ "not_applicable" ] # the correlation coefficients in one of the triangles in a correlation matrix will be sampled equally from the ranges supplied here
-        bin_size_ratio: [ 0.3 ] # remember to have just one value for this and n_sites
-        reporting_histogram_bins: [ [ 0, 1, 10, 100, 1000] ]
-        n_datasets: 10000
-        data_distribution: [ "normal" ]
 statistical_testing:
     beta:
         statistical_test: [ 't-test', 'limma', 'rank-sum' ]
         multipletest_correction_type: ['bonferroni', 'bh' ]
         alpha: [0.01, 0.05, 0.1]
-    normal:
-        statistical_test: ['ks-test']
-        multipletest_correction_type: [ 'bonferroni', 'bh' ]
-        alpha: [ 0.01, 0.05, 0.1 ]
 reporting:
-    compare_sample_size_beta:
+    compare_statistical_test:
         n_sites: [10000]
-        correlation_strength: ["high", "not_applicable"]
-        bin_size_ratio: [0.3]
-        statistical_test: ["t-test"]
         multipletest_correction_type: ["bh"]
         alpha: [0.05]
-        data_distribution: ["beta"]
-        x_axis: "n_observations"
-    compare_sample_size_normal:
-        n_sites: [ 10000 ]
-        correlation_strength: [ "high", "not_applicable" ]
-        bin_size_ratio: [ 0.3 ]
-        statistical_test: [ "ks-test" ]
-        multipletest_correction_type: [ "bh" ]
-        alpha: [ 0.05 ]
-        data_distribution: [ "normal" ]
-        x_axis: "n_observations"
-    compare_feature_size_beta:
-        n_observations: [100]
-        correlation_strength: [ "high", "not_applicable" ]
-        bin_size_ratio: [ 0.3 ]
-        statistical_test: [ "t-test" ]
-        multipletest_correction_type: [ "bh" ]
-        alpha: [ 0.05 ]
-        data_distribution: [ "beta" ]
-        x_axis: "n_sites"
-    compare_feature_size_normal:
-        n_observations: [100]
-        correlation_strength: [ "high", "not_applicable" ]
-        bin_size_ratio: [ 0.3 ]
-        statistical_test: [ "ks-test" ]
-        multipletest_correction_type: [ "bh" ]
-        alpha: [ 0.05 ]
-        data_distribution: [ "normal" ]
-        x_axis: "n_sites"
-    compare_correlation_strength_beta:
-        n_observations: [100]
-        n_sites: [ 10000 ]
-        dependencies: [ 1 ]
-        bin_size_ratio: [ 0.3 ]
-        statistical_test: [ "t-test" ]
-        multipletest_correction_type: [ "bh" ]
-        alpha: [ 0.05 ]
-        data_distribution: [ "beta" ]
-        x_axis: "correlation_strength"
-    compare_correlation_strength_normal:
-        n_observations: [ 100 ]
-        n_sites: [ 10000 ]
-        dependencies: [ 1 ]
-        bin_size_ratio: [ 0.3 ]
-        statistical_test: [ "ks-test" ]
-        multipletest_correction_type: [ "bh" ]
-        alpha: [ 0.05 ]
-        data_distribution: [ "normal" ]
-        x_axis: "correlation_strength"
-    compare_binsize_ratio_beta:
-        n_observations: [ 100 ]
-        n_sites: [ 10000 ]
-        dependencies: [ 1 ]
-        correlation_strength: [ "high"]
-        statistical_test: [ "t-test" ]
-        multipletest_correction_type: [ "bh" ]
-        alpha: [ 0.05 ]
-        data_distribution: [ "beta" ]
-        x_axis: "bin_size_ratio"
-    compare_binsize_ratio_normal:
-        n_observations: [ 100 ]
-        n_sites: [ 10000 ]
-        dependencies: [ 1 ]
-        correlation_strength: [ "high" ]
-        statistical_test: [ "ks-test" ]
-        multipletest_correction_type: [ "bh" ]
-        alpha: [ 0.05 ]
-        data_distribution: [ "normal" ]
-        x_axis: "bin_size_ratio"
-    compare_statistical_test:
-        n_observations: [ 100 ]
-        n_sites: [ 10000 ]
-        bin_size_ratio: [0.3]
-        correlation_strength: ["high", "not_applicable"]
-        multipletest_correction_type: [ "bh" ]
-        alpha: [ 0.05 ]
         x_axis: "statistical_test"
-    compare_multipletest_correction_type_beta:
-        n_observations: [ 100 ]
+    compare_correction_type:
         n_sites: [ 10000 ]
-        bin_size_ratio: [ 0.3 ]
-        correlation_strength: [ "high", "not_applicable" ]
         statistical_test: [ "t-test" ]
         alpha: [ 0.05 ]
-        data_distribution: [ "beta" ]
         x_axis: "multipletest_correction_type"
-    compare_multipletest_correction_type_normal:
-        n_observations: [ 100 ]
+    compare_alpha:
         n_sites: [ 10000 ]
-        bin_size_ratio: [ 0.3 ]
-        correlation_strength: [ "high", "not_applicable" ]
-        statistical_test: [ "ks-test" ]
-        alpha: [ 0.05 ]
-        data_distribution: [ "normal" ]
-        x_axis: "multipletest_correction_type"
-    compare_alpha_beta:
-        n_observations: [ 100 ]
-        n_sites: [ 10000 ]
-        bin_size_ratio: [ 0.3 ]
-        correlation_strength: [ "high", "not_applicable" ]
         statistical_test: [ "t-test" ]
         multipletest_correction_type: [ "bh" ]
-        data_distribution: [ "beta" ]
         x_axis: "alpha"
-    compare_alpha_normal:
-        n_observations: [ 100 ]
-        n_sites: [ 10000 ]
-        bin_size_ratio: [ 0.3 ]
-        correlation_strength: [ "high", "not_applicable" ]
-        statistical_test: [ "ks-test" ]
-        multipletest_correction_type: [ "bh" ]
-        data_distribution: [ "normal" ]
-        x_axis: "alpha"
-
-
