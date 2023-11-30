@@ -16,6 +16,7 @@ def execute():
     config = json.loads(args.config.replace("\'", "\""))  # TODO: fix this
     real_world_data = load_realworld_data(file_path=args.realworld_data_path)
     semi_real_world_data = sample_realworld_methyl_val(n_sites=config['n_sites'], realworld_data=real_world_data)
+    semi_real_world_data = beta_to_m(methyl_beta_values=semi_real_world_data)
     np.random.shuffle(semi_real_world_data)
     np.savetxt(args.output, semi_real_world_data, delimiter="\t")
     with open(args.config_file_path, "w+") as yaml_file:
