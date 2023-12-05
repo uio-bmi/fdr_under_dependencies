@@ -65,7 +65,7 @@ rule aggregate_results:
     output:
         aggregated_results = f"{output_dir}/aggregated_results.tsv"
     shell:
-        'calculate_hist_results --concatenated_results "{input.concatenated_results}" --aggregated_results "{output.aggregated_results}"'
+        'calculate_histogram_results --concatenated_results "{input.concatenated_results}" --aggregated_results "{output.aggregated_results}"'
 
 
 rule make_box_plots:
