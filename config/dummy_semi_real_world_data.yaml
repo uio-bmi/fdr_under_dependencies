@@ -1,6 +1,6 @@
 paths:
-    output_dir: "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/pipelines/semi_real_world_results"
-    realworld_data: "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/data/realworld_methyl_beta.h5"
+    output_dir: "../../results/dummy_semi_real_world"
+    realworld_data: "../../data/realworld_methyl_beta.h5"
 simulating:
     features_10k:
         n_sites: [10000]
