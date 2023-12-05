@@ -2,8 +2,8 @@ from snakemake.utils import Paramspace
 import pandas as pd
 import os
 import shutil
-from fdr_hacking.util import parse_yaml_file
-from scripts.generate_simulation_params import generate_simulation_params
+from scripts.analysis.util import parse_yaml_file
+from scripts.snakemake.generate_simulation_params import generate_simulation_params
 
 workflow_config_yaml = config["workflow_config"]
 workflow_config = parse_yaml_file(workflow_config_yaml)

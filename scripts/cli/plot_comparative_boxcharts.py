@@ -1,8 +1,7 @@
-import argparse
-from fdr_hacking.data_generation import *
+from scripts.analysis.data_generation import *
 import pandas as pd
 import plotly.express as px
-from fdr_hacking.util import parse_yaml_file
+from scripts.analysis.util import parse_yaml_file
 
 
 def execute():

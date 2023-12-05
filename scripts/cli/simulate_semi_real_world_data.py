@@ -1,6 +1,5 @@
-import argparse
 import json
-from fdr_hacking.data_generation import *
+from scripts.analysis.data_generation import *
 import numpy as np
 import yaml
 

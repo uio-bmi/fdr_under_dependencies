@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import yaml
 
-from fdr_hacking.data_generation import determine_correlation_matrix
+from scripts.analysis.data_generation import determine_correlation_matrix
 
 
 def find_high_corr_sites_distribution(methyl_beta_values: np.ndarray, corr_threshold: float) -> np.array:

@@ -1,6 +1,5 @@
 import pandas as pd
 
-from fdr_hacking.util import parse_yaml_file
 from itertools import product, chain
 
 

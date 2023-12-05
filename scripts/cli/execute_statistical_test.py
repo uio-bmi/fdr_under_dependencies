@@ -1,9 +1,7 @@
-import argparse
 import glob
 import os
-import pandas as pd
 from scipy.stats import ttest_ind
-from fdr_hacking.data_generation import *
+from scripts.analysis.data_generation import *
 import numpy as np
 import plotly.express as px
 

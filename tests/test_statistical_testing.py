@@ -1,7 +1,6 @@
 import numpy as np
 import pytest
-from fdr_hacking.statistical_testing import limma_test, t_test, adjust_pvalues, count_significant_pvalues
-
+from scripts.analysis.statistical_testing import limma_test, t_test, adjust_pvalues, count_significant_pvalues
 
 @pytest.fixture
 def toy_methyl_data():
