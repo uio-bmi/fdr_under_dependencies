@@ -3,7 +3,7 @@ from itertools import product
 
 import pandas as pd
 
-from scripts.analysis.statistical_testing import *
+from scripts.analysis.statistical_analysis import *
 from scripts.analysis.utils import parse_yaml_file
 
 
@@ -29,12 +29,12 @@ def execute():
     for params in statistical_test_params:
         fdr_results = sim_config.copy()
         fdr_results['statistical_test'], fdr_results['multipletest_correction_type'], fdr_results['alpha'] = params
-        num_significant_findings = quantify_fdr(methyl_datamat=data,
-                                                group1_indices=list(range(group_size)),
-                                                group2_indices=list(range(group_size, n_obs)),
-                                                test_type=fdr_results['statistical_test'],
-                                                method=fdr_results['multipletest_correction_type'],
-                                                alpha=fdr_results['alpha'])
+        num_significant_findings = quantify_significance(data=data,
+                                                         group1_indices=list(range(group_size)),
+                                                         group2_indices=list(range(group_size, n_obs)),
+                                                         test_type=fdr_results['statistical_test'],
+                                                         method=fdr_results['multipletest_correction_type'],
+                                                         alpha=fdr_results['alpha'])
         fdr_results['num_significant_findings'] = num_significant_findings
         fdr_full_results.append(fdr_results)
 
