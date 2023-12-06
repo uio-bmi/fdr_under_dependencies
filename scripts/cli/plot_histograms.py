@@ -2,7 +2,6 @@ import argparse
 import ast
 import os
 
-import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 
@@ -62,4 +61,3 @@ def execute():
 
         fig = go.Figure(data=[hist_trace], layout=layout)
         fig.write_image(f"{args.output_dir}/{row['config_id']}.png", height=900, width=900)
-

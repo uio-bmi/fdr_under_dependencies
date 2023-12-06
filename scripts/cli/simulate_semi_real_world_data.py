@@ -1,7 +1,9 @@
+import argparse
 import json
-from scripts.analysis.data_generation import *
-import numpy as np
+
 import yaml
+
+from scripts.analysis.data_generation import *
 
 
 def execute():

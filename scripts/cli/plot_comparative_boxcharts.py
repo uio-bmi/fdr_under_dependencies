@@ -1,6 +1,9 @@
-from scripts.analysis.data_generation import *
+import argparse
+import os
+
 import pandas as pd
 import plotly.express as px
+
 from scripts.analysis.util import parse_yaml_file
 
 

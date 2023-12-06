@@ -1,7 +1,9 @@
-from snakemake.utils import Paramspace
-import pandas as pd
 import os
 import shutil
+
+import pandas as pd
+from snakemake.utils import Paramspace
+
 from scripts.analysis.util import parse_yaml_file
 from scripts.snakemake.generate_simulation_params import generate_simulation_params
 

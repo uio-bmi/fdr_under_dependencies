@@ -1,5 +1,6 @@
+import argparse
 import ast
-from scripts.analysis.data_generation import *
+
 import numpy as np
 import pandas as pd
 

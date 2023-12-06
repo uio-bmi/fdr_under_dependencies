@@ -1,6 +1,6 @@
-import pandas as pd
-
 from itertools import product, chain
+
+import pandas as pd
 
 
 def append_params(config_dict: dict):

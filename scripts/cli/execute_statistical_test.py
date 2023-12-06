@@ -1,9 +1,11 @@
+import argparse
 import glob
 import os
-from scipy.stats import ttest_ind
-from scripts.analysis.data_generation import *
-import numpy as np
+
 import plotly.express as px
+from scipy.stats import ttest_ind
+
+from scripts.analysis.data_generation import *
 
 
 def execute():

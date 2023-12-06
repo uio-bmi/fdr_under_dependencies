@@ -1,8 +1,9 @@
 import argparse
 from itertools import product
-from scripts.analysis.statistical_testing import *
-import numpy as np
+
 import pandas as pd
+
+from scripts.analysis.statistical_testing import *
 from scripts.analysis.util import parse_yaml_file
 
 
