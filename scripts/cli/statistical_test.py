@@ -4,7 +4,7 @@ from itertools import product
 import pandas as pd
 
 from scripts.analysis.statistical_testing import *
-from scripts.analysis.util import parse_yaml_file
+from scripts.analysis.utils import parse_yaml_file
 
 
 def execute():

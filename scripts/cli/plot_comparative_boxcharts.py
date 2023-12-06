@@ -4,7 +4,7 @@ import os
 import pandas as pd
 import plotly.express as px
 
-from scripts.analysis.util import parse_yaml_file
+from scripts.analysis.utils import parse_yaml_file
 
 
 def execute():
