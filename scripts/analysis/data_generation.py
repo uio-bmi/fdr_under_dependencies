@@ -1,7 +1,5 @@
 import numpy as np
 import pandas as pd
-import os.path
-import argparse
 from scipy.stats import norm, beta as beta_dist, spearmanr
 
 

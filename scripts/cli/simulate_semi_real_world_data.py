@@ -1,8 +1,10 @@
 import argparse
 import json
-from fdr_hacking.data_generation import *
+
 import numpy as np
 import yaml
+
+from scripts.analysis.data_generation import load_realworld_data, sample_realworld_methyl_val, beta_to_m
 
 
 def execute():

@@ -1,6 +1,6 @@
 paths:
-    output_dir: "/doctorai/skanduri/fdr_hacking_pilot_semi_real_world/v1_analyses"
-    realworld_data: "/doctorai/skanduri/fdr_hacking_pilot_semi_real_world/fdr_hacking/data/realworld_methyl_beta.h5"
+    output_dir: "../../results/semi_real_world"
+    realworld_data: "../../data/realworld_methyl_beta.h5"
 simulating:
     features_10k:
         n_sites: [10000]

@@ -1,6 +1,6 @@
 paths:
-    output_dir: "/doctorai/skanduri/fdr_hacking_pilot/v1_analyses"
-    realworld_data: "/doctorai/skanduri/fdr_hacking_pilot/fdr_hacking/data/realworld_methyl_beta.h5"
+    output_dir: "../../results/synthetic"
+    realworld_data: "../../data/realworld_methyl_beta.h5"
 simulating:
     with_dependencies_beta_features_10k:
         n_observations: [20, 100, 200] # number of examples
