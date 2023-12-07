@@ -2,10 +2,12 @@ import argparse
 import glob
 import os
 
+import numpy as np
+import pandas as pd
 import plotly.express as px
 from scipy.stats import ttest_ind
 
-from scripts.analysis.data_generation import *
+from scripts.analysis.data_generation import load_realworld_data
 
 
 def execute():

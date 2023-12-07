@@ -1,9 +1,11 @@
 import argparse
 import json
 
+import numpy as np
 import yaml
 
-from scripts.analysis.data_generation import *
+from scripts.analysis.data_generation import load_realworld_data, simulate_methyl_data, \
+    synthesize_gaussian_dataset_without_dependence, synthesize_correlated_gaussian_bins
 
 
 def execute():

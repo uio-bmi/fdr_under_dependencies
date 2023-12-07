@@ -1,9 +1,10 @@
 import argparse
 from itertools import product
 
+import numpy as np
 import pandas as pd
 
-from scripts.analysis.statistical_analysis import *
+from scripts.analysis.statistical_analysis import quantify_significance
 from scripts.analysis.utils import parse_yaml_file
 
 

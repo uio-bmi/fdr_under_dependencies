@@ -115,8 +115,12 @@ def adjust_p_values(p_values: np.array, method: str) -> np.array:
     'bonferroni' or 'bh' (Benjamini-Hochberg)
     :return: A numpy array of p-values corrected for multiple testing using any of the selected methods
     """
-    if method in ['bonferroni', 'bh']:
-        reject, adjusted_p_values, _, _ = multipletests(p_values, method=method)
+    correction_methods_map = {
+        'bonferroni': 'bonferroni',
+        'bh': 'fdr_bh',
+    }
+    if method in correction_methods_map:
+        reject, adjusted_p_values, _, _ = multipletests(p_values, method=correction_methods_map[method])
     else:
         raise ValueError(f"Invalid adjustment method: {method}")
     return adjusted_p_values
