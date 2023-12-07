@@ -1,6 +1,6 @@
 paths:
-    output_dir: "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/pipelines/results"
-    realworld_data: "/Users/skanduri/Documents/old_mac/PycharmProjects/fdr_hacking/data/realworld_methyl_beta.h5"
+    output_dir: "../../results/dummy_synthetic"
+    realworld_data: "../../data/realworld_methyl_beta.h5"
 simulating:
     with_dependencies_beta_features_10k:
         n_observations: [20] # number of examples

@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import pytest
 from scipy.stats import beta
-from fdr_hacking.data_generation import synthesize_methyl_val_without_dependence, \
+from scripts.analysis.data_generation import synthesize_methyl_val_without_dependence, \
     synthesize_methyl_val_with_copula_with_supplied_corrmat, \
     beta_to_m, load_realworld_data, simulate_methyl_data, sample_legal_cvine_corrmat, \
     synthesize_methyl_val_with_autocorr, determine_correlation_matrix, generate_n_correlation_coefficients, \

@@ -1,8 +1,10 @@
 import argparse
-from fdr_hacking.data_generation import *
+import os
+
 import pandas as pd
 import plotly.express as px
-from fdr_hacking.util import parse_yaml_file
+
+from scripts.analysis.utils import parse_yaml_file
 
 
 def execute():
@@ -22,7 +24,6 @@ def execute():
                                                                                             for column, condition in
                                                                                             filtering_criteria.items()),
                                                                             axis=1)]
-        filtered_df.loc[:, 'dependencies'] = filtered_df['dependencies'].astype(bool)
 
         if val['x_axis'] != "correlation_strength":
             filtered_df = filtered_df.sort_values(by=val['x_axis'])
@@ -31,6 +32,7 @@ def execute():
 
         color_discrete_map = {0: '#4682B4', 1: '#E97451'}
         if "dependencies" in filtered_df.columns:
+            filtered_df.loc[:, 'dependencies'] = filtered_df['dependencies'].astype(bool)
             fig = px.box(filtered_df, x=val['x_axis'], y="num_significant_findings", color="dependencies", color_discrete_map=color_discrete_map)
         else:
             fig = px.box(filtered_df, x=val['x_axis'], y="num_significant_findings")

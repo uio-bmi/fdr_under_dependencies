@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-
-"""The setup script."""
-
 from setuptools import setup, find_packages
 
 with open('README.rst') as readme_file:
@@ -15,11 +11,11 @@ requirements = ['typer']
 test_requirements = ['pytest>=3', "hypothesis"]
 
 setup(
-    author="Chakravarthi Kanduri",
+    author="Chakravarthi Kanduri, Maria Mamica",
     author_email='chakra.kanduri@gmail.com',
     python_requires='>=3.6',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
@@ -28,28 +24,29 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
     ],
-    description=" ",
+    description="Snakemake research project for investigating impact of correlations in the dataset on results of "
+                "FDR/FWER corrections for multiple hypotheses testing",
     entry_points={
         'console_scripts': [
-            'simulate_data=scripts.cli_scripts.simulate_data:execute',
-            'statistical_test=scripts.cli_scripts.statistical_test:execute',
-            'calculate_hist_results=scripts.cli_scripts.calculate_hist_results:execute',
-            'plot_histograms=scripts.cli_scripts.plot_histograms:execute',
-            'plot_comparative_boxcharts=scripts.cli_scripts.plot_comparative_boxcharts:execute',
-            'simulate_semi_real_world_data=scripts.cli_scripts.simulate_semi_real_world_data:execute',
-            'execute_statistical_test=scripts.cli_scripts.execute_statistical_test:execute'
+            'simulate_data=scripts.cli.simulate_data:execute',
+            'simulate_semi_real_world_data=scripts.cli.simulate_semi_real_world_data:execute',
+            'statistical_test=scripts.cli.statistical_test:execute',
+            'execute_statistical_test=scripts.cli.execute_statistical_test:execute',
+            'calculate_histogram_results=scripts.cli.calculate_histogram_results:execute',
+            'plot_histograms=scripts.cli.plot_histograms:execute',
+            'plot_comparative_boxcharts=scripts.cli.plot_comparative_boxcharts:execute',
         ],
     },
     install_requires=requirements,
     license="MIT license",
     long_description=readme + '\n\n' + history,
     include_package_data=True,
-    keywords='fdr_hacking',
+    keywords='fdr, hypothesis testing, multiple hypothesis testing, false discovery rate, false positive rate',
     name='fdr_hacking',
-    packages=find_packages(include=['fdr_hacking', 'fdr_hacking.*', 'cli_scripts', 'scripts.*', 'pipelines']),
+    packages=find_packages(include=['scripts.*']),
     test_suite='tests',
     tests_require=test_requirements,
-    url='https://github.com/kanduric/fdr_hacking',
+    url='https://github.com/uio-bmi/fdr_hacking',
     version='0.0.1',
     zip_safe=False,
 )

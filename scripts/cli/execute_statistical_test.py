@@ -1,11 +1,13 @@
 import argparse
 import glob
 import os
-import pandas as pd
-from scipy.stats import ttest_ind
-from fdr_hacking.data_generation import *
+
 import numpy as np
+import pandas as pd
 import plotly.express as px
+from scipy.stats import ttest_ind
+
+from scripts.analysis.data_generation import load_realworld_data
 
 
 def execute():

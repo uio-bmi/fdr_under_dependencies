@@ -1,7 +1,6 @@
-import pandas as pd
-
-from fdr_hacking.util import parse_yaml_file
 from itertools import product, chain
+
+import pandas as pd
 
 
 def append_params(config_dict: dict):

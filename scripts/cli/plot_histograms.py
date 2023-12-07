@@ -2,7 +2,6 @@ import argparse
 import ast
 import os
 
-import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 
@@ -24,6 +23,8 @@ def execute():
         os.mkdir(args.output_dir)
     for index, row in df.iterrows():
         custom_tick_labels = []
+        bin_edges = row['reporting_histogram_bins']
+        num_bins = len(row['reporting_histogram'])
         if args.remove_zero_bin is True:
             row['reporting_histogram'] = row['reporting_histogram'][1:]
             row['reporting_histogram_bins'] = row['reporting_histogram_bins'][1:]
@@ -31,8 +32,6 @@ def execute():
         else:
             custom_tick_labels.append(bin_edges[0])
             start_bin = 1
-        num_bins = len(row['reporting_histogram'])
-        bin_edges = row['reporting_histogram_bins']
 
         for i in range(start_bin, num_bins): # [0, 1, 10, 100, 1000]
             if i == num_bins-1:
@@ -62,4 +61,3 @@ def execute():
 
         fig = go.Figure(data=[hist_trace], layout=layout)
         fig.write_image(f"{args.output_dir}/{row['config_id']}.png", height=900, width=900)
-
