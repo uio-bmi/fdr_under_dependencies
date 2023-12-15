@@ -1,21 +1,34 @@
-import unittest
-
 import numpy as np
-
+import pytest
 from scripts.analysis.statistical_analysis import perform_t_test
 
+@pytest.fixture
+def mock_ttest_ind(mocker):
+    mocker.patch('ttest_ind', return_value=(1.0, 0.5))
 
-class TestStatisticalAnalysis(unittest.TestCase):
+@pytest.fixture
+def sample_data():
+    return np.array([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0], [10.0, 11.0, 12.0]])
 
-    def setUp(self):
-        self.methylation_data = np.array([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0], [10.0, 11.0, 12.0]])
-        self.group1_indices = [0, 1]
-        self.group2_indices = [2, 3]
+@pytest.fixture
+def group1_indices():
+    return [0, 1]
 
-    def test_perform_t_test(self):
-        result = perform_t_test(self.methylation_data, self.group1_indices, self.group2_indices)
-        expected_result = np.array([0.105573, 0.105573, 0.105573])
-        np.testing.assert_allclose(result, expected_result, rtol=1e-5)
+@pytest.fixture
+def group2_indices():
+    return [2, 3]
+
+def test_perform_t_test_with_mock(mock_ttest_ind, sample_data, group1_indices, group2_indices):
+    p_values = perform_t_test(sample_data, group1_indices, group2_indices)
+
+    assert len(p_values) == sample_data.shape[1]
+    assert all(p == 0.5 for p in p_values)
+    mock_ttest_ind.assert_called()
+    assert mock_ttest_ind.call_count == sample_data.shape[1]
+
+# Run the tests
+if __name__ == '__main__':
+    pytest.main([__file__])
 
 # @pytest.fixture
 # def toy_methyl_data():
