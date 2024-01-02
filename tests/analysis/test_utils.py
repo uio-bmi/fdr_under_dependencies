@@ -70,5 +70,6 @@ def test_yaml_parsing_exception(valid_yaml_content, create_temp_yaml_file, monke
 
     os.remove(temp_file_path)
 
+
 if __name__ == '__main__':
     pytest.main([__file__])

@@ -1,61 +1,125 @@
 import numpy as np
 import pytest
-from scripts.analysis.statistical_analysis import perform_t_test
+from scripts.analysis.statistical_analysis import perform_t_test, perform_limma_test, perform_rank_sum_test, \
+    perform_ks_test, get_p_values
+
+MODULE_PATH = 'scripts.analysis.statistical_analysis'
+
 
 @pytest.fixture
 def mock_ttest_ind(mocker):
-    mocker.patch('ttest_ind', return_value=(1.0, 0.5))
+    return mocker.patch(f'{MODULE_PATH}.ttest_ind', return_value=(1.0, 1.0))
+
+
+@pytest.fixture
+def mock_ranksums(mocker):
+    return mocker.patch(f'{MODULE_PATH}.ranksums', return_value=(1.0, 1.0))
+
+
+@pytest.fixture
+def mock_kstest(mocker):
+    return mocker.patch(f'{MODULE_PATH}.kstest', return_value=(1.0, 1.0))
+
+
+@pytest.fixture
+def mock_r_functions(mocker):
+    mock_r = mocker.patch(f'{MODULE_PATH}.robjects.r')
+    mock_globalenv = mocker.patch(f'{MODULE_PATH}.robjects.globalenv')
+    mock_intvector = mocker.patch(f'{MODULE_PATH}.robjects.IntVector')
+
+    return mock_globalenv, mock_intvector, mock_r
+
 
 @pytest.fixture
 def sample_data():
     return np.array([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0], [10.0, 11.0, 12.0]])
 
+
 @pytest.fixture
 def group1_indices():
     return [0, 1]
+
 
 @pytest.fixture
 def group2_indices():
     return [2, 3]
 
+
+def test_perform_t_test(sample_data, group1_indices, group2_indices):
+    p_values = perform_t_test(sample_data, group1_indices, group2_indices)
+
+    assert isinstance(p_values, np.ndarray)
+    assert len(p_values) == sample_data.shape[1]
+    assert ((p_values >= 0) & (p_values <= 1)).all()
+
+
 def test_perform_t_test_with_mock(mock_ttest_ind, sample_data, group1_indices, group2_indices):
     p_values = perform_t_test(sample_data, group1_indices, group2_indices)
 
+    assert isinstance(p_values, np.ndarray)
     assert len(p_values) == sample_data.shape[1]
-    assert all(p == 0.5 for p in p_values)
-    mock_ttest_ind.assert_called()
+    assert (p_values == 1.0).all()
     assert mock_ttest_ind.call_count == sample_data.shape[1]
 
-# Run the tests
+
+def test_perform_limma_test(sample_data, group1_indices, group2_indices):
+    p_values = perform_limma_test(sample_data, group1_indices, group2_indices)
+
+    assert isinstance(p_values, np.ndarray)
+    assert len(p_values) == sample_data.shape[1]
+    assert ((p_values >= 0) & (p_values <= 1)).all()
+
+
+def test_perform_limma_test_with_mocks(mock_r_functions, sample_data, group1_indices, group2_indices):
+    _, _, mock_r = mock_r_functions
+    p_values = perform_limma_test(sample_data, group1_indices, group2_indices)
+
+    assert isinstance(p_values, np.ndarray)
+    assert mock_r.call_count == 10
+
+
+def test_perform_rank_sum_test(sample_data, group1_indices, group2_indices):
+    p_values = perform_rank_sum_test(sample_data, group1_indices, group2_indices)
+
+    assert isinstance(p_values, np.ndarray)
+    assert len(p_values) == sample_data.shape[1]
+    assert ((p_values >= 0) & (p_values <= 1)).all()
+
+
+def test_perform_rank_sum_test_with_mock(mock_ranksums, sample_data, group1_indices, group2_indices):
+    p_values = perform_rank_sum_test(sample_data, group1_indices, group2_indices)
+
+    assert isinstance(p_values, np.ndarray)
+    assert len(p_values) == sample_data.shape[1]
+    assert (p_values == 1.0).all()
+    assert mock_ranksums.call_count == sample_data.shape[1]
+
+
+def test_perform_ks_test(sample_data):
+    p_values = perform_ks_test(sample_data)
+
+    assert isinstance(p_values, np.ndarray)
+    assert len(p_values) == sample_data.shape[1]
+    assert ((p_values >= 0) & (p_values <= 1)).all()
+
+
+def test_perform_ks_test_with_mock(mock_kstest, sample_data):
+    p_values = perform_ks_test(sample_data)
+
+    assert isinstance(p_values, np.ndarray)
+    assert len(p_values) == sample_data.shape[1]
+    assert (p_values == 1.0).all()
+    assert mock_kstest.call_count == sample_data.shape[1]
+
+
+def test_get_p_values_invalid_type(sample_data, group1_indices, group2_indices):
+    with pytest.raises(ValueError):
+        get_p_values(sample_data, group1_indices, group2_indices, 'invalid-test')
+
+
 if __name__ == '__main__':
     pytest.main([__file__])
 
-# @pytest.fixture
-# def toy_methyl_data():
-#     data = np.random.randn(100, 10)  # observations in rows, features in columns
-#     group1_indices = list(range(50))
-#     group2_indices = list(range(50, 100))
-#     return data, group1_indices, group2_indices
-#
-#
-# def test_t_test(toy_methyl_data):
-#     p_values = perform_t_test(*toy_methyl_data)
-#     assert p_values.shape == (10,)
-#     assert (p_values >= 0).all() and (p_values <= 1).all()
-#
-#
-# def test_limma_test(toy_methyl_data):
-#     p_values = perform_limma_test(*toy_methyl_data)
-#     assert p_values.shape == (10,)
-#     assert (p_values >= 0).all() and (p_values <= 1).all()
-#
-#
-# def test_ranksum_test(toy_methyl_data):
-#     p_values = perform_t_test(*toy_methyl_data)
-#     assert p_values.shape == (10,)
-#     assert (p_values >= 0).all() and (p_values <= 1).all()
-#
-#
 # def test_adjust_pvalues():
 #     p_values = np.array([0.01, 0.05, 0.1, 0.001, 0.03])
 #     adjusted_pvalues = adjust_p_values(p_values, method='bonferroni')

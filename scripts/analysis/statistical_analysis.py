@@ -53,7 +53,7 @@ def perform_limma_test(methylation_data: np.ndarray, group1_indices: list, group
     return p_values
 
 
-def rank_sum_test(methylation_data: np.ndarray, group1_indices: list, group2_indices: list) -> np.array:
+def perform_rank_sum_test(methylation_data: np.ndarray, group1_indices: list, group2_indices: list) -> np.array:
     """
     Perform Wilcoxon rank-sum test on each feature in the input dataset
     rm two-sample rank-sum test on each feature in the input dataset
@@ -71,7 +71,7 @@ def rank_sum_test(methylation_data: np.ndarray, group1_indices: list, group2_ind
     return p_values
 
 
-def ks_test(data: np.ndarray) -> np.array:
+def perform_ks_test(data: np.ndarray) -> np.array:
     """
     Perform Kolmogorov-Smirnov test on each feature in the input dataset
     :param data: A 2-dimensional numpy array of methylation M values with observations in rows and
@@ -97,8 +97,8 @@ def get_p_values(data: np.ndarray, group1_indices: list, group2_indices: list,
     test_functions_map = {
         't-test': perform_t_test,
         'limma': perform_limma_test,
-        'rank-sum': rank_sum_test,
-        'ks-test': ks_test,
+        'rank-sum': perform_rank_sum_test,
+        'ks-test': perform_ks_test,
     }
     if test_type in test_functions_map:
         p_values = test_functions_map[test_type](data, group1_indices, group2_indices)
