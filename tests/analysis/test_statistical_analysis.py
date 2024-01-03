@@ -7,6 +7,17 @@ MODULE_PATH = 'scripts.analysis.statistical_analysis'
 
 
 @pytest.fixture
+def mock_statistical_tests(mocker):
+    mocks = {
+        't-test': mocker.patch(f'{MODULE_PATH}.perform_t_test', return_value=np.array([0.5, 0.5, 0.5])),
+        'limma': mocker.patch(f'{MODULE_PATH}.perform_limma_test', return_value=np.array([0.4, 0.4, 0.4])),
+        'rank-sum': mocker.patch(f'{MODULE_PATH}.perform_rank_sum_test', return_value=np.array([0.3, 0.3, 0.3])),
+        'ks-test': mocker.patch(f'{MODULE_PATH}.perform_ks_test', return_value=np.array([0.2, 0.2, 0.2])),
+    }
+    return mocks
+
+
+@pytest.fixture
 def mock_ttest_ind(mocker):
     return mocker.patch(f'{MODULE_PATH}.ttest_ind', return_value=(1.0, 1.0))
 
@@ -111,6 +122,28 @@ def test_perform_ks_test_with_mock(mock_kstest, sample_data):
     assert (p_values == 1.0).all()
     assert mock_kstest.call_count == sample_data.shape[1]
 
+
+@pytest.mark.parametrize("test_type, expected_results", [
+    ('t-test', np.array([0.5, 0.5, 0.5])),
+    ('limma', np.array([0.4, 0.4, 0.4])),
+    ('rank-sum', np.array([0.3, 0.3, 0.3])),
+    ('ks-test', np.array([0.2, 0.2, 0.2])),
+])
+def test_get_p_values_valid_with_mocks(test_type, expected_results, mock_statistical_tests, sample_data, group1_indices, group2_indices):
+    p_values = get_p_values(sample_data, group1_indices, group2_indices, test_type)
+    assert mock_statistical_tests[test_type].call_count == 1
+    assert isinstance(p_values, np.ndarray)
+    assert len(p_values) == sample_data.shape[1]
+    assert np.array_equal(p_values, expected_results)
+
+
+@pytest.mark.parametrize("test_type", ['t-test', 'limma', 'rank-sum', 'ks-test'])
+def test_get_p_values_valid(test_type, sample_data, group1_indices, group2_indices):
+    p_values = get_p_values(sample_data, group1_indices, group2_indices, test_type)
+
+    assert isinstance(p_values, np.ndarray)
+    assert len(p_values) == sample_data.shape[1]
+    assert ((p_values >= 0) & (p_values <= 1)).all()
 
 def test_get_p_values_invalid_type(sample_data, group1_indices, group2_indices):
     with pytest.raises(ValueError):
