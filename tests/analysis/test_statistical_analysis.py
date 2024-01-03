@@ -1,10 +1,9 @@
 import numpy as np
 import pytest
 from scripts.analysis.statistical_analysis import perform_t_test, perform_limma_test, perform_rank_sum_test, \
-    perform_ks_test, get_p_values
+    perform_ks_test, get_p_values, adjust_p_values, count_significant_p_values
 
 MODULE_PATH = 'scripts.analysis.statistical_analysis'
-
 
 @pytest.fixture
 def mock_statistical_tests(mocker):
@@ -33,6 +32,11 @@ def mock_kstest(mocker):
 
 
 @pytest.fixture
+def mock_multipletests(mocker):
+    return mocker.patch(f'{MODULE_PATH}.multipletests', return_value=(mocker.MagicMock,np.array([0.5, 0.5, 0.5]), mocker.MagicMock, mocker.MagicMock))
+
+
+@pytest.fixture
 def mock_r_functions(mocker):
     mock_r = mocker.patch(f'{MODULE_PATH}.robjects.r')
     mock_globalenv = mocker.patch(f'{MODULE_PATH}.robjects.globalenv')
@@ -42,85 +46,104 @@ def mock_r_functions(mocker):
 
 
 @pytest.fixture
-def sample_data():
+def mock_sample_data():
     return np.array([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0], [7.0, 8.0, 9.0], [10.0, 11.0, 12.0]])
 
 
 @pytest.fixture
-def group1_indices():
+def mock_group1_indices():
     return [0, 1]
 
 
 @pytest.fixture
-def group2_indices():
+def mock_group2_indices():
     return [2, 3]
 
 
-def test_perform_t_test(sample_data, group1_indices, group2_indices):
-    p_values = perform_t_test(sample_data, group1_indices, group2_indices)
+@pytest.fixture
+def mock_p_values():
+    return np.array([0.7, 0.7, 0.7])
+
+
+@pytest.fixture
+def mock_adjusted_p_values():
+    return np.array([0.7, 0.5, 0.2])
+
+
+def test_perform_t_test(mock_sample_data, mock_group1_indices, mock_group2_indices):
+    p_values = perform_t_test(mock_sample_data, mock_group1_indices, mock_group2_indices)
 
     assert isinstance(p_values, np.ndarray)
-    assert len(p_values) == sample_data.shape[1]
+    assert len(p_values) == mock_sample_data.shape[1]
     assert ((p_values >= 0) & (p_values <= 1)).all()
 
 
-def test_perform_t_test_with_mock(mock_ttest_ind, sample_data, group1_indices, group2_indices):
-    p_values = perform_t_test(sample_data, group1_indices, group2_indices)
+def test_perform_t_test_with_mock(mock_ttest_ind, mock_sample_data, mock_group1_indices, mock_group2_indices):
+    p_values = perform_t_test(mock_sample_data, mock_group1_indices, mock_group2_indices)
 
     assert isinstance(p_values, np.ndarray)
-    assert len(p_values) == sample_data.shape[1]
+    assert len(p_values) == mock_sample_data.shape[1]
     assert (p_values == 1.0).all()
-    assert mock_ttest_ind.call_count == sample_data.shape[1]
+    assert mock_ttest_ind.call_count == mock_sample_data.shape[1]
 
 
-def test_perform_limma_test(sample_data, group1_indices, group2_indices):
-    p_values = perform_limma_test(sample_data, group1_indices, group2_indices)
+def test_perform_limma_test(mock_sample_data, mock_group1_indices, mock_group2_indices):
+    p_values = perform_limma_test(mock_sample_data, mock_group1_indices, mock_group2_indices)
 
     assert isinstance(p_values, np.ndarray)
-    assert len(p_values) == sample_data.shape[1]
+    assert len(p_values) == mock_sample_data.shape[1]
     assert ((p_values >= 0) & (p_values <= 1)).all()
 
 
-def test_perform_limma_test_with_mocks(mock_r_functions, sample_data, group1_indices, group2_indices):
+def test_perform_limma_test_with_mock(mock_r_functions, mock_sample_data, mock_group1_indices, mock_group2_indices):
     _, _, mock_r = mock_r_functions
-    p_values = perform_limma_test(sample_data, group1_indices, group2_indices)
+    p_values = perform_limma_test(mock_sample_data, mock_group1_indices, mock_group2_indices)
 
     assert isinstance(p_values, np.ndarray)
     assert mock_r.call_count == 10
 
 
-def test_perform_rank_sum_test(sample_data, group1_indices, group2_indices):
-    p_values = perform_rank_sum_test(sample_data, group1_indices, group2_indices)
+def test_perform_rank_sum_test(mock_sample_data, mock_group1_indices, mock_group2_indices):
+    p_values = perform_rank_sum_test(mock_sample_data, mock_group1_indices, mock_group2_indices)
 
     assert isinstance(p_values, np.ndarray)
-    assert len(p_values) == sample_data.shape[1]
+    assert len(p_values) == mock_sample_data.shape[1]
     assert ((p_values >= 0) & (p_values <= 1)).all()
 
 
-def test_perform_rank_sum_test_with_mock(mock_ranksums, sample_data, group1_indices, group2_indices):
-    p_values = perform_rank_sum_test(sample_data, group1_indices, group2_indices)
+def test_perform_rank_sum_test_with_mock(mock_ranksums, mock_sample_data, mock_group1_indices, mock_group2_indices):
+    p_values = perform_rank_sum_test(mock_sample_data, mock_group1_indices, mock_group2_indices)
 
     assert isinstance(p_values, np.ndarray)
-    assert len(p_values) == sample_data.shape[1]
+    assert len(p_values) == mock_sample_data.shape[1]
     assert (p_values == 1.0).all()
-    assert mock_ranksums.call_count == sample_data.shape[1]
+    assert mock_ranksums.call_count == mock_sample_data.shape[1]
 
 
-def test_perform_ks_test(sample_data):
-    p_values = perform_ks_test(sample_data)
+def test_perform_ks_test(mock_sample_data):
+    p_values = perform_ks_test(mock_sample_data)
 
     assert isinstance(p_values, np.ndarray)
-    assert len(p_values) == sample_data.shape[1]
+    assert len(p_values) == mock_sample_data.shape[1]
     assert ((p_values >= 0) & (p_values <= 1)).all()
 
 
-def test_perform_ks_test_with_mock(mock_kstest, sample_data):
-    p_values = perform_ks_test(sample_data)
+def test_perform_ks_test_with_mock(mock_kstest, mock_sample_data):
+    p_values = perform_ks_test(mock_sample_data)
 
     assert isinstance(p_values, np.ndarray)
-    assert len(p_values) == sample_data.shape[1]
+    assert len(p_values) == mock_sample_data.shape[1]
     assert (p_values == 1.0).all()
-    assert mock_kstest.call_count == sample_data.shape[1]
+    assert mock_kstest.call_count == mock_sample_data.shape[1]
+
+
+@pytest.mark.parametrize("test_type", ['t-test', 'limma', 'rank-sum', 'ks-test'])
+def test_get_p_values_valid(test_type, mock_sample_data, mock_group1_indices, mock_group2_indices):
+    p_values = get_p_values(mock_sample_data, mock_group1_indices, mock_group2_indices, test_type)
+
+    assert isinstance(p_values, np.ndarray)
+    assert len(p_values) == mock_sample_data.shape[1]
+    assert ((p_values >= 0) & (p_values <= 1)).all()
 
 
 @pytest.mark.parametrize("test_type, expected_results", [
@@ -129,51 +152,55 @@ def test_perform_ks_test_with_mock(mock_kstest, sample_data):
     ('rank-sum', np.array([0.3, 0.3, 0.3])),
     ('ks-test', np.array([0.2, 0.2, 0.2])),
 ])
-def test_get_p_values_valid_with_mocks(test_type, expected_results, mock_statistical_tests, sample_data, group1_indices, group2_indices):
-    p_values = get_p_values(sample_data, group1_indices, group2_indices, test_type)
+def test_get_p_values_valid_with_mock(test_type, expected_results, mock_statistical_tests, mock_sample_data, mock_group1_indices,
+                                       mock_group2_indices):
+    p_values = get_p_values(mock_sample_data, mock_group1_indices, mock_group2_indices, test_type)
     assert mock_statistical_tests[test_type].call_count == 1
     assert isinstance(p_values, np.ndarray)
-    assert len(p_values) == sample_data.shape[1]
+    assert len(p_values) == mock_sample_data.shape[1]
     assert np.array_equal(p_values, expected_results)
 
 
-@pytest.mark.parametrize("test_type", ['t-test', 'limma', 'rank-sum', 'ks-test'])
-def test_get_p_values_valid(test_type, sample_data, group1_indices, group2_indices):
-    p_values = get_p_values(sample_data, group1_indices, group2_indices, test_type)
-
-    assert isinstance(p_values, np.ndarray)
-    assert len(p_values) == sample_data.shape[1]
-    assert ((p_values >= 0) & (p_values <= 1)).all()
-
-def test_get_p_values_invalid_type(sample_data, group1_indices, group2_indices):
+def test_get_p_values_invalid_type(mock_sample_data, mock_group1_indices, mock_group2_indices):
     with pytest.raises(ValueError):
-        get_p_values(sample_data, group1_indices, group2_indices, 'invalid-test')
+        get_p_values(mock_sample_data, mock_group1_indices, mock_group2_indices, 'invalid-test')
+
+
+@pytest.mark.parametrize("correction_method", ['bonferroni', 'bh'])
+def test_adjust_p_values_valid(mock_p_values, correction_method):
+    adjusted_p_values = adjust_p_values(mock_p_values, correction_method)
+    assert isinstance(adjusted_p_values, np.ndarray)
+    assert len(adjusted_p_values) == mock_p_values.shape[0]
+    assert ((adjusted_p_values >= 0) & (adjusted_p_values <= 1)).all()
+
+
+@pytest.mark.parametrize("correction_method, expected_results", [
+    ('bonferroni', np.array([0.5, 0.5, 0.5])),
+    ('bh', np.array([0.5, 0.5, 0.5]))
+])
+def test_adjust_p_values_valid_with_mock(mock_p_values, mock_multipletests, correction_method, expected_results):
+    adjusted_p_values = adjust_p_values(mock_p_values, correction_method)
+    assert mock_multipletests.call_count == 1
+    assert isinstance(adjusted_p_values, np.ndarray)
+    assert len(adjusted_p_values) == mock_p_values.shape[0]
+    assert np.array_equal(adjusted_p_values, expected_results)
+
+
+def test_adjust_p_values_invalid_method(mock_p_values):
+    with pytest.raises(ValueError):
+        adjust_p_values(mock_p_values, 'invalid_method')
+
+
+@pytest.mark.parametrize("alpha, expected_count", [
+    (0.05, 0),
+    (0.3, 1),
+    (0.6, 2),
+    (1.0, 3),
+])
+def test_count_significant_p_values(mock_adjusted_p_values, alpha, expected_count):
+    actual_count = count_significant_p_values(mock_adjusted_p_values, alpha)
+    assert actual_count == expected_count
 
 
 if __name__ == '__main__':
     pytest.main([__file__])
-
-# def test_adjust_pvalues():
-#     p_values = np.array([0.01, 0.05, 0.1, 0.001, 0.03])
-#     adjusted_pvalues = adjust_p_values(p_values, method='bonferroni')
-#     expected_adjusted_pvalues = np.array([0.05, 0.25, 0.5, 0.005, 0.15])
-#     assert np.allclose(adjusted_pvalues, expected_adjusted_pvalues)
-#     p_values = np.array([0.01, 0.05, 0.1, 0.001, 0.03])
-#     adjusted_pvalues = adjust_p_values(p_values, method='bh')
-#     expected_adjusted_pvalues = np.array([0.025, 0.0625, 0.1, 0.005, 0.05])
-#     assert np.allclose(adjusted_pvalues, expected_adjusted_pvalues)
-#     with pytest.raises(ValueError):
-#         adjust_p_values(p_values, method='invalid_method')
-#
-#
-# def test_count_significant_pvalues():
-#     alpha = 0.05
-#     adjusted_pvalues = np.array([])
-#     num_significant = count_significant_p_values(adjusted_pvalues, alpha)
-#     assert num_significant == 0
-#     adjusted_pvalues = np.array([0.3, 0.6, 0.8])
-#     num_significant = count_significant_p_values(adjusted_pvalues, alpha)
-#     assert num_significant == 0
-#     adjusted_pvalues = np.array([0.04, 0.003, 0.5, 0.8])
-#     num_significant = count_significant_p_values(adjusted_pvalues, alpha)
-#     assert num_significant == 2
