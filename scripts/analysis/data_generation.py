@@ -4,6 +4,12 @@ from scipy.stats import norm, beta as beta_dist, spearmanr
 
 
 def load_realworld_data(file_path):
+    """
+    Given a file path to a real-world methylation data file, this function loads the data and returns it as a pandas
+    dataframe.
+    :param file_path: file path to a real-world methylation data file
+    :return: real-world methylation data in a pandas dataframe with features in columns
+    """
     if file_path.endswith('.h5'):
         realworld_data = pd.read_hdf(file_path)
     else:
@@ -11,7 +17,7 @@ def load_realworld_data(file_path):
     return realworld_data
 
 
-def sample_realworld_methyl_val(n_sites: int, realworld_data: pd.DataFrame) -> np.ndarray:
+def sample_realworld_methylation_values(n_sites: int, realworld_data: pd.DataFrame) -> np.ndarray:
     """
     Given a pandas dataframe containing real-world methylation data with features in columns and observations in rows,
     this function returns a subset of the data by randomly sampling a subset of the features.
@@ -20,20 +26,22 @@ def sample_realworld_methyl_val(n_sites: int, realworld_data: pd.DataFrame) -> n
     :param realworld_data: real-world methylation data in a pandas dataframe with features in columns
     :return: a sub-sampled real-world methylation data returned as ndimensional numpy array
     """
-    assert n_sites <= realworld_data.shape[1], "desired n_sites larger than the number of sites in realworld_data"
-    sampled_df = realworld_data.sample(n=n_sites, axis=1)
-    return sampled_df.to_numpy()
+    if n_sites > realworld_data.shape[1]:
+        raise ValueError(f"Desired n_sites {n_sites} is larger than the number of sites in realworld_data {realworld_data.shape[1]}.")
+
+    sampled_realworld_data_df = realworld_data.sample(n=n_sites, axis=1)
+    return sampled_realworld_data_df.to_numpy()
 
 
-def estimate_beta_dist_parameters(methyl_beta_values: np.ndarray) -> tuple:
+def estimate_beta_distribution_parameters(methyl_beta_values: np.ndarray) -> tuple:
     """
     Given a methylation dataset of beta values with features in columns of a ndimensional numpy array, this function
     estimates the parameters of the beta-distribution of each feature and returns a tuple containing two numpy arrays
     representing the alpha and beta parameters of a beta distribution. Note that methylation beta values are often
     modeled as following a beta distribution.
 
-    :param methyl_beta_values: A ndimensional numpy array containing methylation beta values, with features in columns
-    :return: A tuple containing two numpy arrays, representing alpha and beta params of beta distribution respectively
+    :param methyl_beta_values: A ndimensional numpy array containing methylation beta values, with features in columns.
+    :return: A tuple containing two numpy arrays, representing alpha and beta params of beta distribution respectively.
     """
     alpha_params = np.zeros(methyl_beta_values.shape[1])
     beta_params = np.zeros(methyl_beta_values.shape[1])
@@ -56,7 +64,7 @@ def determine_correlation_matrix(methyl_beta_values: np.ndarray) -> np.ndarray:
     return spearmanr(methyl_beta_values).statistic
 
 
-def generate_correlated_gaussian(x, corr):
+def generate_correlated_gaussian_data(x, corr):
     cov = np.array([[1.0, corr], [corr, 1.0]])
     L = np.linalg.cholesky(cov)
     uncorrelated_samples = np.random.normal(0, 1, len(x))
@@ -87,8 +95,8 @@ def synthesize_correlated_gaussian_bins(corr_coef_distribution: list, n_observat
         correlated_gaussian_bin[:, 0] = np.random.normal(size=n_observations)
         for j in range(1, bin_size):
             min_corr, max_corr = bin_corr_ranges[i]
-            correlated_gaussian_bin[:, j] = generate_correlated_gaussian(correlated_gaussian_bin[:, 0],
-                                                                         np.random.uniform(min_corr, max_corr))
+            correlated_gaussian_bin[:, j] = generate_correlated_gaussian_data(correlated_gaussian_bin[:, 0],
+                                                                              np.random.uniform(min_corr, max_corr))
         if i == 0:
             correlated_gaussian_bins = correlated_gaussian_bin
         else:
@@ -171,8 +179,8 @@ def beta_to_m(methyl_beta_values: np.ndarray) -> np.ndarray:
 
 def simulate_methyl_data(realworld_data: pd.DataFrame, n_sites: int, n_observations: int,
                          dependencies: bool, bin_size: int = None, corr_coef_distribution: list = None) -> np.ndarray:
-    real_data = sample_realworld_methyl_val(n_sites=n_sites, realworld_data=realworld_data)
-    alpha_params, beta_params = estimate_beta_dist_parameters(methyl_beta_values=real_data)
+    real_data = sample_realworld_methylation_values(n_sites=n_sites, realworld_data=realworld_data)
+    alpha_params, beta_params = estimate_beta_distribution_parameters(methyl_beta_values=real_data)
     if dependencies:
         assert bin_size <= n_sites, "bin_size cannot be larger than n_sites"
         synth_beta_values = synthesize_methyl_val_with_correlated_bins(

@@ -4,7 +4,7 @@ import json
 import numpy as np
 import yaml
 
-from scripts.analysis.data_generation import load_realworld_data, sample_realworld_methyl_val, beta_to_m
+from scripts.analysis.data_generation import load_realworld_data, sample_realworld_methylation_values, beta_to_m
 
 
 def execute():
@@ -17,7 +17,7 @@ def execute():
     args = parser.parse_args()
     config = json.loads(args.config.replace("\'", "\""))  # TODO: fix this
     real_world_data = load_realworld_data(file_path=args.realworld_data_path)
-    semi_real_world_data = sample_realworld_methyl_val(n_sites=config['n_sites'], realworld_data=real_world_data)
+    semi_real_world_data = sample_realworld_methylation_values(n_sites=config['n_sites'], realworld_data=real_world_data)
     semi_real_world_data = beta_to_m(methyl_beta_values=semi_real_world_data)
     np.random.shuffle(semi_real_world_data)
     np.savetxt(args.output, semi_real_world_data, delimiter="\t")
