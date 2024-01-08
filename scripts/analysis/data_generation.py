@@ -64,31 +64,59 @@ def determine_correlation_matrix(methyl_beta_values: np.ndarray) -> np.ndarray:
     return spearmanr(methyl_beta_values).statistic
 
 
-def generate_correlated_gaussian_data(x, corr):
-    cov = np.array([[1.0, corr], [corr, 1.0]])
-    L = np.linalg.cholesky(cov)
-    uncorrelated_samples = np.random.normal(0, 1, len(x))
-    correlated_samples = np.dot(L, [x, uncorrelated_samples])
+def generate_correlated_gaussian_data(uncorrelated_vector: np.ndarray, correlation_coefficient: float) -> np.ndarray:
+    """
+    Given a vector of uncorrelated gaussian random variables, this function generates a vector of correlated gaussian
+    random variables with the desired correlation coefficient.
+
+    :param uncorrelated_vector: A vector of uncorrelated gaussian random variables
+    :param correlation_coefficient: The desired correlation coefficient
+    :return: A vector of correlated gaussian random variables
+    """
+    covariance_matrix = np.array([[1.0, correlation_coefficient], [correlation_coefficient, 1.0]])
+    cholesky_lower_triangular = np.linalg.cholesky(covariance_matrix)
+    uncorrelated_samples = np.random.normal(0, 1, len(uncorrelated_vector))
+    correlated_samples = np.dot(cholesky_lower_triangular, [uncorrelated_vector, uncorrelated_samples])
     correlated_array = correlated_samples[1]
     return correlated_array
 
 
-def generate_bin_correlation_ranges(corr_coef_distribution, n_bins):
-    n_original_ranges = len(corr_coef_distribution)
+def generate_bin_correlation_ranges(correlation_coefficient_distribution: np.ndarray, n_bins: int) -> list:
+    """
+    Given a list of correlation coefficient ranges and the desired number of bins, this function generates a list of
+    bin correlation coefficient ranges.
+
+    :param correlation_coefficient_distribution: A list of correlation coefficient ranges
+    :param n_bins: The desired number of bins
+    :return: A list of bin correlation coefficient ranges
+    """
+    n_original_ranges = len(correlation_coefficient_distribution)
     repetitions_per_range = n_bins // n_original_ranges
     remainder = n_bins % n_original_ranges
     new_corr_coef_distribution = []
-    for each_range in corr_coef_distribution:
+    for each_range in correlation_coefficient_distribution:
         new_corr_coef_distribution.extend([each_range] * repetitions_per_range)
     if remainder > 0:
-        new_corr_coef_distribution.extend(corr_coef_distribution[:remainder])
+        new_corr_coef_distribution.extend(correlation_coefficient_distribution[:remainder])
     return new_corr_coef_distribution
 
 
-def synthesize_correlated_gaussian_bins(corr_coef_distribution: list, n_observations: int, n_sites: int, bin_size: int):
+def synthesize_correlated_gaussian_bins(correlation_coefficient_distribution: list, n_observations: int,
+                                        n_sites: int, bin_size: int):
+    """
+    Given a list of correlation coefficient ranges, the desired number of observations, the desired number of sites,
+    and the desired bin size, this function generates a matrix of correlated gaussian random variables with the desired
+    correlation coefficient distribution.
+
+    :param correlation_coefficient_distribution: A list of correlation coefficient ranges
+    :param n_observations: The desired number of observations
+    :param n_sites: The desired number of sites
+    :param bin_size: The desired bin size
+    :return: A matrix of correlated gaussian random variables with the desired correlation coefficient distribution
+    """
     n_bins = n_sites // bin_size
     remainder = n_sites % bin_size
-    bin_corr_ranges = generate_bin_correlation_ranges(corr_coef_distribution, n_bins)
+    bin_corr_ranges = generate_bin_correlation_ranges(correlation_coefficient_distribution, n_bins)
     correlated_gaussian_bins = None
     for i in range(n_bins):
         correlated_gaussian_bin = np.zeros((n_observations, bin_size))
