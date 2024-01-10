@@ -392,3 +392,7 @@ def test_simulate_methyl_data_with_mock(mock_realworld_data, mock_correlation_co
     assert mock_synthesize_methyl_val_with_correlated_bins.call_count == expected_synthesize_methyl_val_with_correlated_bins
     assert mock_synthesize_methyl_val_without_dependence.call_count == expected_synthesize_methyl_val_without_dependence
     assert mock_beta_to_m.call_count == 1
+
+
+if __name__ == '__main__':
+    pytest.main([__file__])
