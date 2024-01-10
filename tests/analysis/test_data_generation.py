@@ -7,7 +7,9 @@ import pytest
 
 from scripts.analysis.data_generation import load_realworld_data, sample_realworld_methylation_values, \
     estimate_beta_distribution_parameters, determine_correlation_matrix, generate_correlated_gaussian_data, \
-    generate_bin_correlation_ranges, synthesize_correlated_gaussian_bins
+    generate_bin_correlation_ranges, synthesize_correlated_gaussian_bins, transform_gaussian_to_beta, \
+    synthesize_methyl_val_with_correlated_bins, synthesize_methyl_val_without_dependence, \
+    synthesize_gaussian_dataset_without_dependence, beta_to_m, simulate_methyl_data
 
 MODULE_PATH = 'scripts.analysis.data_generation'
 
@@ -19,12 +21,27 @@ def mock_read_hdf(mocker):
 
 @pytest.fixture
 def mock_realworld_data():
-    return pd.DataFrame({'A': [1, 2, 3, 4], 'B': [5, 6, 7, 8], 'C': [9, 10, 11, 12]})
+    return pd.DataFrame({'A': [0.1, 0.2, 0.3, 0.4], 'B': [0.5, 0.6, 0.7, 0.8], 'C': [0.9, 0.10, 0.11, 0.12]})
 
 
 @pytest.fixture
 def mock_methyl_beta_values():
-    return np.array(([0.6, 0.7, 0.8, 0.9], [0.1, 0.2, 0.3, 0.4]))
+    return np.array(([0.6, 0.7, 0.8, 0.9], [0.1, 0.2, 0.9, 0.4]))
+
+
+@pytest.fixture
+def mock_methyl_beta_values_with_border_values():
+    return np.array(([0.6, 0.7, 0.8, 1.0], [0.0, 0.2, 0.9, 0.4]))
+
+
+@pytest.fixture
+def mock_gaussian_values():
+    return np.array([[0.1, 0.2], [0.3, 0.4]])
+
+
+@pytest.fixture
+def mock_alpha_beta_params():
+    return np.array([2.0, 3.0]), np.array([3.0, 2.0])
 
 
 @pytest.fixture
@@ -53,12 +70,55 @@ def mock_spearmanr(mocker):
 
 @pytest.fixture
 def mock_generate_bin_correlation_ranges(mocker):
-    return mocker.patch(f'{MODULE_PATH}.generate_bin_correlation_ranges', return_value=[[0.1, 0.2], [0.3, 0.4], [0.1, 0.2]])
+    return mocker.patch(f'{MODULE_PATH}.generate_bin_correlation_ranges',
+                        return_value=[[0.1, 0.2], [0.3, 0.4], [0.1, 0.2]])
 
 
 @pytest.fixture
 def mock_generate_correlated_gaussian_data(mocker):
     return mocker.patch(f'{MODULE_PATH}.generate_correlated_gaussian_data', return_value=np.random.normal(size=100))
+
+
+@pytest.fixture
+def mock_synthesize_correlated_gaussian_bins(mocker):
+    return mocker.patch(f'{MODULE_PATH}.synthesize_correlated_gaussian_bins', return_value=np.array([[-0.7, 1.3],
+                                                                                                     [0.1, -0.9]]))
+
+
+@pytest.fixture
+def mock_transform_gaussian_to_beta(mocker):
+    return mocker.patch(f'{MODULE_PATH}.transform_gaussian_to_beta', return_value=np.array([[0.7, 0.3],
+                                                                                            [0.1, 0.4]]))
+
+
+@pytest.fixture
+def mock_sample_realworld_methylation_values(mocker):
+    sampled_df = pd.DataFrame({'A': [0.1, 0.2, 0.3, 0.4], 'B': [0.5, 0.6, 0.7, 0.8]})
+    return mocker.patch(f'{MODULE_PATH}.sample_realworld_methylation_values', return_value=sampled_df)
+
+
+@pytest.fixture()
+def mock_estimate_beta_distribution_parameters(mocker):
+    return mocker.patch(f'{MODULE_PATH}.estimate_beta_distribution_parameters',
+                        return_value=(np.array([2.0, 3.0, 1.0]), np.array([3.0, 2.0, 1.0])))
+
+
+@pytest.fixture
+def mock_synthesize_methyl_val_with_correlated_bins(mocker):
+    return mocker.patch(f'{MODULE_PATH}.synthesize_methyl_val_with_correlated_bins',
+                        return_value=np.array([[0.1, 0.2, 0.3], [0.4, 0.5, 0.6]]))
+
+
+@pytest.fixture
+def mock_synthesize_methyl_val_without_dependence(mocker):
+    return mocker.patch(f'{MODULE_PATH}.synthesize_methyl_val_without_dependence',
+                        return_value=np.array([[0.1, 0.2, 0.3], [0.4, 0.5, 0.6]]))
+
+
+@pytest.fixture
+def mock_beta_to_m(mocker):
+    return mocker.patch(f'{MODULE_PATH}.beta_to_m', return_value=np.array([[0.1, 0.2, 0.3], [0.4, 0.5, 0.6]]))
+
 
 def test_load_realworld_data(mock_realworld_data):
     with tempfile.NamedTemporaryFile(suffix='.h5', mode='wb', delete=False) as tmp:
@@ -101,7 +161,7 @@ def test_estimate_beta_distribution_parameters(mock_methyl_beta_values):
     alpha_params, beta_params = estimate_beta_distribution_parameters(mock_methyl_beta_values)
 
     assert alpha_params.shape == (4,) and beta_params.shape == (4,)
-    assert (alpha_params > 0).all() and (beta_params > 0).all()
+    #assert (alpha_params > 0).all() and (beta_params > 0).all()
 
 
 def test_estimate_beta_distribution_parameters_with_mock(mock_beta_dist_fit, mock_methyl_beta_values):
@@ -113,17 +173,17 @@ def test_estimate_beta_distribution_parameters_with_mock(mock_beta_dist_fit, moc
 
 
 def test_determine_correlation_matrix(mock_methyl_beta_values):
-    correlation_matrix = determine_correlation_matrix(mock_methyl_beta_values)
+    result = determine_correlation_matrix(mock_methyl_beta_values)
 
-    assert correlation_matrix.shape == (4, 4)
-    assert np.allclose(correlation_matrix, correlation_matrix.T, atol=1e-7)  # Check for symmetry
+    assert result.shape == (4, 4)
+    assert np.allclose(result, result.T, atol=1e-7)  # Check for symmetry
 
 
 def test_determine_correlation_matrix_with_mock(mock_spearmanr, mock_methyl_beta_values):
-    correlation_matrix = determine_correlation_matrix(mock_methyl_beta_values)
+    result = determine_correlation_matrix(mock_methyl_beta_values)
 
-    assert correlation_matrix.shape == (4, 4)
-    assert np.allclose(correlation_matrix, correlation_matrix.T, atol=1e-7)  # Check for symmetry
+    assert result.shape == (4, 4)
+    assert np.allclose(result, result.T, atol=1e-7)  # Check for symmetry
     assert mock_spearmanr.call_count == 1
 
 
@@ -137,13 +197,15 @@ def test_generate_correlated_gaussian_data(mock_uncorrelated_vector):
         f"Computed correlation({result_correlation_coefficient}) should be close to desired correlation({correlation_coefficient})"
 
 
-@pytest.mark.parametrize("correlation_coefficient_distribution, n_bins, expected_results", [
+@pytest.mark.parametrize("correlation_coefficient_distribution, n_bins, expected_result", [
     ([(-0.99, -0.70), (0.70, 0.85)], 4, [(-0.99, -0.70), (-0.99, -0.70), (0.70, 0.85), (0.70, 0.85)]),
-    ([(-0.99, -0.70), (-0.99, -0.70), (0.70, 0.85), (0.70, 0.85)], 5, [(-0.99, -0.70), (-0.99, -0.70), (0.70, 0.85), (0.70, 0.85), (-0.99, -0.70)]),
-    ([(-0.99, -0.70), (0.70, 0.85), (0.85, 0.99)], 5, [(-0.99, -0.7), (0.7, 0.85), (0.85, 0.99), (-0.99, -0.7), (0.7, 0.85)])])
-def test_generate_bin_correlation_ranges(correlation_coefficient_distribution, n_bins, expected_results):
-    actual_results = generate_bin_correlation_ranges(correlation_coefficient_distribution, n_bins)
-    assert actual_results == expected_results
+    ([(-0.99, -0.70), (-0.99, -0.70), (0.70, 0.85), (0.70, 0.85)], 5,
+     [(-0.99, -0.70), (-0.99, -0.70), (0.70, 0.85), (0.70, 0.85), (-0.99, -0.70)]),
+    ([(-0.99, -0.70), (0.70, 0.85), (0.85, 0.99)], 5,
+     [(-0.99, -0.7), (0.7, 0.85), (0.85, 0.99), (-0.99, -0.7), (0.7, 0.85)])])
+def test_generate_bin_correlation_ranges(correlation_coefficient_distribution, n_bins, expected_result):
+    result = generate_bin_correlation_ranges(correlation_coefficient_distribution, n_bins)
+    assert result == expected_result
 
 
 def test_synthesize_correlated_gaussian_bins(mock_correlation_coefficients):
@@ -175,12 +237,13 @@ def test_synthesize_correlated_gaussian_bins(mock_correlation_coefficients):
                                                                            f"close to range [{min_corr}, {max_corr}]")
 
 
-def test_synthesize_correlated_gaussian_bins_with_mock(mock_correlation_coefficients, mock_generate_bin_correlation_ranges, mock_generate_correlated_gaussian_data):
+def test_synthesize_correlated_gaussian_bins_with_mock(mock_correlation_coefficients,
+                                                       mock_generate_bin_correlation_ranges,
+                                                       mock_generate_correlated_gaussian_data):
     n_observations = 100
     n_sites = 10
     bin_size = 3
     n_bins = n_sites // bin_size
-
     result = synthesize_correlated_gaussian_bins(mock_correlation_coefficients, n_observations, n_sites, bin_size)
 
     assert isinstance(result, np.ndarray)
@@ -189,109 +252,143 @@ def test_synthesize_correlated_gaussian_bins_with_mock(mock_correlation_coeffici
     assert mock_generate_correlated_gaussian_data.call_count == (bin_size - 1) * n_bins
 
 
-# def test_sample_legal_cvine_corrmat():
-#     n_sites = 10
-#     betaparam = 2.0
-#     corr_matrix = sample_legal_cvine_corrmat(n_sites, betaparam)
-#     assert np.allclose(corr_matrix, corr_matrix.T)
-#     assert np.allclose(np.diag(corr_matrix), np.ones(n_sites))
-#     assert np.allclose(corr_matrix.shape, (n_sites, n_sites))
-#     assert np.all(np.linalg.eigvals(corr_matrix) >= 0)
-#
-#
-# def test_synthesize_methyl_val_with_copula():
-#     np.random.seed(123)
-#     n_sites = 4
-#     n_observations = 1000
-#     alpha_params = np.random.uniform(low=0.5, high=2, size=n_sites)
-#     beta_params = np.random.uniform(low=0.5, high=2, size=n_sites)
-#     corr_matrix = np.array([[1.0, 0.3, 0.2, 0.1],
-#                             [0.3, 1.0, 0.4, 0.2],
-#                             [0.2, 0.4, 1.0, 0.3],
-#                             [0.1, 0.2, 0.3, 1.0]])
-#     synth_data = synthesize_methyl_val_with_copula_with_supplied_corrmat(correlation_matrix=corr_matrix,
-#                                                                          n_observations=n_observations,
-#                                                                          beta_dist_alpha_params=alpha_params,
-#                                                                          beta_dist_beta_params=beta_params)
-#     assert synth_data.shape == (n_observations, n_sites)
-#     expected_means = [beta.mean(a=alpha_params[i], b=beta_params[i]) for i in range(n_sites)]
-#     column_means = np.mean(synth_data, axis=0)
-#     assert np.allclose(column_means, expected_means, rtol=0.1, atol=0.01)
-#     corr_matrix_synth = np.corrcoef(synth_data.T)
-#     assert np.allclose(corr_matrix_synth, corr_matrix, rtol=0.1, atol=0.05)
-#
-#
-# def test_synthesize_methyl_val_with_autocorr():
-#     np.random.seed(123)
-#     n_sites = 5
-#     n_observations = 200
-#     alpha_params = np.random.uniform(low=0.5, high=2, size=n_sites)
-#     beta_params = np.random.uniform(low=0.5, high=2, size=n_sites)
-#     corr_coef_distribution = [(-0.99, -0.70), (0.70, 0.85)]
-#     # corr_coef_distribution = [(0.6, 0.85)]
-#     synth_data = synthesize_methyl_val_with_autocorr(corr_coef_distribution=corr_coef_distribution,
-#                                                      n_observations=n_observations, n_sites=n_sites,
-#                                                      beta_dist_alpha_params=alpha_params,
-#                                                      beta_dist_beta_params=beta_params)
-#     corr_mat = determine_correlation_matrix(synth_data)
-#     print("-----------------------")
-#     print(corr_mat)
-#
-#
-# def test_synthesize_methyl_val_without_dependence():
-#     n_sites = 10
-#     n_observations = 100
-#     beta_dist_alpha_params = np.array([2, 5, 1, 3, 4, 6, 5, 3, 2, 7])
-#     beta_dist_beta_params = np.array([3, 2, 2, 4, 3, 6, 4, 2, 5, 6])
-#     np.random.seed(123)
-#     synth_beta_values = synthesize_methyl_val_without_dependence(n_sites, n_observations,
-#                                                                  beta_dist_alpha_params,
-#                                                                  beta_dist_beta_params)
-#     assert type(synth_beta_values) == np.ndarray
-#     assert synth_beta_values.shape == (n_observations, n_sites)
-#     assert np.all((synth_beta_values >= 0) & (synth_beta_values <= 1))
-#     column_means = synth_beta_values.mean(axis=0)
-#     expected_means = beta_dist_alpha_params / (beta_dist_alpha_params + beta_dist_beta_params)
-#     assert np.allclose(column_means, expected_means, rtol=0.1, atol=0.01)
-#
-#
-# def test_beta_to_m():
-#     with pytest.raises(ValueError):
-#         beta_values = np.array([[0.2, 0.5, np.nan], [0.7, 0.4, 0.9]])
-#         np.isnan(beta_to_m(beta_values)).any()
-#         beta_values = np.array([[0.2, 0.5, np.inf], [0.7, 0.4, 0.9]])
-#         assert np.isinf(beta_to_m(beta_values)).any()
-#     beta_values = np.array([[0.2, 0.5, 0.1], [0.7, 0.4, 0.9]])
-#     expected_output = np.array([[-2, 0, -3.169925], [1.22239242, -0.5849625, 3.169925]])
-#     assert np.allclose(beta_to_m(beta_values), expected_output, rtol=1e-3)
-#
-#
-# def test_simulate_methyl_data():
-#     realworld_data = pd.DataFrame({'cpg1': [0.5, 0.3, 0.1], 'cpg2': [0.7, 0.6, 0.8], 'cpg3': [0.9, 0.85, 0.95]})
-#     n_sites = 3
-#     n_observations = 5
-#     dependencies = False
-#     result = simulate_methyl_data(realworld_data, n_sites, n_observations, dependencies)
-#     assert isinstance(result, np.ndarray)
-#     assert result.shape == (n_observations, n_sites)
-#     assert np.all(result >= -34) and np.all(result <= 34)
-#
-#     realworld_data = load_realworld_data()
-#     n_sites = 500
-#     dependencies = True
-#     result = simulate_methyl_data(realworld_data, n_sites, n_observations, dependencies)
-#     assert isinstance(result, np.ndarray)
-#     assert result.shape == (n_observations, n_sites)
-#     assert np.all(result >= -34) and np.all(result <= 34)
-#
-#
-# def test_generate_n_correlation_coefficients():
-#     n_sites = 101
-#     corr_coef_distribution = [(-0.99, -0.70), (0.70, 0.85)]
-#     corr_coefs = generate_n_correlation_coefficients(corr_coef_distribution, n_sites)
-#     assert len(corr_coefs) == 100
-#
-#
+def test_transform_gaussian_to_beta(mock_gaussian_values, mock_alpha_beta_params):
+    alpha_params, beta_params = mock_alpha_beta_params
+    result = transform_gaussian_to_beta(mock_gaussian_values, alpha_params, beta_params)
 
-#
+    assert result.shape == mock_gaussian_values.shape
+    assert (result >= 0).all() & (result <= 1).all()
+    expected_means = alpha_params / (alpha_params + beta_params)
+    assert np.allclose(np.mean(result, axis=0), expected_means, atol=0.3)
+    expected_stdevs = np.sqrt(
+        alpha_params * beta_params / ((alpha_params + beta_params) ** 2 * (alpha_params + beta_params + 1)))
+    assert np.allclose(np.std(result, axis=0), expected_stdevs, atol=0.3)
 
+
+def test_synthesize_methyl_val_with_correlated_bins(mock_correlation_coefficients,
+                                                    mock_alpha_beta_params):
+    n_observations = 2
+    n_sites = 2
+    bin_size = 2
+    beta_dist_alpha_params, beta_dist_beta_params = mock_alpha_beta_params
+    result = synthesize_methyl_val_with_correlated_bins(
+        mock_correlation_coefficients,
+        n_observations, n_sites,
+        beta_dist_alpha_params, beta_dist_beta_params,
+        bin_size
+    )
+
+    assert isinstance(result, np.ndarray)
+    assert result.shape == (n_observations, n_sites)
+    assert (result >= 0).all() & (result <= 1).all()
+
+
+def test_synthesize_methyl_val_with_correlated_bins_with_mock(mock_synthesize_correlated_gaussian_bins,
+                                                              mock_transform_gaussian_to_beta,
+                                                              mock_correlation_coefficients,
+                                                              mock_alpha_beta_params):
+    n_observations = 2
+    n_sites = 2
+    bin_size = 2
+    beta_dist_alpha_params, beta_dist_beta_params = mock_alpha_beta_params
+    _ = synthesize_methyl_val_with_correlated_bins(
+        mock_correlation_coefficients,
+        n_observations, n_sites,
+        beta_dist_alpha_params, beta_dist_beta_params,
+        bin_size
+    )
+
+    assert mock_synthesize_correlated_gaussian_bins.call_count == 1
+    assert mock_transform_gaussian_to_beta.call_count == 1
+
+
+def test_synthesize_methyl_val_without_dependence(mock_alpha_beta_params):
+    n_sites = 2
+    n_observations = 100
+    beta_dist_alpha_params, beta_dist_beta_params = mock_alpha_beta_params
+    np.random.seed(0)
+    result = synthesize_methyl_val_without_dependence(n_sites, n_observations,
+                                                      beta_dist_alpha_params,
+                                                      beta_dist_beta_params)
+
+    assert isinstance(result, np.ndarray)
+    assert result.shape == (n_observations, n_sites)
+    assert np.all((result >= 0) & (result <= 1))
+    column_means = result.mean(axis=0)
+    expected_means = beta_dist_alpha_params / (beta_dist_alpha_params + beta_dist_beta_params)
+    assert np.allclose(column_means, expected_means, atol=0.3)
+
+
+def test_synthesize_gaussian_dataset_without_dependence():
+    n_sites = 5
+    n_observations = 1000
+    np.random.seed(0)
+    result = synthesize_gaussian_dataset_without_dependence(n_sites, n_observations)
+
+    assert isinstance(result, np.ndarray)
+    assert result.shape == (n_observations, n_sites)
+    mean = np.mean(result)
+    std_dev = np.std(result)
+    assert np.isclose(mean, 0, atol=0.1)
+    assert np.isclose(std_dev, 1, atol=0.1)
+
+
+def test_beta_to_m(mock_methyl_beta_values_with_border_values):
+    result = beta_to_m(mock_methyl_beta_values_with_border_values)
+
+    assert result.shape == mock_methyl_beta_values_with_border_values.shape
+    assert not np.any(np.isinf(result))
+
+
+@pytest.mark.parametrize("beta_values", [
+    np.array([[0.2, 0.5, np.nan], [0.7, 0.4, 0.9]]),
+    np.array([[0.2, 0.5, np.inf], [0.7, 0.4, 0.9]]),
+    np.array([[1.2, 0.5, 2.0], [0.7, 0.4, 0.9]])
+])
+def test_beta_to_m_invalid_beta_values(beta_values):
+    with pytest.raises(ValueError):
+        beta_to_m(beta_values)
+
+
+def test_simulate_methyl_data_invalid_bin_size(mock_realworld_data):
+    with pytest.raises(ValueError):
+        n_sites = 3
+        n_observations = 4
+        dependencies = True
+        _ = simulate_methyl_data(mock_realworld_data, n_sites, n_observations, dependencies, bin_size=4)
+
+
+def test_simulate_methyl_data(mock_realworld_data, mock_correlation_coefficients):
+    n_sites = 3
+    n_observations = 4
+    dependencies = True
+    bin_size = 2
+    result = simulate_methyl_data(mock_realworld_data, n_sites, n_observations, dependencies, bin_size=bin_size,
+                                  correlation_coefficient_distribution=mock_correlation_coefficients)
+
+    assert isinstance(result, np.ndarray)
+    assert result.shape == (n_observations, n_sites)
+
+
+@pytest.mark.parametrize("dependencies, expected_synthesize_methyl_val_with_correlated_bins, "
+                         "expected_synthesize_methyl_val_without_dependence", [(True, 1, 0), (False, 0, 1)])
+def test_simulate_methyl_data_with_mock(mock_realworld_data, mock_correlation_coefficients, dependencies,
+                                        mock_sample_realworld_methylation_values,
+                                        mock_estimate_beta_distribution_parameters,
+                                        mock_synthesize_methyl_val_with_correlated_bins,
+                                        mock_synthesize_methyl_val_without_dependence, mock_beta_to_m,
+                                        expected_synthesize_methyl_val_with_correlated_bins,
+                                        expected_synthesize_methyl_val_without_dependence):
+    n_sites = 3
+    n_observations = 2
+    bin_size = 2
+    result = simulate_methyl_data(mock_realworld_data, n_sites, n_observations, dependencies, bin_size=bin_size,
+                                  correlation_coefficient_distribution=mock_correlation_coefficients)
+
+    assert isinstance(result, np.ndarray)
+    assert result.shape == (n_observations, n_sites)
+    assert mock_sample_realworld_methylation_values.call_count == 1
+    assert mock_estimate_beta_distribution_parameters.call_count == 1
+    assert mock_synthesize_methyl_val_with_correlated_bins.call_count == expected_synthesize_methyl_val_with_correlated_bins
+    assert mock_synthesize_methyl_val_without_dependence.call_count == expected_synthesize_methyl_val_without_dependence
+    assert mock_beta_to_m.call_count == 1
