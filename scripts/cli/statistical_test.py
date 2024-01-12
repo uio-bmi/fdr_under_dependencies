@@ -9,6 +9,9 @@ from scripts.analysis.utils import parse_yaml_file
 
 
 def parse_args():
+    """
+    This function parses command line arguments.
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', type=str, help='Configuration in YAML format', required=True)
     parser.add_argument('--data_path', help='Path to the input data file in tsv format', required=True)
@@ -19,6 +22,15 @@ def parse_args():
 
 
 def main(config, data_path, sim_config, output):
+    """
+    This function performs statistical testing with FDR/FWR correction and saves the results to a file.
+
+    :param config: Path to the configuration file in yaml format
+    :param data_path: Path to the input data file in tsv format
+    :param sim_config: Path to the simulation config file in yaml format
+    :param output: Path to the output file in tsv format
+    :return: None
+    """
     config = parse_yaml_file(config)
     sim_config = parse_yaml_file(sim_config)
     data = np.loadtxt(data_path, delimiter="\t")
@@ -49,5 +61,8 @@ def main(config, data_path, sim_config, output):
 
 
 def execute():
+    """
+    This function is executed when this file is run as a script.
+    """
     args = parse_args()
     main(args.config, args.data_path, args.sim_config, args.output)

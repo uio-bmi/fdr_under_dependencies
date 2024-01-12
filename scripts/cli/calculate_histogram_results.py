@@ -6,6 +6,9 @@ import pandas as pd
 
 
 def parse_args():
+    """
+    This function parses command line arguments.
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument('--concatenated_results', help='Path to the concatenated results file', required=True)
     parser.add_argument('--aggregated_results', help='Path to the aggregated results file', required=True)
@@ -14,6 +17,13 @@ def parse_args():
 
 
 def main(concatenated_results, aggregated_results):
+    """
+    This function aggregates the results of the statistical testing, calculates histogram values and saves the results.
+
+    :param concatenated_results: Path to the concatenated results file
+    :param aggregated_results: Path to the aggregated results file
+    :return: None
+    """
     df = pd.read_csv(concatenated_results, sep="\t", header=0, index_col=False)
     relevant_cols = ["n_observations", "n_sites", "dependencies", "correlation_strength", "bin_size_ratio",
                      "statistical_test", "multipletest_correction_type", "alpha", "data_distribution"]
@@ -34,5 +44,8 @@ def main(concatenated_results, aggregated_results):
 
 
 def execute():
+    """
+    This function is executed when this file is run as a script.
+    """
     args = parse_args()
     main(args.concatenated_results, args.aggregated_results)
