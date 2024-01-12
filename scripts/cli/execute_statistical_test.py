@@ -7,8 +7,6 @@ import pandas as pd
 import plotly.express as px
 from scipy.stats import ttest_ind
 
-from scripts.analysis.data_generation import load_realworld_data
-
 
 def execute():
     parser = argparse.ArgumentParser()
