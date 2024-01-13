@@ -91,3 +91,7 @@ def test_execute(mock_parse_args, mock_main):
 
     mock_parse_args.called_once()
     mock_main.assert_called_once_with('path/to/config.yaml', 'path/to/data.tsv', 'path/to/sim/config.yaml', 'path/to/output.tsv')
+
+
+if __name__ == '__main__':
+    pytest.main([__file__])

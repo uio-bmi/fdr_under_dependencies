@@ -87,3 +87,7 @@ def test_execute(mock_parse_args, mock_main):
 
     mock_parse_args.called_once()
     mock_main.assert_called_once_with('path/to/concatenated_results.tsv', 'path/to/aggregated_results.tsv')
+
+
+if __name__ == '__main__':
+    pytest.main([__file__])
