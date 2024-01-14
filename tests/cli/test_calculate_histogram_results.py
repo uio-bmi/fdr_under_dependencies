@@ -63,10 +63,7 @@ def test_main(tmp_path):
     output_file = tmp_path / "output.tsv"
 
     main(str(input_file), str(output_file))
-
     output_df = pd.read_csv(output_file, sep="\t")
-
-    print(output_df)
 
     assert not output_df.empty
     assert 'config_id' in output_df.columns
