@@ -16,15 +16,11 @@ FDR Hacking
 
 
 
- 
+
 
 
 * Free software: MIT license
 * Documentation: https://fdr-hacking.readthedocs.io.
 
 
-Features
---------
-
-* TODO
-
+TBA
