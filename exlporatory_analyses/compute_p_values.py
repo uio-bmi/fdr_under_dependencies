@@ -5,12 +5,11 @@ import numpy as np
 
 from scripts.analysis.statistical_analysis import get_p_values, adjust_p_values
 
-raw_data_directory = 'data/raw'
-p_values_directory = 'data/p_values'
-adjusted_p_values_directory = 'data/adjusted_p_values'
+raw_data_directory = 'data/raw_without_dependencies'
+p_values_directory = 'data/independent_p_values'
+adjusted_p_values_directory = 'data/independent_adjusted_p_values'
 test_type = "t-test"
 method = "bh"
-alpha = 0.05
 
 
 def process_file(file):
