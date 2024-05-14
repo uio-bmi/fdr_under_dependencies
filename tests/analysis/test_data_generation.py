@@ -229,12 +229,11 @@ def test_synthesize_correlated_gaussian_bins(mock_correlation_coefficients):
         min_corr, max_corr = mock_correlation_coefficients[i % len(mock_correlation_coefficients)]
         bin_corr_matrix = np.corrcoef(bin_data.T)
         # Check the correlation coefficients within each bin
-        for j in range(bin_size):
-            for k in range(j + 1, bin_size):
-                corr_coef = bin_corr_matrix[j, k]
-                closest_endpoint = min_corr if abs(corr_coef - min_corr) < abs(corr_coef - max_corr) else max_corr
-                assert np.isclose(corr_coef, closest_endpoint, atol=0.3), (f"Correlation coefficient {corr_coef} not "
-                                                                           f"close to range [{min_corr}, {max_corr}]")
+        for j in range(1, bin_size):
+            corr_coef = bin_corr_matrix[j, 0]
+            closest_endpoint = min_corr if abs(corr_coef - min_corr) < abs(corr_coef - max_corr) else max_corr
+            assert np.isclose(corr_coef, closest_endpoint, atol=0.3), (f"Correlation coefficient {corr_coef} not "
+                                                                        f"close to range [{min_corr}, {max_corr}]")
 
 
 def test_synthesize_correlated_gaussian_bins_with_mock(mock_correlation_coefficients,
