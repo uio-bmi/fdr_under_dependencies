@@ -5,9 +5,13 @@ import numpy as np
 
 from scripts.analysis.statistical_analysis import get_p_values, adjust_p_values
 
-raw_data_directory = 'data/raw_without_dependencies'
-p_values_directory = 'data/independent_p_values'
-adjusted_p_values_directory = 'data/independent_adjusted_p_values'
+raw_data_directory = 'data/raw_real_world'
+p_values_directory = 'data/p_values_real_world'
+adjusted_p_values_directory = 'data/adjusted_p_values_real_world'
+
+os.makedirs(p_values_directory, exist_ok=True)
+os.makedirs(adjusted_p_values_directory, exist_ok=True)
+
 test_type = "t-test"
 method = "bh"
 
