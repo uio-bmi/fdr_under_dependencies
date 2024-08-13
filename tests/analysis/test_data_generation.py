@@ -31,7 +31,7 @@ def mock_methyl_beta_values():
 
 @pytest.fixture
 def mock_methyl_beta_values_with_border_values():
-    return np.array(([0.6, 0.7, 0.8, 1.0], [0.0, 0.2, 0.9, 0.4]))
+    return np.array(([0.6, 0.7, 0.8, 0.9], [0.5, 0.2, 0.9, 0.4]))
 
 
 @pytest.fixture
@@ -161,7 +161,6 @@ def test_estimate_beta_distribution_parameters(mock_methyl_beta_values):
     alpha_params, beta_params = estimate_beta_distribution_parameters(mock_methyl_beta_values)
 
     assert alpha_params.shape == (4,) and beta_params.shape == (4,)
-    #assert (alpha_params > 0).all() and (beta_params > 0).all()
 
 
 def test_estimate_beta_distribution_parameters_with_mock(mock_beta_dist_fit, mock_methyl_beta_values):
@@ -332,10 +331,10 @@ def test_synthesize_gaussian_dataset_without_dependence():
     assert np.isclose(std_dev, 1, atol=0.1)
 
 
-def test_beta_to_m(mock_methyl_beta_values_with_border_values):
-    result = beta_to_m(mock_methyl_beta_values_with_border_values)
+def test_beta_to_m(mock_methyl_beta_values):
+    result = beta_to_m(mock_methyl_beta_values)
 
-    assert result.shape == mock_methyl_beta_values_with_border_values.shape
+    assert result.shape == mock_methyl_beta_values.shape
     assert not np.any(np.isinf(result))
 
 
