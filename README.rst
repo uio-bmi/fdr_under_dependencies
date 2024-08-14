@@ -17,9 +17,9 @@ Installation guide
       conda create --name multiple_testing_analysis python=3.9
       conda activate multiple_testing_analysis
 
-3. **Install R in your conda environment (it will be needed since we use rpy2) and needed R package**
+3. **Install R in your conda environment (it will be needed since we use rpy2) and needed R package:**
 
-    .. code-block:: bash
+   .. code-block:: bash
 
       conda install -c conda-forge r-base
       conda install -c bioconda bioconductor-limma
@@ -54,6 +54,6 @@ Installation guide
 
    .. code-block:: bash
 
-      	snakemake -s pipelines/synthetic/Snakefile -d pipelines/synthetic --cores 4 --config workflow_config=../../config/dummy_synthetic_data.yaml
+       snakemake -s pipelines/synthetic/Snakefile -d pipelines/synthetic --cores 4 --config workflow_config=../../config/dummy_synthetic_data.yaml
 
-        snakemake -s pipelines/semi_real_world/Snakefile -d pipelines/semi_real_world --cores 4 --config workflow_config=../../config/dummy_semi_real_world_data.yaml
+       snakemake -s pipelines/semi_real_world/Snakefile -d pipelines/semi_real_world --cores 4 --config workflow_config=../../config/dummy_semi_real_world_data.yaml
