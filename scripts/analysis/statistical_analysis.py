@@ -53,7 +53,7 @@ def perform_limma_test(methylation_data: np.ndarray, group1_indices: list, group
     return p_values
 
 
-def rank_sum_test(methylation_data: np.ndarray, group1_indices: list, group2_indices: list) -> np.array:
+def perform_rank_sum_test(methylation_data: np.ndarray, group1_indices: list, group2_indices: list) -> np.array:
     """
     Perform Wilcoxon rank-sum test on each feature in the input dataset
     rm two-sample rank-sum test on each feature in the input dataset
@@ -71,7 +71,7 @@ def rank_sum_test(methylation_data: np.ndarray, group1_indices: list, group2_ind
     return p_values
 
 
-def ks_test(data: np.ndarray) -> np.array:
+def perform_ks_test(data: np.ndarray) -> np.array:
     """
     Perform Kolmogorov-Smirnov test on each feature in the input dataset
     :param data: A 2-dimensional numpy array of methylation M values with observations in rows and
@@ -91,17 +91,17 @@ def get_p_values(data: np.ndarray, group1_indices: list, group2_indices: list,
     :param data: A 2-dimensional numpy array with observations in rows and features in columns
     :param group1_indices: A list of indices of first group for the purpose of two-sample statistical testing
     :param group2_indices: A list of indices of second group for the purpose of two-sample statistical testing
-    :param test_type: A string indicating the statistical test to use. Legal values are 't-test', 'limma', 'rank-sum'
+    :param test_type: A string indicating the statistical test to use. Legal values are 't-test', 'limma', 'rank-sum', 'ks-test'
     :return: A numpy array of p-values
     """
-    test_functions_map = {
-        't-test': perform_t_test,
-        'limma': perform_limma_test,
-        'rank-sum': rank_sum_test,
-        'ks-test': ks_test,
-    }
-    if test_type in test_functions_map:
-        p_values = test_functions_map[test_type](data, group1_indices, group2_indices)
+    if test_type == 't-test':
+        p_values = perform_t_test(data, group1_indices, group2_indices)
+    elif test_type == 'limma':
+        p_values = perform_limma_test(data, group1_indices, group2_indices)
+    elif test_type == 'rank-sum':
+        p_values = perform_rank_sum_test(data, group1_indices, group2_indices)
+    elif test_type == 'ks-test':
+        p_values = perform_ks_test(data)
     else:
         raise ValueError(f"Invalid test type: {test_type}")
     return p_values

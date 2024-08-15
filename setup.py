@@ -3,9 +3,6 @@ from setuptools import setup, find_packages
 with open('README.rst') as readme_file:
     readme = readme_file.read()
 
-with open('HISTORY.rst') as history_file:
-    history = history_file.read()
-
 requirements = ['typer']
 
 test_requirements = ['pytest>=3', "hypothesis"]
@@ -39,14 +36,14 @@ setup(
     },
     install_requires=requirements,
     license="MIT license",
-    long_description=readme + '\n\n' + history,
+    long_description=readme,
     include_package_data=True,
     keywords='fdr, hypothesis testing, multiple hypothesis testing, false discovery rate, false positive rate',
-    name='fdr_hacking',
+    name='fdr_under_dependencies',
     packages=find_packages(include=['scripts.*']),
     test_suite='tests',
     tests_require=test_requirements,
-    url='https://github.com/uio-bmi/fdr_hacking',
+    url='https://github.com/uio-bmi/fdr_under_dependencies',
     version='0.0.1',
     zip_safe=False,
 )

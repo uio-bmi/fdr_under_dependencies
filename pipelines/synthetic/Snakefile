@@ -7,24 +7,33 @@ from snakemake.utils import Paramspace
 from scripts.analysis.utils import parse_yaml_file
 from scripts.snakemake.generate_simulation_params import generate_simulation_params
 
+
 workflow_config_yaml = config["workflow_config"]
 workflow_config = parse_yaml_file(workflow_config_yaml)
 workflow_reporting_config = workflow_config['reporting']
 output_dir = os.path.join(workflow_config['paths']['output_dir'], "output")
 analysis_config_dir = os.path.join(output_dir, "analysis_configs")
+
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
+
 if not os.path.exists(analysis_config_dir):
     os.makedirs(analysis_config_dir)
+
 shutil.copy(workflow_config_yaml, analysis_config_dir)
+
 if 'realworld_data' in workflow_config['paths']:
     realworld_data = workflow_config['paths']['realworld_data']
 else:
     realworld_data = None
+
 simulation_params_output_path = f"{analysis_config_dir}/snakemake_simulation_params.tsv"
+
 generate_simulation_params(workflow_config['simulating'], simulation_params_output_path)
+
 simulation_params_df = pd.read_csv(simulation_params_output_path, sep="\t")
 simulation_paramspace = Paramspace(simulation_params_df)
+
 
 rule all:
     input:
@@ -42,6 +51,7 @@ rule generate_data:
     shell:
         'simulate_data --config "{params.simulation}" --realworld_data_path {realworld_data} --output "{output.data}" --config_file_path "{output.config}"'
 
+
 rule statistical_analysis:
     input:
         data = f"{output_dir}/simulations/{simulation_paramspace.wildcard_pattern}.tsv",
@@ -50,6 +60,7 @@ rule statistical_analysis:
         f"{output_dir}/statistical_testing/{simulation_paramspace.wildcard_pattern}.tsv"
     shell:
         'statistical_test --config "{workflow_config_yaml}" --data_path "{input.data}" --sim_config "{input.config}" --output "{output}"'
+
 
 rule concatenate_results:
     input:
@@ -60,6 +71,7 @@ rule concatenate_results:
     run:
         df = pd.concat([pd.read_csv(f, sep="\t") for f in input])
         df.to_csv(output[0], sep="\t", index=False)
+
 
 rule aggregate_results:
     input:
