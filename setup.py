@@ -42,11 +42,11 @@ setup(
     long_description=readme + '\n\n' + history,
     include_package_data=True,
     keywords='fdr, hypothesis testing, multiple hypothesis testing, false discovery rate, false positive rate',
-    name='fdr_hacking',
+    name='fdr_under_dependencies',
     packages=find_packages(include=['scripts.*']),
     test_suite='tests',
     tests_require=test_requirements,
-    url='https://github.com/uio-bmi/fdr_hacking',
+    url='https://github.com/uio-bmi/fdr_under_dependencies',
     version='0.0.1',
     zip_safe=False,
 )
