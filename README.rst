@@ -90,7 +90,7 @@ Installation guide (via Docker)
 
       docker run -it mmamica/fdr_under_dependencies:amd
 
-3. **Acticate the conda environment:**
+3. **Activate the conda environment:**
 
    .. code-block:: bash
 
