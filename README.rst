@@ -1,5 +1,11 @@
-FDR Hacking
+FDR under dependencies
 ===========
+
+**FDR under dependencies** project aims to analyse the impact of variable dependencies on the performance of false discovery rate (FDR) procedures.
+It provides a set of tools and pipelines for generating synthetic and semi-real-world data based on the real-world methylation dataset, as well as for conducting multiple hypotheses testing.
+
+The pipelines are implemented using `Snakemake <https://snakemake.readthedocs.io/>`_, a robust workflow management system that facilitates easy scaling and parallelization of analyses.
+This setup ensures that the project can handle large datasets efficiently while maintaining flexibility and reproducibility in the research process.
 
 Installation guide
 ------------------
