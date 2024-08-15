@@ -1,11 +1,12 @@
 FDR under Dependencies
 ===========
 
-**FDR under Dependencies** project aims to analyse the impact of variable dependencies on the performance of false discovery rate (FDR) procedures.
-It provides a set of tools and pipelines for generating synthetic and semi-real-world data based on the real-world methylation dataset, as well as for conducting multiple hypotheses testing.
+In this work, we demonstrate that in datasets with highly correlated features, as in omics, FDR correction methods like Benjamini-Hochberg can within their formal guarantees in some cases report very high numbers of false positives.
+This can lead to thousands of falsely reported findings, even if all null hypotheses are true.
+For more information, see the preprint here: URL to be updated when available.
 
-The pipelines are implemented using `Snakemake <https://snakemake.readthedocs.io/>`_, a robust workflow management system that facilitates easy scaling and parallelization of analyses.
-This setup ensures that the project can handle large datasets efficiently while maintaining flexibility and reproducibility in the research process.
+The project repo contains the source code we used to produce the results in the manuscript (URL to be updated).
+Below, we provide instructions on how to reproduce the results using conda environment or supplied docker containers.
 
 Installation guide (via Conda)
 ------------------
@@ -110,7 +111,7 @@ Replicating the results
 ------------------
 In order to replicate the results, you need to run the following commands:
 
-   .. code-block:: bash
+.. code-block:: bash
 
       snakemake -s pipelines/synthetic/Snakefile -d pipelines/synthetic --cores 4 --config workflow_config=../../config/synthetic_data.yaml
 
