@@ -20,7 +20,7 @@ RUN git checkout users/mmamica/add-unit-tests
 RUN apt-get update && apt-get install -y git git-lfs build-essential
 
 # Copy the data files to the container
-COPY data/realworld_methyl_beta.h5 /app/fdr_hacking/data/realworld_methyl_beta.h5
+COPY data/realworld_methyl_beta.h5 /app/fdr_under_dependencies/data/realworld_methyl_beta.h5
 
 # Create a Conda environment
 RUN conda create --name fdr_under_dependencies python=3.9
