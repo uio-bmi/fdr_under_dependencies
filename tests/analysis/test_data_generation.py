@@ -187,6 +187,7 @@ def test_determine_correlation_matrix_with_mock(mock_spearmanr, mock_methyl_beta
 
 
 def test_generate_correlated_gaussian_data(mock_uncorrelated_vector):
+    np.random.seed(0)
     correlation_coefficient = 0.5
     result = generate_correlated_gaussian_data(mock_uncorrelated_vector, correlation_coefficient)
     result_correlation_coefficient = np.corrcoef(mock_uncorrelated_vector, result)[0, 1]
