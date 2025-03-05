@@ -1,0 +1,384 @@
+title,link,publication_year,mentions_bh,mentions_bonferroni,mentions_by
+Promoter capture Hi-C identifies promoter-related loops and fountain structures in Arabidopsis,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03465-7,2024,False,True,False
+Molecular dependencies and genomic consequences of a global DNA damage tolerance defect,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03451-z,2024,False,False,True
+Dynamic co-evolution of transposable elements and the piRNA pathway in African cichlid fishes,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-025-03475-z,2025,False,False,False
+Multi-omics reveals lactylation-driven regulatory mechanisms promoting tumor progression in oral squamous cell carcinoma,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03383-8,2024,False,False,False
+scDOT: optimal transport for mapping senescent cells in spatial transcriptomics,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03426-0,2024,False,False,False
+GraphPCA: a fast and interpretable dimension reduction algorithm for spatial transcriptomics data,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03429-x,2024,False,False,False
+VI-VS: calibrated identification of feature dependencies in single-cell multiomics,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03419-z,2024,True,False,False
+Overlooked poor-quality patient samples in sequencing data impair reproducibility of published clinically relevant datasets,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03331-6,2024,False,True,False
+Comprehensive network modeling approaches unravel dynamic enhancer-promoter interactions across neural differentiation,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03365-w,2024,False,False,False
+Melon: metagenomic long-read-based taxonomic identification and quantification using marker genes,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03363-y,2024,False,False,False
+Gut microbiota contributes to high-altitude hypoxia acclimatization of human populations,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03373-w,2024,False,False,False
+Functional screening reveals genetic dependencies and diverging cell cycle control in atypical teratoid rhabdoid tumors,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03438-w,2024,False,False,False
+Detecting haplotype-specific transcript variation in long reads with FLAIR2,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03301-y,2024,False,False,False
+Systemic interindividual DNA methylation variants in cattle share major hallmarks with those in humans,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03307-6,2024,False,False,False
+Diurnal control of iron responsive element containing mRNAs through iron regulatory proteins IRP1 and IRP2 is mediated by feeding rhythms,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03270-2,2024,False,False,False
+Robust differential expression testing for single-cell CRISPR screens at low multiplicity of infection,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03254-2,2024,True,True,False
+"Breaking down causes, consequences, and mediating effects of telomere length variation on human health",https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03269-9,2024,False,True,True
+Comparative 3D genome analysis between neural retina and retinal pigment epithelium reveals differential ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03250-6,2024,False,False,False
+ePRINT: exonuclease assisted mapping of protein-RNA interactions,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03271-1,2024,False,False,False
+DNA methylation patterns of transcription factor binding regions characterize their functional and evolutionary contexts,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03218-6,2024,False,True,False
+Structural variant landscapes reveal convergent signatures of evolution in sheep and goats,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03288-6,2024,False,False,False
+Sequential drug treatment targeting cell cycle and cell fate regulatory programs blocks non-genetic cancer evolution in acute lymphoblastic leukemia,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03260-4,2024,False,True,False
+X-chromosome inactivation in human iPSCs provides insight into X-regulated gene expression in autosomes,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03286-8,2024,False,False,False
+miR-430 regulates zygotic mRNA during zebrafish embryogenesis,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03197-8,2024,False,True,False
+Cataloging the phylogenetic diversity of human bladder bacterial isolates,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03216-8,2024,False,False,False
+Depletion of lamins B1 and B2 promotes chromatin mobility and induces differential gene expression by a mesoscale-motion-dependent mechanism,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03212-y,2024,False,False,False
+Eukaryotic-driven directed evolution of Cas9 nucleases,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03215-9,2024,True,False,False
+txci-ATAC-seq: a massive-scale single-cell technique to profile chromatin accessibility,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03150-1,2024,True,False,False
+Trans-ancestral genome-wide association study of longitudinal pubertal height growth and shared heritability with adult health outcomes,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03136-z,2024,False,True,False
+DeepVelo: deep learning extends RNA velocity to multi-lineage systems with cell-specific kinetics,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03148-9,2024,False,False,False
+Structural variation and DNA methylation shape the centromere-proximal meiotic crossover landscape in Arabidopsis,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03163-4,2024,False,True,False
+Mosaic loss of Y chromosome is associated with aging and epithelial injury in chronic kidney disease,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03173-2,2024,False,True,False
+Computational validation of clonal and subclonal copy number alterations from bulk tumor sequencing using CNAqc,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03170-5,2024,False,True,False
+Mapping the functional impact of non-coding regulatory elements in primary T cells through single-cell CRISPR screens,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03176-z,2024,False,True,False
+The androgen receptor interacts with GATA3 to transcriptionally regulate a luminal epithelial cell phenotype in breast cancer,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03161-y,2024,False,False,False
+ENGEP: advancing spatial transcriptomics with accurate unmeasured gene expression prediction,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03139-w,2023,False,False,False
+A super-pangenome of the North American wild grape species,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03133-2,2023,False,True,False
+Genetic effects of sequence-conserved enhancer-like elements on human complex traits,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03142-1,2024,False,False,False
+BORIS/CTCFL epigenetically reprograms clustered CTCF binding sites into alternative transcriptional start sites,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03175-0,2024,False,False,False
+Acute expression of human APOBEC3B in mice results in RNA editing and lethality,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03115-4,2023,False,False,False
+Single-cell multiomics of the human retina reveals hierarchical transcription factor collaboration in mediating cell type-specific effects of genetic variants on gene regulation,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03111-8,2023,False,True,False
+Methylation-directed regulatory networks determine enhancing and silencing of mutation disease driver genes and explain inter-patient expression variation,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03094-6,2023,False,False,False
+Metagenome-wide analysis uncovers gut microbial signatures and implicates taxon-specific functions in end-stage renal disease,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03056-y,2023,False,False,False
+MalariaSED: a deep learning framework to decipher the regulatory contributions of noncoding variants in malaria parasites,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03063-z,2023,False,False,False
+DIVE: a reference-free statistical approach to diversity-generating and mobile genetic element discovery,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03038-0,2023,True,False,False
+Performance of computational algorithms to deconvolve heterogeneous bulk ovarian tumor tissue depends on experimental factors,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03077-7,2023,False,False,False
+SEESAW: detecting isoform-level allelic imbalance accounting for inferential uncertainty,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03003-x,2023,True,False,False
+"Stable maternal proteins underlie distinct transcriptome, translatome, and proteome reprogramming during mouse oocyte-to-embryo transition",https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02997-8,2023,False,False,False
+ISLET: individual-specific reference panel recovery improves cell-type-specific inference,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03014-8,2023,True,False,False
+Phenome-wide analyses identify an association between the parent-of-origin effects dependent methylome and the rate of aging in humans,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02953-6,2023,False,True,False
+Genomic hallmarks and therapeutic implications of G0 cell cycle arrest in cancer,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02963-4,2023,False,False,False
+Profiling the immune epigenome across global cattle breeds,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02964-3,2023,False,False,False
+Inferring cell-type-specific causal gene regulatory networks during human neurogenesis,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02959-0,2023,False,False,False
+Epiphany: predicting Hi-C contact maps from 1D epigenomic signals,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02934-9,2023,False,False,False
+Engineered circular guide RNAs boost CRISPR/Cas12a- and CRISPR/Cas13d-based DNA and RNA editing,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02992-z,2023,False,False,False
+Transcriptome- and proteome-wide association studies nominate determinants of kidney function and damage,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02993-y,2023,False,True,False
+VarID2 quantifies gene expression noise dynamics and unveils functional heterogeneity of ageing hematopoietic stem cells,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02974-1,2023,False,True,False
+Reading and writing of mRNA m,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02918-9,2023,False,False,False
+Panhematopoietic RNA barcoding enables kinetic measurements of nucleate and anucleate lineages and the activation of myeloid clones following acute platelet depletion,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02976-z,2023,False,True,False
+"DIMPLE: deep insertion, deletion, and missense mutation libraries for exploring protein variation in evolution, disease, and biology",https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02880-6,2023,False,False,False
+The Network Zoo: a multilingual package for the inference and analysis of gene regulatory networks,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02877-1,2023,True,False,False
+An atlas of lamina-associated chromatin across twelve human cell types reveals an intermediate chromatin subtype,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02849-5,2023,False,False,False
+β-actin mediated H3K27ac changes demonstrate the link between compartment switching and enhancer-dependent transcriptional regulation,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02853-9,2023,False,False,False
+"Loss of MLL3/4 decouples enhancer H3K4 monomethylation, H3K27 acetylation, and gene activation during embryonic stem cell differentiation",https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02883-3,2023,True,False,False
+The collateral activity of RfxCas13d can induce lethality in a RfxCas13d knock-in mouse model,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02860-w,2023,False,False,False
+DNA methylation entropy as a measure of stem cell replication and aging,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02866-4,2023,False,True,False
+H3.3 contributes to chromatin accessibility and transcription factor binding at promoter-proximal regulatory elements in embryonic stem cells,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02867-3,2023,False,False,False
+Not1 and Not4 inversely determine mRNA solubility that sets the dynamics of co-translational events,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02871-7,2023,False,False,False
+siVAE: interpretable deep generative models for single-cell transcriptomes,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02850-y,2023,True,False,False
+Parallel evolution of amphioxus and vertebrate small-scale gene duplications,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02808-6,2022,False,True,False
+FixItFelix: improving genomic analysis by fixing reference errors,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02863-7,2023,False,False,False
+Cross-regulome profiling of RNA polymerases highlights the regulatory role of polymerase III on mRNA transcription by maintaining local chromatin architecture,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02812-w,2022,False,False,False
+New roles for AP-1/JUNB in cell cycle control and tumorigenic cell invasion via regulation of cyclin E1 and TGF-β2,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02800-0,2022,False,False,False
+METTL4-mediated nuclear N6-deoxyadenosine methylation promotes metastasis through activating multiple metastasis-inducing targets,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02819-3,2022,False,False,False
+Pan-cancer surveys indicate cell cycle-related roles of primate-specific genes in tumors and embryonic cerebrum,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02821-9,2022,False,False,False
+"Abnormal molecular signatures of inflammation, energy metabolism, and vesicle biology in human Huntington disease peripheral tissues",https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02752-5,2022,True,True,False
+Genomic insights into the evolutionary history and diversification of bulb traits in garlic,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02756-1,2022,False,True,False
+Genetic regulation of RNA splicing in human pancreatic islets,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02757-0,2022,False,True,False
+Widespread false gene gains caused by duplication errors in genome assemblies,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02764-1,2022,False,False,False
+H3K18 lactylation marks tissue-specific active enhancers,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02775-y,2022,True,False,False
+Widespread redundancy in -omics profiles of cancer mutation states,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02705-y,2022,True,True,False
+Global early replication disrupts gene expression and chromatin conformation in a single cell cycle,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02788-7,2022,False,True,False
+Local CpG density affects the trajectory and variance of age-associated DNA methylation changes,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02787-8,2022,True,True,False
+Local euchromatin enrichment in lamina-associated domains anticipates their repositioning in the adipogenic lineage,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02662-6,2022,False,False,False
+Detecting cell-of-origin and cancer-specific methylation features of cell-free DNA from Nanopore sequencing,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02710-1,2022,True,False,False
+mbDenoise: microbiome data denoising using zero-inflated probabilistic principal components analysis,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02657-3,2022,False,False,False
+Comprehensive enhancer-target gene assignments improve gene set level interpretation of genome-wide regulatory data,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02668-0,2022,False,False,False
+Comparative assessment of genes driving cancer and somatic evolution in non-cancer tissues: an update of the Network of Cancer Genes (NCG) resource,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02607-z,2022,True,False,True
+Dynamic 3D genome architecture of cotton fiber reveals subgenome-coordinated chromatin topology for 4-staged single-cell differentiation,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02616-y,2022,False,False,False
+Single-cell isoform analysis in human immune cells,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02615-z,2022,False,False,False
+Quantitative-enhancer-FACS-seq (QeFS) reveals epistatic interactions among motifs within transcriptional enhancers in developing ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02574-x,2021,True,False,False
+: integrative analysis of multimodal single-cell sequencing data,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02556-z,2021,False,True,False
+scDALI: modeling allelic heterogeneity in single cells reveals context-specific genetic regulation,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02593-8,2022,True,False,False
+Diurnal RNAPII-tethered chromatin interactions are associated with rhythmic gene expression in rice,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02594-7,2022,False,False,False
+Network propagation-based prioritization of long tail genes in 17 cancer types,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02504-x,2021,False,False,False
+Kras,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02498-6,2021,False,False,False
+Systematic identification of ACE2 expression modulators reveals cardiomyopathy as a risk factor for mortality in COVID-19 patients,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02589-4,2022,False,False,False
+Surfaceome CRISPR screen identifies OLFML3 as a rhinovirus-inducible IFN antagonist,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02513-w,2021,False,False,False
+Acute depletion of CTCF rewires genome-wide chromatin accessibility,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02466-0,2021,False,False,False
+Functional genomics atlas of synovial fibroblasts defining rheumatoid arthritis heritability,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02460-6,2021,True,True,True
+H2A ubiquitination is essential for Polycomb Repressive Complex 1-mediated gene regulation in ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02476-y,2021,False,False,False
+Introgression among North American wild grapes (,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02467-z,2021,False,False,False
+Systematic functional interrogation of human pseudogenes using CRISPRi,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02464-2,2021,False,False,False
+Megabase-scale presence-absence variation with ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02448-2,2021,False,False,False
+Integrative approach identifies ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02454-4,2021,False,False,False
+Deterministic transition of enterotypes shapes the infant gut microbiome at an early age,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02463-3,2021,False,False,False
+SUPERGNOVA: local genetic correlation analysis reveals heterogeneous etiologic sharing of complex traits,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02478-w,2021,False,True,False
+mbImpute: an accurate and robust imputation method for microbiome data,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02400-4,2021,False,False,False
+The dynamics of ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02410-2,2021,False,False,False
+Regulatory regions in natural transposable element insertions drive interindividual differences in response to immune challenges in ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02471-3,2021,True,False,False
+Coordinated changes in gene expression kinetics underlie both mouse and human erythroid maturation,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02414-y,2021,False,False,True
+A trans locus causes a ribosomopathy in hypertrophic hearts that affects mRNA translation in a protein length-dependent fashion,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02397-w,2021,True,False,False
+Elevated retrotransposon activity and genomic instability in primed pluripotent stem cells,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02417-9,2021,False,False,False
+"Integration of metabolomics, genomics, and immune phenotypes reveals the causal roles of metabolites in disease",https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02413-z,2021,False,True,False
+Telomere-to-telomere assembly of a fish Y chromosome reveals the origin of a young sex chromosome pair,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02430-y,2021,False,False,False
+scSNV: accurate dscRNA-seq SNV co-expression analysis using duplicate tag collapsing,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02364-5,2021,False,False,False
+Genetic and environmental modulation of transposition shapes the evolutionary potential of ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02348-5,2021,False,True,False
+HDAC4 degradation during senescence unleashes an epigenetic program driven by AP-1/p300 at selected enhancers and super-enhancers,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02340-z,2021,False,False,False
+Multi-omic profiling of lung and liver tumor microenvironments of metastatic pancreatic cancer reveals site-specific immune regulatory pathways,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02363-6,2021,True,False,False
+A systematic dissection of the epigenomic heterogeneity of lung adenocarcinoma reveals two different subclasses with distinct prognosis and core regulatory networks,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02376-1,2021,True,False,False
+Characterization of structural variation in Tibetans reveals new evidence of high-altitude adaptation and introgression,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02382-3,2021,False,True,False
+N,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02385-0,2021,False,False,False
+Annotation of snoRNA abundance across human tissues reveals complex snoRNA-host gene relationships,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02391-2,2021,True,False,False
+Highly recurrent ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02375-2,2021,False,False,False
+Impacts of allopolyploidization and structural variation on intraspecific diversification in ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02383-2,2021,False,False,False
+Meta-analysis of genome-wide DNA methylation identifies shared associations across neurodegenerative disorders,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02275-5,2021,False,True,False
+"Dynamics of alternative splicing during somatic cell reprogramming reveals functions for RNA-binding proteins CPSF3, hnRNP UL1, and TIA1",https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02372-5,2021,False,False,False
+Comparative regulomics supports pervasive selection on gene dosage following whole genome duplication,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02323-0,2021,False,False,False
+Identification of X-chromosomal genes that drive sex differences in embryonic stem cells through a hierarchical CRISPR screening approach,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02321-2,2021,True,False,False
+Minimal genome-wide human CRISPR-Cas9 library,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02268-4,2021,True,False,False
+MicroExonator enables systematic discovery and quantification of microexons across mouse embryonic development,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02246-2,2021,False,False,False
+Long-read transcriptome sequencing reveals abundant promoter diversity in distinct molecular subtypes of gastric cancer,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02261-x,2021,False,False,False
+SuperTAD: robust detection of hierarchical topologically associated domains with optimized structural information,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02234-6,2021,True,False,False
+STARRPeaker: uniform processing and accurate identification of STARR-seq active regions,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02194-x,2020,True,True,False
+Determinants of ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02209-7,2020,True,False,False
+Convergent network effects along the axis of gene expression during prostate cancer progression,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02188-9,2020,False,False,False
+Functional and genetic markers of niche partitioning among enigmatic members of the human oral microbiome,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02195-w,2020,False,False,False
+A comprehensive enhancer screen identifies TRAM2 as a key and novel mediator of YAP oncogenesis,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02272-8,2021,True,True,False
+Genome-wide association study implicates novel loci and reveals candidate effector genes for longitudinal pediatric bone accrual,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02207-9,2021,False,True,False
+Integrated genomic and transcriptomic analysis reveals unique characteristics of hepatic metastases and pro-metastatic role of complement C1q in pancreatic ductal adenocarcinoma,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02222-w,2021,False,False,False
+Histone modifications during the life cycle of the brown alga ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02216-8,2021,False,False,False
+Genome structure variation analyses of peach reveal population dynamics and a 1.67 Mb causal inversion for fruit shape,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02239-1,2021,False,True,False
+Comprehensive integrative profiling of upper tract urothelial carcinomas,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02230-w,2021,False,False,False
+Disome-seq reveals widespread ribosome collisions that promote cotranslational protein folding,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02256-0,2021,False,False,False
+A vast resource of allelic expression data spanning human tissues,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02122-z,2020,True,False,False
+Chromatin regulates expression of small RNAs to help maintain transposon methylome homeostasis in Arabidopsis,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02163-4,2020,False,False,False
+An integrated multi-omics approach to identify regulatory mechanisms in cancer metastatic processes,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02213-x,2021,False,True,False
+Tissue-specific usage of transposable element-derived promoters in mouse development,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02164-3,2020,False,False,False
+A genome assembly and the somatic genetic and epigenetic mutation rate in a wild long-lived perennial ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02162-5,2020,True,False,False
+AlphaBeta: computational inference of epimutation rates and spectra from high-throughput DNA methylation data in plants,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02161-6,2020,False,False,False
+Integrative analyses of single-cell transcriptome and regulome using MAESTRO,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02116-x,2020,False,False,False
+An evolutionary driver of interspersed segmental duplications in primates,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02074-4,2020,False,True,False
+The RNA-binding protein SERBP1 functions as a novel oncogenic factor in glioblastoma by bridging cancer metabolism and epigenetic regulation,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02115-y,2020,True,True,False
+3DeFDR: statistical methods for identifying cell type-specific looping interactions in 5C and Hi-C data,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02061-9,2020,True,False,False
+Genome-wide identification of genes regulating DNA methylation using genetic anchors for causal inference,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02114-z,2020,True,True,False
+Improved reference genome of the arboviral vector ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02141-w,2020,False,False,False
+Removal of H2Aub1 by ubiquitin-specific proteases 12 and 13 is required for stable Polycomb-mediated gene repression in ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02062-8,2020,False,True,False
+"A novel antiviral lncRNA, EDAL, shields a T309 ",https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02150-9,2020,False,False,False
+KAML: improving genomic prediction accuracy of complex traits using machine learning determined parameters,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02052-w,2020,False,False,False
+Repeat-induced point mutation in ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02060-w,2020,False,False,False
+Identification of cell type-specific methylation signals in bulk whole genome bisulfite sequencing data,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02065-5,2020,False,False,False
+Allele-specific DNA methylation is increased in cancers and its dense mapping in normal plus neoplastic cells increases the yield of disease-associated regulatory SNPs,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02059-3,2020,True,True,False
+Influenza infection elicits an expansion of gut population of endogenous ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02007-1,2020,True,False,False
+Genome-wide studies reveal the essential and opposite roles of ARID1A in controlling human cardiogenesis and neurogenesis from pluripotent stem cells,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02082-4,2020,True,False,False
+Sampling time-dependent artifacts in single-cell genomics studies,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02032-0,2020,False,False,False
+tappAS: a comprehensive computational framework for the analysis of the functional impact of differential splicing,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02028-w,2020,True,False,False
+Carnelian uncovers hidden functional patterns across diverse study populations from whole metagenome sequencing reads,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-1933-7,2020,True,False,False
+APEC: an accesson-based method for single-cell chromatin accessibility analysis,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02034-y,2020,False,False,False
+Allosteric inhibition of CRISPR-Cas9 by bacteriophage-derived peptides,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-01956-x,2020,False,False,False
+A rare codon-based translational program of cell proliferation,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-1943-5,2020,True,False,False
+Regenerating zebrafish fin epigenome is characterized by stable lineage-specific DNA methylation and dynamic chromatin accessibility,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-1948-0,2020,False,False,False
+gscreend: modelling asymmetric count ratios in CRISPR screens to decrease experiment size and improve phenotype detection,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-1939-1,2020,False,False,False
+Longitudinal survey of microbiome associated with particulate matter in a megacity,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-01964-x,2020,False,False,False
+RNA structural dynamics regulate early embryogenesis through controlling transcriptome fate and function,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02022-2,2020,False,False,False
+Non-coding RNAs underlie genetic predisposition to breast cancer,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1876-z,2020,False,False,False
+Chromatin interactome mapping at 139 independent breast cancer risk signals,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1877-y,2020,False,False,False
+Enteric infection induces Lark-mediated intron retention at the 5′ end of ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1918-6,2020,True,True,False
+-regulatory variation modulates susceptibility to enteric infection in the ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1912-z,2020,True,False,False
+Performance difference of graph-based and alignment-based hybrid error correction methods for error-prone long reads,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1885-y,2020,False,False,False
+CHROMATIX: computing the functional landscape of many-body chromatin interactions in transcriptionally active loci from deconvolved single cells,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1904-z,2020,False,False,False
+Co-opted transposons help perpetuate conserved higher-order chromosomal structures,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1916-8,2020,False,True,False
+From reads to insight: a hitchhiker’s guide to ATAC-seq data analysis,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-1929-3,2020,False,False,False
+CUBIC: an atlas of genetic architecture promises directed maize improvement,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-1930-x,2020,False,True,False
+Systematic functional identification of cancer multi-drug resistance genes,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-1940-8,2020,False,False,False
+Smarcad1 mediates microbiota-induced inflammation in mouse and coordinates gene expression in the intestinal epithelium,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-01976-7,2020,True,False,False
+BANDITS: Bayesian differential splicing accounting for sample-to-sample variability and mapping uncertainty,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-01967-8,2020,True,False,False
+TADsplimer reveals splits and mergers of topologically associating domains for epigenetic regulation of transcription,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-01992-7,2020,True,False,False
+A multidimensional systems biology analysis of cellular senescence in aging and disease,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-01990-9,2020,True,True,False
+CRISPRi-based radiation modifier screen identifies long non-coding RNA therapeutic targets in glioma,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-01995-4,2020,False,False,False
+Leveraging biological and statistical covariates improves the detection power in epigenome-wide association testing,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02001-7,2020,True,True,False
+scATAC-pro: a comprehensive workbench for single-cell chromatin accessibility sequencing data,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02008-0,2020,False,False,False
+Lifestyle and the presence of helminths is associated with gut microbiome composition in Cameroonians,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02020-4,2020,True,True,False
+The preceding root system drives the composition and function of the rhizosphere microbiome,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-01999-0,2020,True,False,False
+Principles of RNA processing from analysis of enhanced CLIP maps for 150 RNA binding proteins,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-01982-9,2020,False,True,False
+Personalized and graph genomes reveal missing signal in epigenomic data,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02038-8,2020,False,False,False
+Systematic assessment of tissue dissociation and storage biases in single-cell and single-nucleus RNA-seq workflows,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02048-6,2020,True,False,False
+Analysis of 1321 ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02042-y,2020,True,True,False
+Direct-seq: programmed gRNA scaffold for streamlined scRNA-seq in CRISPR screen,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02044-w,2020,False,False,False
+Approaches for integrating heterogeneous RNA-seq data reveal cross-talk between microbes and genes in asthmatic patients,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02033-z,2020,False,False,False
+Differential chromatin accessibility landscape reveals structural and functional features of the allopolyploid wheat chromosomes,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02093-1,2020,False,False,False
+ mutagenesis and exome sequencing identify genetic driver landscapes and potential therapeutic targets of ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02092-2,2020,True,True,False
+Population variation in miRNAs and isomiRs and their impact on human immunity to infection,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02098-w,2020,True,False,False
+DNA methylation repels binding of hypoxia-inducible transcription factors to maintain tumor immunotolerance,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02087-z,2020,False,False,False
+Insulator-based loops mediate the spreading of H3K27me3 over distant micro-domains repressing euchromatin genes,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02106-z,2020,False,False,False
+The ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02081-5,2020,False,True,False
+1200 high-quality metagenome-assembled genomes from the rumen of African cattle and their relevance in the context of sub-optimal feeding,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02144-7,2020,True,False,False
+EPISCORE: cell type deconvolution of bulk tissue DNA methylomes from single-cell RNA-Seq data,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02126-9,2020,True,False,False
+"STARR-seq identifies active, chromatin-masked, and dormant enhancers in pluripotent mouse embryonic stem cells",https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02156-3,2020,True,False,False
+Natural display of nuclear-encoded RNA on the cell surface and its impact on cell interaction,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02145-6,2020,True,True,False
+COCOA: coordinate covariation analysis of epigenetic heterogeneity,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02139-4,2020,True,True,False
+Clonal tracing reveals diverse patterns of response to immune checkpoint blockade,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02166-1,2020,True,True,False
+Multiplex enCas12a screens detect functional buffering among paralogs otherwise masked in monogenic Cas9 knockout screens,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02173-2,2020,False,False,False
+High throughput single-cell detection of multiplex CRISPR-edited gene modifications,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02174-1,2020,False,False,False
+Multiomics profiling of primary lung cancers and distant metastases reveals immunosuppression as a common characteristic of tumor cells with metastatic plasticity,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02175-0,2020,False,False,False
+RNA editing in cancer impacts mRNA abundance in immune response pathways,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02171-4,2020,False,False,True
+Cis-acting lnc-eRNA SEELA directly binds histone H4 to promote histone recognition and leukemia progression,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02186-x,2020,False,False,False
+Deep sequencing reveals a DAP1 regulatory haplotype that potentiates autoimmunity in systemic lupus erythematosus,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02184-z,2020,False,False,False
+A novel protein encoded by circular SMO RNA is essential for Hedgehog signaling activation and glioblastoma tumorigenicity,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02250-6,2021,False,False,False
+High-resolution analysis of cell-state transitions in yeast suggests widespread transcriptional tuning by alternative starts,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02245-3,2021,False,False,False
+MethylationToActivity: a deep-learning framework that reveals promoter activity landscapes from DNA methylomes in individual tumors,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02220-y,2021,False,False,False
+Pluripotent stem cell-derived models of neurological diseases reveal early transcriptional heterogeneity,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02301-6,2021,True,False,False
+Histone lactylation drives oncogenesis by facilitating m,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02308-z,2021,False,False,False
+Cotton pan-genome retrieves the lost sequences and genes during domestication and selection,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02351-w,2021,False,False,False
+Ten-eleven translocation protein 1 modulates medulloblastoma progression,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02352-9,2021,False,False,False
+Role of epigenetics in unicellular to multicellular transition in ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02360-9,2021,False,False,False
+Genetic impacts on DNA methylation: research findings and future perspectives,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02347-6,2021,False,True,False
+Gene set enrichment analysis for genome-wide DNA methylation data,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02388-x,2021,True,False,False
+Chromosome-level genome assembly of a regenerable maize inbred line A188,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02396-x,2021,False,False,False
+The global and promoter-centric 3D genome organization temporally resolved during a circadian cycle,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02374-3,2021,False,False,False
+LIQA: long-read isoform quantification and analysis,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02399-8,2021,False,False,False
+Positive natural selection of N6-methyladenosine on the RNAs of processed pseudogenes,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02402-2,2021,False,False,False
+Roles of TET and TDG in DNA demethylation in proliferating and non-proliferating immune cells,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02384-1,2021,False,False,False
+Detection of cell-free microbial DNA using a contaminant-controlled analysis framework,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02401-3,2021,False,False,False
+Genomic diversity and ecology of human-associated ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02427-7,2021,True,False,False
+STRONG: metagenomics strain resolution on assembly graphs,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02419-7,2021,False,False,False
+The genetic architecture of temperature adaptation is shaped by population ancestry and not by selection regime,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02425-9,2021,True,False,False
+Functional and genetic determinants of mutation rate variability in regulatory elements of cancer genomes,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02318-x,2021,True,False,False
+Dissecting indirect genetic effects from peers in laboratory mice,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02415-x,2021,False,True,True
+MAAPER: model-based analysis of alternative polyadenylation using 3′ end-linked reads,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02429-5,2021,False,False,False
+"Time-dependent effect of 1,6-hexanediol on biomolecular condensates and 3D chromatin organization",https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02455-3,2021,False,False,False
+Retrotransposons as pathogenicity factors of the plant pathogenic fungus ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02446-4,2021,False,False,False
+MultiK: an automated tool to determine optimal cluster numbers in single-cell RNA sequencing data,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02445-5,2021,False,True,False
+Chromatin lncRNA ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02444-6,2021,False,True,False
+The influence of the gut microbiome on BCG-induced trained immunity,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02482-0,2021,True,False,False
+ACE: a probabilistic model for characterizing gene-level essentiality in CRISPR screens,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02491-z,2021,False,True,False
+"Genomic insight into balancing high yield, good quality, and blast resistance of ",https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02488-8,2021,False,True,False
+Differential regulation of mRNA fate by the human Ccr4-Not complex is driven by coding sequence composition and mRNA localization,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02494-w,2021,True,False,False
+Comprehensive characterization of single-cell full-length isoforms in human and mouse with long-read sequencing,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02525-6,2021,False,False,False
+ATRX regulates glial identity and the tumor microenvironment in IDH-mutant glioma,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02535-4,2021,False,False,False
+Transcriptional landscape of highly lignified poplar stems at single-cell resolution,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02537-2,2021,True,False,False
+Resequencing of 388 cassava accessions identifies valuable loci and selection for variation in heterozygosity,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02524-7,2021,False,False,False
+NMD abnormalities during brain development in the ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02530-9,2021,False,True,False
+Using synthetic chromosome controls to evaluate the sequencing of difficult regions within the human genome,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02579-6,2022,False,False,False
+Genome-wide analysis and functional annotation of chromatin-enriched noncoding RNAs in rice during somatic cell regeneration,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02608-y,2022,False,False,False
+Comparison and evaluation of statistical error models for scRNA-seq,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-021-02584-9,2022,False,False,False
+Small RNAs mediate transgenerational inheritance of genome-wide ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02614-0,2022,False,False,False
+IDEAS: individual level differential expression analysis for single-cell RNA-seq data,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02605-1,2022,False,False,False
+Open chromatin interaction maps reveal functional regulatory elements and chromatin architecture variations during wheat evolution,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02611-3,2022,False,False,False
+Placental methylome reveals a 22q13.33 brain regulatory gene locus associated with autism,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02613-1,2022,False,False,False
+Genetic variation at mouse and human ribosomal DNA influences associated epigenetic states,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02617-x,2022,False,False,False
+Genomic variations and epigenomic landscape of the Medaka Inbred Kiyosu-Karlsruhe (MIKK) panel,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02602-4,2022,True,False,False
+Susceptibility to hormone-mediated cancer is reflected by different tick rates of the epithelial and general epigenetic clock,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02603-3,2022,False,False,False
+The Medaka Inbred Kiyosu-Karlsruhe (MIKK) panel,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02623-z,2022,True,False,False
+HyperChIP: identification of hypervariable signals across ChIP-seq or ATAC-seq samples,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02627-9,2022,True,False,False
+Allele-specific expression reveals genes with recurrent cis-regulatory alterations in high-risk neuroblastoma,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02640-y,2022,True,False,False
+Comprehensive assessment of differential ChIP-seq tools guides optimal algorithm selection,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02686-y,2022,False,False,True
+Interspecific hybridization in tomato influences endogenous viral sRNAs and alters gene expression,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02685-z,2022,False,False,False
+Dissection of multiple sclerosis genetics identifies B and CD4+ T cells as driver cell subsets,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02694-y,2022,False,True,False
+3D genome organization in the epithelial-mesenchymal transition spectrum,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02687-x,2022,False,False,False
+Open problems in human trait genetics,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02697-9,2022,False,True,False
+Implicating effector genes at COVID-19 GWAS loci using promoter-focused Capture-C in disease-relevant immune cell types,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02691-1,2022,False,False,False
+Large-scale manipulation of promoter DNA methylation reveals context-specific transcriptional responses and stability,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02728-5,2022,False,True,False
+Virtual ChIP-seq: predicting transcription factor binding by learning from the transcriptome,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02690-2,2022,False,False,False
+Target residence of Cas9-sgRNA influences DNA double-strand break repair pathway choices in CRISPR/Cas9 genome editing,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02736-5,2022,False,False,False
+Methylome decoding of RdDM-mediated reprogramming effects in the Arabidopsis MSH1 system,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02731-w,2022,False,False,False
+Human dyskerin binds to cytoplasmic H/ACA-box-containing transcripts affecting nuclear hormone receptor dependence,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02746-3,2022,True,False,False
+CTCF and cohesin promote focal detachment of DNA from the nuclear lamina,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02754-3,2022,False,False,False
+The Arabidopsis ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02750-7,2022,False,False,False
+Comparative transcriptome in large-scale human and cattle populations,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02745-4,2022,True,True,True
+Normalization and de-noising of single-cell Hi-C data with BandNorm and scVI-3D,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02774-z,2022,True,False,False
+Replication stress generates distinctive landscapes of DNA copy number alterations and chromosome scale losses,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02781-0,2022,False,False,False
+The landscape of hervRNAs transcribed from human endogenous retroviruses across human body sites,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02804-w,2022,True,False,False
+Deciphering the impact of genetic variation on human polyadenylation using APARENT2,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02799-4,2022,False,False,False
+Folliculin-interacting protein FNIP2 impacts on overweight and obesity through a polymorphism in a conserved 3′ untranslated region,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02798-5,2022,False,True,False
+G-quadruplexes sense natural porphyrin metabolites for regulation of gene transcription and chromatin landscapes,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02830-8,2022,False,False,False
+Comprehensive transcriptional variability analysis reveals gene networks regulating seed oil content of ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02801-z,2022,False,False,False
+"Implicating genes, pleiotropy, and sexual dimorphism at blood lipid loci through multi-ancestry meta-analysis",https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02837-1,2022,False,True,False
+Single-cell transcriptomics unveils xylem cell development and evolution,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02845-1,2023,True,True,False
+Canalization of genome-wide transcriptional activity in ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02833-5,2022,False,False,False
+Dynamic chromatin regulatory programs during embryogenesis of hexaploid wheat,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02844-2,2023,False,False,False
+Pan-3D genome analysis reveals structural and functional differentiation of soybean genomes,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02854-8,2023,False,False,False
+Using protein-per-mRNA differences among human tissues in codon optimization,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02868-2,2023,False,True,False
+The genetic and evolutionary basis of gene expression variation in East Africans,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02874-4,2023,True,False,False
+Multi-omics analysis identifies drivers of protein phosphorylation,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02892-2,2023,True,False,False
+CRISPR screens identify gene targets at breast cancer risk loci,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02898-w,2023,False,False,False
+A role for heritable transcriptomic variation in maize adaptation to temperate environments,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02891-3,2023,True,True,False
+BIND&MODIFY: a long-range method for single-molecule mapping of chromatin modifications in eukaryotes,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02896-y,2023,False,False,False
+satmut_utils: a simulation and variant calling package for multiplexed assays of variant effect,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02922-z,2023,False,False,False
+Identification of genetic variants that impact gene co-expression relationships using large-scale single-cell data,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02897-x,2023,False,True,False
+YY1 lactylation in microglia promotes angiogenesis through transcription activation-mediated upregulation of FGF2,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02931-y,2023,False,True,False
+NSD2 E1099K drives relapse in pediatric acute lymphoblastic leukemia by disrupting 3D chromatin organization,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02905-0,2023,False,False,False
+pycoMeth: a toolbox for differential methylation testing from Nanopore methylation calls,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02917-w,2023,True,False,False
+Combining different CRISPR nucleases for simultaneous knock-in and base editing prevents translocations in multiplex-edited CAR T cells,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02928-7,2023,False,False,False
+A desert lncRNA ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02925-w,2023,False,False,False
+Caloric restriction remodels the hepatic chromatin landscape and bile acid metabolism by modulating the gut microbiota,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02938-5,2023,False,False,False
+MORC proteins regulate transcription factor binding by mediating chromatin compaction in active chromatin regions,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02939-4,2023,False,False,False
+Inversion polymorphism in a complete human genome assembly,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02919-8,2023,False,True,True
+Boosting genome editing efficiency in human cells and plants with novel LbCas12a variants,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02929-6,2023,False,False,False
+Modeling group heteroscedasticity in single-cell RNA-seq pseudo-bulk data,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02949-2,2023,False,False,False
+DDM1-mediated gene body DNA methylation is associated with inducible activation of defense-related genes in ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02952-7,2023,False,False,False
+Hybrid allele-specific ChIP-seq analysis identifies variation in brassinosteroid-responsive transcription factor binding linked to traits in maize,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-02909-w,2023,False,True,False
+3D organization of regulatory elements for transcriptional regulation in ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03018-4,2023,False,False,False
+Towards in silico CLIP-seq: predicting protein-RNA interaction via sequence-to-signal learning,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03015-7,2023,True,False,False
+"Genome sequencing of 2000 canids by the Dog10K consortium advances the understanding of demography, genome function and architecture",https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03023-7,2023,False,True,False
+Maast: genotyping thousands of microbial strains efficiently,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03030-8,2023,False,False,False
+LAST-seq: single-cell RNA sequencing by direct amplification of single-stranded RNA without prior reverse transcription and second-strand synthesis,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03025-5,2023,False,False,False
+Pervasive under-dominance in gene expression underlying emergent growth trajectories in ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03043-3,2023,False,True,False
+Single-cell resolution analysis reveals the preparation for reprogramming the fate of stem cell niche in cotton lateral meristem,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03032-6,2023,False,False,False
+Correcting batch effects in large-scale multiomics studies using a reference-material-based ratio method,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03047-z,2023,False,False,False
+Cross-species oncogenomics offers insight into human muscle-invasive bladder cancer,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03026-4,2023,False,False,False
+Single-cell transcriptomics reveals multiple chemoresistant properties in leukemic stem and progenitor cells in pediatric AML,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03031-7,2023,False,False,False
+ZINBMM: a general mixture model for simultaneous clustering and gene selection using single-cell transcriptomic data,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03046-0,2023,False,False,False
+Dosage compensation of Z sex chromosome genes in avian fibroblast cells,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03055-z,2023,False,False,False
+In-organoid single-cell CRISPR screening reveals determinants of hepatocyte differentiation and maturation,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03084-8,2023,True,True,False
+A loss-of-function mutation in human ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03037-1,2023,False,False,False
+Landscape of enhancer disruption and functional screen in melanoma cells,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03087-5,2023,False,False,False
+Statistical learning quantifies transposable element-mediated ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03085-7,2023,True,False,False
+A genome catalog of the early-life human skin microbiome,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03090-w,2023,False,True,False
+Dissecting the autism-associated 16p11.2 locus identifies multiple drivers in neuroanatomical phenotypes and unveils a male-specific role for the major vault protein,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03092-8,2023,False,False,False
+Multi-omics analysis reveals the molecular response to heat stress in a “red tide” dinoflagellate,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03107-4,2023,False,False,False
+Turnover of strain-level diversity modulates functional traits in the honeybee gut microbiome between nurses and foragers,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03131-4,2023,False,False,False
+DNA methylation modulated genetic variant effect on gene transcriptional regulation,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03130-5,2023,False,False,False
+Challenges and opportunities to computationally deconvolve heterogeneous tissue with varying cell sizes using single-cell RNA-sequencing datasets,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03123-4,2023,False,False,False
+Niche-DE: niche-differential gene expression analysis in spatial transcriptomics data identifies context-dependent cell-cell interactions,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03159-6,2024,True,False,False
+RNA-binding protein RBM5 plays an essential role in acute myeloid leukemia by activating the oncogenic protein HOXA9,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03149-8,2024,False,False,False
+Modeling methyl-sensitive transcription factor motifs with an expanded epigenetic alphabet,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03070-0,2024,False,False,False
+scSNV-seq: high-throughput phenotyping of single nucleotide variants by coupled single-cell genotyping and transcriptomics,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03169-y,2024,False,False,True
+"ARMC5 controls the degradation of most Pol II subunits, and ARMC5 mutation increases neural tube defect risks in mice and humans",https://genomebiology.biomedcentral.com/articles/10.1186/s13059-023-03147-w,2024,True,True,False
+"IDHwt glioblastomas can be stratified by their transcriptional response to standard treatment, with implications for targeted therapy",https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03172-3,2024,False,False,False
+Chromatin activity identifies differential gene regulation across human ancestries,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03165-2,2024,False,True,False
+HiHo-AID2: boosting homozygous knock-in efficiency enables robust generation of human auxin-inducible degron cells,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03187-w,2024,False,False,False
+Early-life ruminal microbiome-derived indole-3-carboxaldehyde and prostaglandin D2 are effective promoters of rumen development,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03205-x,2024,False,False,False
+Liquid–liquid phase separation of H3K27me3 reader BP1 regulates transcriptional repression,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03209-7,2024,False,False,False
+FixNCut: single-cell genomics through reversible tissue fixation and dissociation,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03219-5,2024,False,False,False
+Seven-chain adaptive immune receptor repertoire analysis in rheumatoid arthritis reveals novel features associated with disease and clinically relevant phenotypes,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03210-0,2024,False,False,False
+Powerful and accurate detection of temporal gene expression patterns from multi-sample multi-stage single-cell transcriptomics data with TDEseq,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03237-3,2024,True,False,False
+"RBM22 regulates RNA polymerase II 5′ pausing, elongation rate, and termination by coordinating 7SK-P-TEFb complex and SPT5",https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03242-6,2024,False,False,False
+: improvement in droplet assignment by integrating multiple single-cell demultiplexing and doublet detection methods,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03224-8,2024,False,False,False
+Ki-67 is necessary during DNA replication for fork protection and genome stability,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03243-5,2024,False,False,False
+Kernel-based testing for single-cell differential analysis,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03255-1,2024,True,True,True
+Disruption of metazoan gene regulatory networks in cancer alters the balance of co-expression between genes of unicellular and multicellular origins,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03247-1,2024,False,False,False
+EmptyDropsMultiome discriminates real cells from background in single-cell multiomics assays,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03259-x,2024,True,False,False
+DNA methylation variations underlie lettuce domestication and divergence,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03310-x,2024,True,False,False
+CpG island turnover events predict evolutionary changes in enhancer activity,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03300-z,2024,True,False,False
+Alternative splicing coupled to nonsense-mediated decay coordinates downregulation of non-neuronal genes in developing mouse neurons,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03305-8,2024,True,False,False
+A benchmark of computational methods for correcting biases of established and unknown origin in CRISPR-Cas9 screening data,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03336-1,2024,False,False,False
+Non-coding variants impact ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03333-4,2024,True,False,False
+Single-cell decoding of drug induced transcriptomic reprogramming in triple negative breast cancers,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03318-3,2024,False,False,False
+N6-methyladenosine writer METTL16-mediated alternative splicing and translation control are essential for murine spermatogenesis,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03332-5,2024,False,False,False
+"scCross: a deep generative model for unifying single-cell multi-omics with seamless integration, cross-modal generation, and in silico exploration",https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03338-z,2024,False,False,False
+Annelid methylomes reveal ancestral developmental and aging-associated epigenetic erosion across Bilateria,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03346-z,2024,False,False,False
+Transcriptional and epigenetic characterization of a new in vitro platform to model the formation of human pharyngeal endoderm,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03354-z,2024,False,False,False
+A dynamic regulome of shoot-apical-meristem-related homeobox transcription factors modulates plant architecture in maize,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03391-8,2024,False,False,False
+Recruitment of the m,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03392-7,2024,False,False,False
+Massive detection of cryptic recessive genetic defects in dairy cattle mining millions of life histories,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03384-7,2024,False,True,False
+In vivo perturb-seq of cancer and microenvironment cells dissects oncologic drivers and radiotherapy responses in glioblastoma,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03404-6,2024,False,False,False
+DEMINING: A deep learning model embedded framework to distinguish RNA editing from DNA mutations in RNA sequencing data,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03397-2,2024,True,False,False
+Drought-responsive dynamics of H3K9ac-marked 3D chromatin interactions are integrated by OsbZIP23-associated super-enhancer-like promoter regions in rice,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03408-2,2024,False,False,False
+zMAP toolset: model-based analysis of large-scale proteomic data via a variance stabilizing ,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03382-9,2024,True,True,False
+Spatiotemporal modeling reveals high-resolution invasion states in glioblastoma,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03407-3,2024,True,False,False
+Increased spatial coupling of integrin and collagen IV in the immunoresistant clear-cell renal-cell carcinoma tumor microenvironment,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03435-z,2024,True,False,True
+Transcriptional regulatory network reveals key transcription factors for regulating agronomic traits in soybean,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03454-w,2024,False,False,False
+Multi-omics approaches reveal that diffuse midline gliomas present altered DNA replication and are susceptible to replication stress therapy,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03460-y,2024,False,False,False
+MAAT: a new nonparametric Bayesian framework for incorporating multiple functional annotations in transcriptome-wide association studies,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-025-03485-x,2025,False,True,False
+HIPSD&R-seq enables scalable genomic copy number and transcriptome profiling,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03450-0,2024,False,False,False
+Multi-omics analysis in primary T cells elucidates mechanisms behind disease-associated genetic loci,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-025-03492-y,2025,False,False,False
+CENP-A/CENP-B uncoupling in the evolutionary reshuffling of centromeres in equids,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-025-03490-0,2025,False,False,False
+Transposable elements may enhance antiviral resistance in HIV-1 elite controllers,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-025-03484-y,2025,False,True,False
+Digital sequencing is improved by using structured unique molecular identifiers,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-025-03504-x,2025,False,False,False
+CTCF is selectively required for maintaining chromatin accessibility and gene expression in human erythropoiesis,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-025-03510-z,2025,False,False,False
+Genome-wide CRISPR guide RNA design and specificity analysis with GuideScan2,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-025-03488-8,2025,False,False,False
+Admixture as a source for HLA variation in Neolithic European farming communities,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-025-03509-6,2025,False,False,False
+Cross-species imputation and comparison of single-cell transcriptomic profiles,https://genomebiology.biomedcentral.com/articles/10.1186/s13059-025-03493-x,2025,False,False,False
