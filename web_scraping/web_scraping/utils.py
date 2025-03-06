@@ -27,10 +27,10 @@ def parse_article(response):
     article_text = title + " " + abstract + " " + full_text
     article_text_lower = article_text.lower()
 
-    methylation_keywords = ["methylation", "epigenetic", "epigenomic", "dna methylation", "illumina"]
+    methylation_keywords = ["methylation", "epigenetic", "epigenomic", "illumina"]
 
     stat_test_keywords = ["statistical test", "t-test", "t test", "anova", "wilcoxon", "kruskal-wallis",
-                          "kruskal wallis", "hypothesis test", "chi square", "log rank test", "p-value", "p value",
+                          "kruskal wallis", "hypothesis test", "log rank test", "p-value", "p value",
                           "f-test", "f test", "chi-square", "chi square", "log-rank test", "log rank test",
                           "cox regression"]
 
