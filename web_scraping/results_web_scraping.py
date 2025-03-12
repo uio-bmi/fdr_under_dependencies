@@ -1,43 +1,38 @@
 import pandas as pd
 
-output_bmc_genomics = pd.read_csv("results/output_bmc_genomics.csv")
-output_bmc_genomics = output_bmc_genomics[output_bmc_genomics["mentions_bh"] + output_bmc_genomics["mentions_bonferroni"] + output_bmc_genomics["mentions_by"] <= 1]
-output_clinical_epigenetics = pd.read_csv("results/output_clinical_epigenetics.csv")
-output_clinical_epigenetics = output_clinical_epigenetics[output_clinical_epigenetics["mentions_bh"] + output_clinical_epigenetics["mentions_bonferroni"] + output_clinical_epigenetics["mentions_by"] <= 1]
-output_genome_biology = pd.read_csv("results/output_genome_biology.csv")
-output_genome_biology = output_genome_biology[output_genome_biology["mentions_bh"] + output_genome_biology["mentions_bonferroni"] + output_genome_biology["mentions_by"] <= 1]
-
-print("Ratio of articles mentioning BH in BMC Genomics:", output_bmc_genomics["mentions_bh"].mean())
-print("Ratio of articles mentioning BH in Clinical Epigenetics:", output_clinical_epigenetics["mentions_bh"].mean())
-print("Ratio of articles mentioning BH in Genome Biology:", output_genome_biology["mentions_bh"].mean())
-print("\n")
-
-print("Ratio of articles mentioning Bonferroni in BMC Genomics:", output_bmc_genomics["mentions_bonferroni"].mean())
-print("Ratio of articles mentioning Bonferroni in Clinical Epigenetics:", output_clinical_epigenetics["mentions_bonferroni"].mean())
-print("Ratio of articles mentioning Bonferroni in Genome Biology:", output_genome_biology["mentions_bonferroni"].mean())
-print("\n")
-
-print("Ratio of articles mentioning Benjamini-Yekutieli in BMC Genomics:", output_bmc_genomics["mentions_by"].mean())
-print("Ratio of articles mentioning Benjamini-Yekutieli in Clinical Epigenetics:", output_clinical_epigenetics["mentions_by"].mean())
-print("Ratio of articles mentioning Benjamini-Yekutieli in Genome Biology:", output_genome_biology["mentions_by"].mean())
-print("\n")
-
-results = {
-    "BMC Genomics": {
-        "BH": output_bmc_genomics["mentions_bh"].mean(),
-        "Bonferroni": output_bmc_genomics["mentions_bonferroni"].mean(),
-        "BY": output_bmc_genomics["mentions_by"].mean(),
-    },
-    "Clinical Epigenetics": {
-        "BH": output_clinical_epigenetics["mentions_bh"].mean(),
-        "Bonferroni": output_clinical_epigenetics["mentions_bonferroni"].mean(),
-        "BY": output_clinical_epigenetics["mentions_by"].mean(),
-    },
-    "Genome Biology": {
-        "BH": output_genome_biology["mentions_bh"].mean(),
-        "Bonferroni": output_genome_biology["mentions_bonferroni"].mean(),
-        "BY": output_genome_biology["mentions_by"].mean(),
-    },
+file_paths = {
+    "BMC Genomics": "results/bmc_genomics.csv",
+    "Clinical Epigenetics": "results/clinical_epigenetics.csv",
+    "Genome Biology": "results/genome_biology.csv"
 }
 
-pd.DataFrame(results).to_csv("results/method_usage_ratios.csv")
+results = {}
+
+for journal, path in file_paths.items():
+    df = pd.read_csv(path)
+
+    methylation_count = df["mentions_methylation"].sum()
+    stat_test_and_correction_count = ((df["mentions_methylation"] == 1) & (df["mentions_stat_test"] == 1) & (df["mentions_multiple_correction"] == 1)).sum()
+
+    df_filtered = df[(df["mentions_methylation"] == 1) & (df["mentions_stat_test"] == 1) & (df["mentions_multiple_correction"] == 1)]
+    mentions_count = df_filtered[["mentions_bh", "mentions_bonferroni", "mentions_by"]].sum(axis=1)
+    df_single_mention = df_filtered[mentions_count == 1]
+
+    results[journal] = {
+        "Benjamini-Hochberg (%)": round((df_single_mention["mentions_bh"].sum() / len(df_filtered)) * 100, 2),
+        "Benjamini-Hochberg (Count)": df_single_mention["mentions_bh"].sum(),
+        "Bonferroni (%)": round((df_single_mention["mentions_bonferroni"].sum() / len(df_filtered)) * 100, 2),
+        "Bonferroni (Count)": df_single_mention["mentions_bonferroni"].sum(),
+        "Benjamini-Yekutieli (%)": round((df_single_mention["mentions_by"].sum() / len(df_filtered)) * 100, 2),
+        "Benjamini-Yekutieli (Count)": df_single_mention["mentions_by"].sum(),
+        "More than one method (%)": round((mentions_count > 1).mean() * 100, 2),
+        "More than one method (Count)": (mentions_count > 1).sum(),
+        "None (%)": round((mentions_count == 0).mean() * 100, 2),
+        "None (Count)": (mentions_count == 0).sum(),
+        "Mentions Methylation (Count)": methylation_count,
+        "Mentions Stat Test & Correction (Count)": stat_test_and_correction_count
+    }
+
+results_df = pd.DataFrame.from_dict(results, orient="index")
+
+pd.DataFrame(results_df).to_csv("results/method_usage_ratios.csv")
