@@ -24,35 +24,40 @@ def parse_article(response):
     if publication_year < 2020:
         return
 
-    article_text = title + " " + abstract + " " + full_text
+    article_title_abstract = title + " " + abstract
+    article_title_abstract_lower = article_title_abstract.lower()
+    article_text = abstract + " " + full_text
     article_text_lower = article_text.lower()
 
-    methylation_keywords = ["methylation", "epigenetic", "epigenomic", "illumina"]
+    methylation_keywords = ["methylation", "epigenetic", "epigenomic"]
 
     stat_test_keywords = ["statistical test", "t-test", "t test", "anova", "wilcoxon", "kruskal-wallis",
-                          "kruskal wallis", "hypothesis test", "log rank test", "p-value", "p value",
-                          "f-test", "f test", "chi-square", "chi square", "log-rank test", "log rank test",
-                          "cox regression"]
+                          "kruskal wallis", "mann–whitney u",  "mann whitney u", "mann–whitney–wilcoxon",
+                          "mann whitney wilcoxon", "wilcoxon mann whitney", "wilcoxon-mann-whitney", "rank-sum",
+                          "rank sum", "linear model", "linear regression", "limma", "edgeR", "deseq2",
+                          "hypothesis test", "p-value", "p value", "f-test", "f test"]
 
     multiple_correction_keywords = ["multiple testing", "multiple comparison", "multiple correction",
                                     "multiple adjustment", "multiple hypothesis", "adjusted p-value",
-                                    "adjusted p value", "adjustment", "family-wise error rate",
-                                    "family wise error rate", "fwer", "false discovery rate", "fdr"]
+                                    "adjusted p value", "family-wise error rate", "family wise error rate",
+                                    "fwer", "false discovery rate", "fdr", "q value", "q-value"]
 
     bh_keywords = ["benjamini-hochberg", "benjamini hochberg", "bh"]
     bonferroni_keywords = ["bonferroni"]
     by_keywords = ["benjamini-yekutieli", "benjamini yekutieli"]
     by_keywords_case_sensitive = ["BY"]
 
-    if (
-        keyword_match(article_text_lower, methylation_keywords) and
-        keyword_match(article_text_lower, stat_test_keywords) and
-        keyword_match(article_text_lower, multiple_correction_keywords)
-    ):
+    mentions_methylation = keyword_match(article_title_abstract_lower, methylation_keywords)
+    if mentions_methylation:
+        mentions_stat_test = keyword_match(article_text_lower, stat_test_keywords)
+        mentions_multiple_correction = keyword_match(article_text_lower, multiple_correction_keywords)
         yield {
             'title': title,
             'link': response.url,
             'publication_year': publication_year,
+            'mentions_methylation': mentions_methylation,
+            'mentions_stat_test': mentions_stat_test,
+            'mentions_multiple_correction': mentions_multiple_correction,
             'mentions_bh': keyword_match(article_text_lower, bh_keywords),
             'mentions_bonferroni': keyword_match(article_text_lower, bonferroni_keywords),
             'mentions_by': (

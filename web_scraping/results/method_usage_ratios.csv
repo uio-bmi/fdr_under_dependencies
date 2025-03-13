@@ -1,4 +1,4 @@
-,BMC Genomics,Clinical Epigenetics,Genome Biology
-BH,0.2,0.08571428571428572,0.25326370757180156
-Bonferroni,0.12331606217616581,0.30238095238095236,0.22715404699738903
-BY,0.013471502590673576,0.011904761904761904,0.033942558746736295
+,Benjamini-Hochberg (%),Benjamini-Hochberg (Count),Bonferroni (%),Bonferroni (Count),Benjamini-Yekutieli (%),Benjamini-Yekutieli (Count),More than one method (%),More than one method (Count),None (%),None (Count),Mentions Methylation (Count),Mentions Stat Test & Correction (Count)
+BMC Genomics,19.23,10,17.31,9,1.92,1,5.77,3,55.77,29,101,52
+Clinical Epigenetics,5.42,16,32.2,95,1.36,4,3.05,9,57.97,171,660,295
+Genome Biology,19.23,10,19.23,10,0.0,0,11.54,6,50.0,26,107,52
