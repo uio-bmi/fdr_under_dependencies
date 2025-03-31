@@ -3,7 +3,6 @@ import numpy as np
 import pandas as pd
 from scripts.analysis.statistical_analysis import get_p_values, adjust_p_values
 
-
 def reanalyse_dataset_with_false_null_hypotheses(data_path, intermediate_files_path, output_path, modified_data_path):
     data = np.loadtxt(data_path, delimiter="\t")
     n_obs = data.shape[0]
@@ -12,7 +11,7 @@ def reanalyse_dataset_with_false_null_hypotheses(data_path, intermediate_files_p
     np.savetxt(os.path.join(modified_data_path, os.path.basename(data_path)), data, delimiter="\t")
     p_values = get_p_values(data=data, group1_indices=list(range(group_size)),
                             group2_indices=list(range(group_size, n_obs)), test_type="t-test")
-    adjustment_methods = ['bonferroni', 'bh', 'by', 'ts_by']
+    adjustment_methods = ['bonferroni', 'bh', 'by', 'ts_by', "ts_bh", "hs", "h", "s", "sh"]
     is_false = np.zeros(data.shape[1])
     is_false[selected_indices] = 1
     fdr_results = {'p_values': p_values, 'is_false': is_false}
@@ -24,13 +23,14 @@ def reanalyse_dataset_with_false_null_hypotheses(data_path, intermediate_files_p
     signif_counts = fdr_results.groupby(['is_false']).apply(lambda x: x[x < 0.05].count())
     signif_counts = signif_counts.drop(["is_false"], axis=1)
     n_true_signif = signif_counts.loc[1, 'p_values']
-    signif_counts.iloc[0] = signif_counts.iloc[0]/10000
-    signif_counts.iloc[1] = signif_counts.iloc[1]/n_true_signif
-    signif_counts.loc[1, 'p_values'] = n_true_signif/10000
+    signif_counts.iloc[0] = signif_counts.iloc[0] / 10000
+    signif_counts.iloc[1] = signif_counts.iloc[1] / n_true_signif
+    signif_counts.loc[1, 'p_values'] = n_true_signif / 10000
     signif_counts = signif_counts.reset_index()
     signif_counts = signif_counts.melt(id_vars=["is_false"])
     signif_counts['dataset'] = os.path.basename(data_path)
     signif_counts.to_csv(os.path.join(output_path, os.path.basename(data_path)), sep="\t", index=False)
+
 
 def select_and_modify_features(data, p, a, b, z):
     """
@@ -52,11 +52,13 @@ def select_and_modify_features(data, p, a, b, z):
     feature_means = np.mean(data, axis=0)
     eligible_indices = np.where((feature_means >= a) & (feature_means <= b))[0]
     if len(eligible_indices) < p:
-        raise ValueError(f"Not enough features within the specified mean range. Found: {len(eligible_indices)}, Required: {p}")
+        raise ValueError(
+            f"Not enough features within the specified mean range. Found: {len(eligible_indices)}, Required: {p}")
     selected_indices = np.random.choice(eligible_indices, size=p, replace=False)
     half_n = n // 2
     data[half_n:, selected_indices] += z
     return data, selected_indices
+
 
 def reanalyse_datasets(target_datasets_list, rawdata_path, intermediate_files_path, output_path, modified_data_path):
     os.makedirs(intermediate_files_path, exist_ok=True)

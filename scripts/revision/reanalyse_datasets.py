@@ -10,7 +10,7 @@ def reanalyse_dataset(data_path, intermediate_files_path, output_path):
     group_size = n_obs // 2
     p_values = get_p_values(data=data, group1_indices=list(range(group_size)),
                             group2_indices=list(range(group_size, n_obs)), test_type="t-test")
-    adjustment_methods = ['bonferroni', 'bh', 'by', 'ts_by']
+    adjustment_methods = ['bonferroni', 'bh', 'by', 'ts_by', "ts_bh", "hs", "h", "s", "sh"]
     fdr_results = {'p_values': p_values}
     for method in adjustment_methods:
         fdr_results[f"pdj_{method}"] = adjust_p_values(p_values=p_values, method=method)

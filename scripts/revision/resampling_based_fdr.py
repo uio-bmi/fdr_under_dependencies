@@ -20,7 +20,8 @@ def resampling_based_fdr(data_path: str, n_times: int, intermediate_files_path, 
         perm_indices = np.random.permutation(n_obs)
         perm_p_values[i] = get_p_values(data=data[perm_indices], group1_indices=list(range(group_size)),
                                         group2_indices=list(range(group_size, n_obs)), test_type="t-test")
-    avg_fp = np.array([np.mean(np.sum(perm_p_values <= sorted_p_values[i], axis=1)) for i in range(n_features)])
+    # avg_fp = np.array([np.mean(np.sum(perm_p_values <= sorted_p_values[i], axis=1)) for i in range(n_features)])
+    avg_fp = np.array([np.quantile(np.sum(perm_p_values <= sorted_p_values[i], axis=1), 0.99) for i in range(n_features)])
     fdr_hat_sorted = avg_fp / np.arange(1, n_features + 1)
     fdr_hat_sorted = np.minimum.accumulate(fdr_hat_sorted[::-1])[::-1]
     fdr_hat = np.zeros(n_features)
