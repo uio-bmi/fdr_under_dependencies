@@ -118,6 +118,13 @@ def adjust_p_values(p_values: np.array, method: str) -> np.array:
     correction_methods_map = {
         'bonferroni': 'bonferroni',
         'bh': 'fdr_bh',
+        'by': 'fdr_by',
+        'ts_by': 'fdr_tsbky',
+        "ts_bh": "fdr_tsbh",
+        "hs": "holm-sidak",
+        "h": "holm",
+        "s": "sidak",
+        "sh": "simes-hochberg"
     }
     if method in correction_methods_map:
         reject, adjusted_p_values, _, _ = multipletests(p_values, method=correction_methods_map[method])
