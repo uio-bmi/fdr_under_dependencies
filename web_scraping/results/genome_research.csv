@@ -1,0 +1,150 @@
+title,link,publication_year,mentions_methylation,mentions_stat_test,mentions_multiple_correction,mentions_bh,mentions_bonferroni,mentions_by
+Comprehensive analyses of 723 transcriptomes enhance genetic and biological interpretations for complex traits in cattle,https://genome.cshlp.org/content/30/5/790.full,2020,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE
+Quantitative prediction of enhancer–promoter interactions,https://genome.cshlp.org/content/30/1/72.full,2020,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Heterodimerization of TFAP2 pioneer factors drives epigenomic remodeling during neural crest specification,https://genome.cshlp.org/content/30/1/35.full,2020,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+A comparison of gene expression and DNA methylation patterns across tissues and species,https://genome.cshlp.org/content/30/2/250.full,2020,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+Genome-wide redistribution of 24-nt siRNAs in rice gametes,https://genome.cshlp.org/content/30/2/173.full,2020,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+An integrative view of the regulatory and transcriptional landscapes in mouse hematopoiesis,https://genome.cshlp.org/content/30/3/472.full,2020,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+RETrace: simultaneous retrospective lineage tracing and methylation profiling of single cells,https://genome.cshlp.org/content/30/4/602.full,2020,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Detection and characterization of jagged ends of double-stranded DNA in plasma,https://genome.cshlp.org/content/30/8/1144.full,2020,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Diploid genome architecture revealed by multi-omic data of hybrid mice,https://genome.cshlp.org/content/30/8/1097.full,2020,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+Chromatin activation as a unifying principle underlying pathogenic mechanisms in multiple myeloma,https://genome.cshlp.org/content/30/9/1217.full,2020,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE
+Pan-cancer multi-omics analysis and orthogonal experimental assessment of epigenetic driver genes,https://genome.cshlp.org/content/30/10/1517.full,2020,TRUE,TRUE,TRUE,FALSE,TRUE,FALSE
+Distinct contributions of DNA methylation and histone acetylation to the genomic occupancy of transcription factors,https://genome.cshlp.org/content/30/10/1393.full,2020,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE
+PRAM: a novel pooling approach for discovering intergenic transcripts from large-scale RNA sequencing experiments,https://genome.cshlp.org/content/30/11/1655.full,2020,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE
+"An optogenetic switch for the Set2 methyltransferase provides evidence for transcription-dependent and -independent dynamics
+                  of H3K36 methylation",https://genome.cshlp.org/content/30/11/1605.full,2020,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+"Large tandem duplications affect gene expression, 3D organization, and plant–pathogen response",https://genome.cshlp.org/content/30/11/1583.full,2020,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+Transcriptional activity and epigenetic regulation of transposable elements in the symbiotic fungus  Rhizophagus irregularis,https://genome.cshlp.org/content/31/12/2290.full,2021,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+Evolutionary rewiring of the wheat transcriptional regulatory network by lineage-specific transposable elements,https://genome.cshlp.org/content/31/12/2276.full,2021,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+A systematic analysis of  Trypanosoma brucei  chromatin factors identifies novel protein interaction networks associated with sites of transcription initiation and termination,https://genome.cshlp.org/content/31/11/2138.full,2021,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Genome-wide prediction of DNA mutation effect on nucleosome positions for yeast synthetic genomics,https://genome.cshlp.org/content/31/2/317.full,2021,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+"Nondestructive enzymatic deamination enables single-molecule long-read amplicon sequencing for the determination of 5-methylcytosine
+                  and 5-hydroxymethylcytosine at single-base resolution",https://genome.cshlp.org/content/31/2/291.full,2021,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Epigenomic differences in the human and chimpanzee genomes are associated with structural variation,https://genome.cshlp.org/content/31/2/279.full,2021,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+Predictive modeling of single-cell DNA methylome data enhances integration with transcriptome data,https://genome.cshlp.org/content/31/1/101.full,2021,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+KDM1A maintains genome-wide homeostasis of transcriptional enhancers,https://genome.cshlp.org/content/31/2/186.full,2021,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+Orc4 spatiotemporally stabilizes centromeric chromatin,https://genome.cshlp.org/content/31/4/607.full,2021,TRUE,TRUE,TRUE,FALSE,TRUE,FALSE
+"ZNF91  deletion in human embryonic stem cells leads to ectopic activation of SVA retrotransposons and up-regulation of KRAB zinc
+                  finger gene clusters",https://genome.cshlp.org/content/31/4/551.full,2021,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+A plug and play microfluidic platform for standardized sensitive low-input chromatin immunoprecipitation,https://genome.cshlp.org/content/31/5/919.full,2021,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+DNA methylation epitypes highlight underlying developmental and disease pathways in acute myeloid leukemia,https://genome.cshlp.org/content/31/5/747.full,2021,TRUE,TRUE,TRUE,FALSE,TRUE,FALSE
+Positive selective sweeps of epigenetic mutations regulating specialized metabolites in plants,https://genome.cshlp.org/content/31/6/1060.full,2021,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+Enzymatic methyl sequencing detects DNA methylation at single-base resolution from picograms of DNA,https://genome.cshlp.org/content/31/7/1280.full,2021,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Conserved noncoding sequences provide insights into regulatory sequence and loss of gene expression in maize,https://genome.cshlp.org/content/31/7/1245.full,2021,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+Polycomb-dependent differential chromatin compartmentalization determines gene coregulation in  Arabidopsis,https://genome.cshlp.org/content/31/7/1230.full,2021,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+"The loss of heterochromatin is associated with multiscale three-dimensional genome reorganization and aberrant transcription
+                  during cellular senescence",https://genome.cshlp.org/content/31/7/1121.full,2021,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+Hydroxycarbamide effects on DNA methylation and gene expression in myeloproliferative neoplasms,https://genome.cshlp.org/content/31/8/1381.full,2021,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+Ligand-induced native G-quadruplex stabilization impairs transcription initiation,https://genome.cshlp.org/content/31/9/1546.full,2021,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+Parental methylome reprogramming in human uniparental blastocysts reveals germline memory transition,https://genome.cshlp.org/content/31/9/1519.full,2021,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+Iterative epigenomic analyses in the same single cell,https://genome.cshlp.org/content/31/10/1819.full,2021,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Cancer cell states and emergent properties of the dynamic tumor system,https://genome.cshlp.org/content/31/10/1719.full,2021,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Nuclease deficiencies alter plasma cell-free DNA methylation profiles,https://genome.cshlp.org/content/31/11/2008.full,2021,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+The human ribosomal DNA array is composed of highly homogenized tandem clusters,https://genome.cshlp.org/content/31/11/1971.full,2021,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE
+Decoding the function of bivalent chromatin in development and cancer,https://genome.cshlp.org/content/31/12/2170.full,2021,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+"Epigenomic analysis reveals prevalent contribution of transposable elements to  cis -regulatory elements, tissue-specific expression, and alternative promoters in zebrafish",https://genome.cshlp.org/content/32/7/1424.full,2022,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+"RefSeq Functional Elements as experimentally assayed nongenic reference standards and functional interactions in human and
+                  mouse",https://genome.cshlp.org/content/32/1/175.full,2022,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Profiling chromatin accessibility in formalin-fixed paraffin-embedded samples,https://genome.cshlp.org/content/32/1/150.full,2022,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+"Integration of high-resolution promoter profiling assays reveals novel, cell type–specific transcription start sites across
+                  115 human cell and tissue types",https://genome.cshlp.org/content/32/2/389.full,2022,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+Accessible Region Conformation Capture (ARC-C) gives high-resolution insights into genome architecture and regulation,https://genome.cshlp.org/content/32/2/357.full,2022,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+"The asymmetric distribution of RNA polymerase II and nucleosomes on replicated daughter genomes is caused by differences in
+                  replication timing between the lagging and the leading strand",https://genome.cshlp.org/content/32/2/337.full,2022,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Resetting of the 24-nt siRNA landscape in rice zygotes,https://genome.cshlp.org/content/32/2/309.full,2022,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+Gene by environment interaction mouse model reveals a functional role for 5-hydroxymethylcytosine in neurodevelopmental disorders,https://genome.cshlp.org/content/32/2/266.full,2022,TRUE,TRUE,TRUE,FALSE,TRUE,FALSE
+Broad domains of histone marks in the highly compact  Paramecium  macronuclear genome,https://genome.cshlp.org/content/32/4/710.full,2022,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Accumulation and ineffective silencing of transposable elements on an avian W Chromosome,https://genome.cshlp.org/content/32/4/671.full,2022,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+The genetics and epigenetics of satellite centromeres,https://genome.cshlp.org/content/32/4/608.full,2022,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Chromatin interaction–aware gene regulatory modeling with graph attention networks,https://genome.cshlp.org/content/32/5/930.full,2022,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE
+Genome-wide promoter assembly in  E. coli  measured at single-base resolution,https://genome.cshlp.org/content/32/5/878.full,2022,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+"H3K36 dimethylation shapes the epigenetic interaction landscape by directing repressive chromatin modifications in embryonic
+                  stem cells",https://genome.cshlp.org/content/32/5/825.full,2022,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+"Genetic, epigenetic, and environmental mechanisms govern allele-specific gene expression",https://genome.cshlp.org/content/32/6/1042.full,2022,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+Dynamic regulatory module networks for inference of cell type–specific transcriptional networks,https://genome.cshlp.org/content/32/7/1367.full,2022,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+Epigenomic translocation of H3K4me3 broad domains over oncogenes following hijacking of super-enhancers,https://genome.cshlp.org/content/32/7/1343.full,2022,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+Dynamics of broad H3K4me3 domains uncover an epigenetic switch between cell identity and cancer-related genes,https://genome.cshlp.org/content/32/7/1328.full,2022,TRUE,TRUE,FALSE,TRUE,FALSE,FALSE
+dbEmbryo multi-omics database for analyses of synergistic regulation in early mammalian embryo development,https://genome.cshlp.org/content/32/8/1612.full,2022,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+Coordination of zygotic genome activation entry and exit by H3K4me3 and H3K27me3 in porcine early embryos,https://genome.cshlp.org/content/32/8/1487.full,2022,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+Ruminant-specific retrotransposons shape regulatory evolution of bovine immunity,https://genome.cshlp.org/content/32/8/1474.full,2022,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+Identification of a transcriptional signature found in multiple models of ASD and related disorders,https://genome.cshlp.org/content/32/9/1642.full,2022,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+Single-cell multi-omics of human preimplantation embryos shows susceptibility to glucocorticoids,https://genome.cshlp.org/content/32/9/1627.full,2022,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+Methyl-SNP-seq reveals dual readouts of methylome and variome at molecule resolution while enabling target enrichment,https://genome.cshlp.org/content/32/11-12/2079.full,2022,TRUE,FALSE,FALSE,FALSE,TRUE,FALSE
+Developmental timing of programmed DNA elimination in  Paramecium tetraurelia  recapitulates germline transposon evolutionary dynamics,https://genome.cshlp.org/content/32/11-12/2028.full,2022,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Comprehensive determination of transcription start sites derived from all RNA polymerases using ReCappable-seq,https://genome.cshlp.org/content/32/1/162.full,2022,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Using long-read CAGE sequencing to profile cryptic-promoter-derived transcripts and their contribution to the immunopeptidome,https://genome.cshlp.org/content/33/12/2143.full,2023,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+Spatiotemporal kinetics of CAF-1-dependent chromatin maturation ensures transcription fidelity during S-phase,https://genome.cshlp.org/content/33/12/2108.full,2023,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+A chromosome-scale epigenetic map of the  Hydra  genome reveals conserved regulators of cell state,https://genome.cshlp.org/content/33/2/283.full,2023,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE
+Multi-omics analyses demonstrate a critical role for EHMT1 methyltransferase in transcriptional repression during oogenesis,https://genome.cshlp.org/content/33/1/18.full,2023,TRUE,TRUE,TRUE,FALSE,TRUE,FALSE
+"A temporal in vivo catalog of chromatin accessibility and expression profiles in pineoblastoma reveals a prevalent role for
+                  repressor elements",https://genome.cshlp.org/content/33/2/269.full,2023,TRUE,TRUE,FALSE,FALSE,TRUE,FALSE
+Genome-wide evaluation of the effect of short tandem repeat variation on local DNA methylation,https://genome.cshlp.org/content/33/2/184.full,2023,TRUE,TRUE,TRUE,FALSE,TRUE,FALSE
+"The aberrant epigenome of  DNMT3B -mutated ICF1 patient iPSCs is amenable to correction, with the exception of a subset of regions with H3K4me3- and/or CTCF-based
+                  epigenetic memory",https://genome.cshlp.org/content/33/2/169.full,2023,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE
+Global loss of cellular m 6 A RNA methylation following infection with different SARS-CoV-2 variants,https://genome.cshlp.org/content/33/3/299.full,2023,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+Incomplete erasure of histone marks during epigenetic reprogramming in medaka early development,https://genome.cshlp.org/content/33/4/572.full,2023,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+MYT1L is required for suppressing earlier neuronal development programs in the adult mouse brain,https://genome.cshlp.org/content/33/4/541.full,2023,TRUE,TRUE,TRUE,FALSE,TRUE,FALSE
+Comparing genomic and epigenomic features across species using the WashU Comparative Epigenome Browser,https://genome.cshlp.org/content/33/5/824.full,2023,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+"Plant polymerase IV sensitizes chromatin through histone modifications to preclude spread of silencing into protein-coding
+                  domains",https://genome.cshlp.org/content/33/5/715.full,2023,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Genome skimming with nanopore sequencing precisely determines global and transposon DNA methylation in vertebrates,https://genome.cshlp.org/content/33/6/948.full,2023,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+Variation in histone configurations correlates with gene expression across nine inbred strains of mice,https://genome.cshlp.org/content/33/6/857.full,2023,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+Single-cell methylation sequencing data reveal succinct metastatic migration histories and tumor progression models,https://genome.cshlp.org/content/33/7/1089.full,2023,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+A transcriptome-based single-cell biological age model and resource for tissue-specific aging measures,https://genome.cshlp.org/content/33/8/1381.full,2023,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+"Chromatin loop dynamics during cellular differentiation are associated with changes to both anchor and internal regulatory
+                  features",https://genome.cshlp.org/content/33/8/1258.full,2023,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+Loss of epigenetic suppression of retrotransposons with oncogenic potential in aging mammary luminal epithelial cells,https://genome.cshlp.org/content/33/8/1229.full,2023,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+Telomerase-independent survival leads to a mosaic of complex subtelomere rearrangements in  Chlamydomonas reinhardtii,https://genome.cshlp.org/content/33/9/1582.full,2023,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Phylogenetic modeling of enhancer shifts in African mole-rats reveals regulatory changes associated with tissue-specific traits,https://genome.cshlp.org/content/33/9/1513.full,2023,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE
+Locus-resolution analysis of L1 regulation and retrotransposition potential in mouse embryonic development,https://genome.cshlp.org/content/33/9/1465.full,2023,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+Deciphering D4Z4 CpG methylation gradients in fascioscapulohumeral muscular dystrophy using nanopore sequencing,https://genome.cshlp.org/content/33/9/1439.full,2023,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Multiscale network modeling reveals the gene regulatory landscape driving cancer prognosis in 32 cancer types,https://genome.cshlp.org/content/33/10/1806.full,2023,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE
+Nucleosome repositioning in chronic lymphocytic leukemia,https://genome.cshlp.org/content/33/10/1649.full,2023,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+"miRNA-like secondary structures in maize ( Zea mays ) genes and transposable elements correlate with small RNAs, methylation, and expression",https://genome.cshlp.org/content/33/11/1932.full,2023,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+Transposon wave remodeled the epigenomic landscape in the rapid evolution of X-Chromosome dosage compensation,https://genome.cshlp.org/content/33/11/1917.full,2023,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+Revisiting chromatin packaging in mouse sperm,https://genome.cshlp.org/content/33/12/2079.full,2023,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+"A DNA methylation haplotype block landscape in human tissues and preimplantation embryos reveals regulatory elements defined
+                  by comethylation patterns",https://genome.cshlp.org/content/33/12/2041.full,2023,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+Resolving the chromatin impact of mosaic variants with targeted Fiber-seq,https://genome.cshlp.org/content/34/12/2269.full,2024,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE
+Characterization of the distribution and dynamics of chromatin states in the  C. elegans  germline reveals substantial H3K4me3 remodeling during oogenesis,https://genome.cshlp.org/content/34/1/57.full,2024,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+"Dynamic DNA  N 6 -adenine methylation (6mA) governs the encystment process, showcased in the unicellular eukaryote  Pseudocohnilembus persalinus",https://genome.cshlp.org/content/34/2/256.full,2024,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+"The structure, function, and evolution of plant centromeres",https://genome.cshlp.org/content/34/2/161.full,2024,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Robust chromatin state annotation,https://genome.cshlp.org/content/34/3/469.full,2024,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+Systematic identification and characterization of exon–intron circRNAs,https://genome.cshlp.org/content/34/3/376.full,2024,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+Combinatorial microRNA activity is essential for the transition of pluripotent cells from proliferation into dormancy,https://genome.cshlp.org/content/34/4/572.full,2024,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+Navigating the landscape of epitranscriptomics and host immunity,https://genome.cshlp.org/content/34/4/515.full,2024,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+Semiconservative transmission of DNA  N 6 -adenine methylation in a unicellular eukaryote,https://genome.cshlp.org/content/34/5/740.full,2024,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+"Genome-wide profiles of H3K9me3, H3K27me3 modifications, and DNA methylation during diapause of Asian corn borer ( Ostrinia furnacalis )",https://genome.cshlp.org/content/34/5/725.full,2024,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Neuron-specific chromatin disruption at CpG islands and aging-related regions in Kabuki syndrome mice,https://genome.cshlp.org/content/34/5/696.full,2024,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+"Machine learning identifies activation of RUNX/AP-1 as drivers of mesenchymal and fibrotic regulatory programs in gastric
+                  cancer",https://genome.cshlp.org/content/34/5/680.full,2024,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE
+"Simultaneous assessment of human genome and methylome data in a single experiment using limited deamination of methylated
+                  cytosine",https://genome.cshlp.org/content/34/6/904.full,2024,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+Single-cell discovery of m 6 A RNA modifications in the hippocampus,https://genome.cshlp.org/content/34/6/822.full,2024,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+"Interspecies regulatory landscapes and elements revealed by novel joint systematic integration of human and mouse blood cell
+                  epigenomes",https://genome.cshlp.org/content/34/7/1089.full,2024,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+A novel approach for in vivo DNA footprinting using short double-stranded cell-free DNA from plasma,https://genome.cshlp.org/content/34/8/1185.full,2024,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Privacy-preserving biological age prediction over federated human methylation data using fully homomorphic encryption,https://genome.cshlp.org/content/34/9/1324.full,2024,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Global characterization of somatic mutations and DNA methylation changes during vegetative propagation in strawberries,https://genome.cshlp.org/content/34/10/1582.full,2024,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+Complete genomes of Asgard archaea reveal diverse integrated and mobile genetic elements,https://genome.cshlp.org/content/34/10/1595.full,2024,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Evidence for compensatory evolution within pleiotropic regulatory elements,https://genome.cshlp.org/content/34/10/1528.full,2024,TRUE,TRUE,FALSE,TRUE,FALSE,FALSE
+The chromatin tapestry as a framework for neurodevelopment,https://genome.cshlp.org/content/34/10/1477.full,2024,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+"High-coverage nanopore sequencing of samples from the 1000 Genomes Project to build a comprehensive catalog of human genetic
+                  variation",https://genome.cshlp.org/content/34/11/2061.full,2024,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Accurate bacterial outbreak tracing with Oxford Nanopore sequencing and reduction of methylation-induced errors,https://genome.cshlp.org/content/34/11/2039.full,2024,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Nanopore strand-specific mismatch enables de novo detection of bacterial DNA modifications,https://genome.cshlp.org/content/34/11/2025.full,2024,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE
+Detecting m6A RNA modification from nanopore sequencing using a semisupervised learning framework,https://genome.cshlp.org/content/34/11/1987.full,2024,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+DNA-m6A calling and integrated long-read epigenetic and genetic analysis with  fibertools,https://genome.cshlp.org/content/34/11/1976.full,2024,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE
+Measuring X-Chromosome inactivation skew for X-linked diseases with adaptive nanopore sequencing,https://genome.cshlp.org/content/34/11/1954.full,2024,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Resolving complex duplication variants in autism spectrum disorder using long-read genome sequencing,https://genome.cshlp.org/content/34/11/1763.full,2024,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE
+Leveraging the power of long reads for targeted sequencing,https://genome.cshlp.org/content/34/11/1701.full,2024,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE
+Characterization of DNA methylation reader proteins in  Arabidopsis thaliana,https://genome.cshlp.org/content/34/12/2229.full,2024,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+"Analyzing super-enhancer temporal dynamics reveals potential critical enhancers and their gene regulatory networks underlying
+                  skeletal muscle development",https://genome.cshlp.org/content/34/12/2190.full,2024,TRUE,FALSE,TRUE,FALSE,FALSE,FALSE
+Atypical epigenetic and small RNA control of degenerated transposons and their fragments in clonally reproducing  Spirodela polyrhiza,https://genome.cshlp.org/content/35/3/522.full,2025,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+KRAB zinc-finger proteins regulate endogenous retroviruses to sculpt germline transcriptomes and genome evolution,https://genome.cshlp.org/content/35/3/417.full,2025,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+Common and specific gene regulatory programs in zebrafish caudal fin regeneration at single-cell resolution,https://genome.cshlp.org/content/35/1/202.full,2025,TRUE,TRUE,FALSE,FALSE,TRUE,FALSE
+"Single-nucleus CUT&RUN elucidates the function of intrinsic and genomics-driven epigenetic heterogeneity in head and neck
+                  cancer progression",https://genome.cshlp.org/content/35/1/162.full,2025,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
+Artificial intelligence and machine learning in cell-free-DNA-based diagnostics,https://genome.cshlp.org/content/35/1/1.full,2025,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE
