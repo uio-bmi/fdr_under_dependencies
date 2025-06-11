@@ -11,6 +11,8 @@ def parse_article(response):
         yield from parse_nar_article(response)
     elif 'genome.cshlp.org' in domain:
         yield from parse_genome_research_article(response)
+    elif 'nature' in domain:
+        yield from parse_nature_article(response)
     else:
         yield from parse_generic_article(response)
 
@@ -56,6 +58,25 @@ def parse_genome_research_article(response):
 
     full_text = " ".join(filtered_text)
     publication_date = response.css('meta[name="DC.Date"]::attr(content)').get()
+
+    yield from process_article_logic(response.url, title, abstract, full_text, publication_date)
+
+
+def parse_nature_article(response):
+    title = response.css('h1.c-article-title::text').get()
+
+    abstract = " ".join(response.css('section[data-title="Abstract"] p::text').getall())
+    full_text_sections = response.css('div.main-content')
+    filtered_text = []
+
+    for section in full_text_sections:
+        section_title = section.css('h2::text, h3::text').get(default="").lower()
+        if "references" not in section_title and "bibliography" not in section_title:
+            filtered_text.append(" ".join(section.css('p::text').getall()))
+
+    full_text = " ".join(filtered_text)
+
+    publication_date = response.css('time::attr(datetime)').get()
 
     yield from process_article_logic(response.url, title, abstract, full_text, publication_date)
 
