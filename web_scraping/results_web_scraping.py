@@ -3,7 +3,12 @@ import pandas as pd
 file_paths = {
     "BMC Genomics": "results/bmc_genomics.csv",
     "Clinical Epigenetics": "results/clinical_epigenetics.csv",
-    "Genome Biology": "results/genome_biology.csv"
+    "Genome Biology": "results/genome_biology.csv",
+    "Genome Research": "results/genome_research.csv",
+    "NAR": "results/nar.csv",
+    "Nature Communications": "results/nature_communications.csv",
+    "Nature": "results/nature.csv",
+    "Nature Genetics": "results/nature_genetics.csv"
 }
 
 results = {}
